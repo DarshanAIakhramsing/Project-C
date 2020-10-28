@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{DCCB6F79-1B68-4070-A8B6-B8730720E6E8}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Project_C/appsettings.json">
+    <Files>
+      <File FileName="Project_C/appsettings.json" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Project_C" expanded="True">
+            <Node name="Project_C" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="appsettings.json" expanded="True" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Project__C PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
