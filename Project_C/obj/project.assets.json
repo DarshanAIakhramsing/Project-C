@@ -5700,11 +5700,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sccbi\\OneDrive\\Documents\\GitHub\\Project-C\\Project_C\\Project_C.csproj",
+      "projectUniqueName": "C:\\Users\\sccbi\\OneDrive\\Documents\\GitHub\\Project-C1\\Project_C\\Project_C.csproj",
       "projectName": "Project_C",
-      "projectPath": "C:\\Users\\sccbi\\OneDrive\\Documents\\GitHub\\Project-C\\Project_C\\Project_C.csproj",
+      "projectPath": "C:\\Users\\sccbi\\OneDrive\\Documents\\GitHub\\Project-C1\\Project_C\\Project_C.csproj",
       "packagesPath": "C:\\Users\\sccbi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sccbi\\OneDrive\\Documents\\GitHub\\Project-C\\Project_C\\obj\\",
+      "outputPath": "C:\\Users\\sccbi\\OneDrive\\Documents\\GitHub\\Project-C1\\Project_C\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
