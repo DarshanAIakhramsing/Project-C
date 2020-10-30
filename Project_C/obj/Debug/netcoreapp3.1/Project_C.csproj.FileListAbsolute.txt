@@ -180,8 +180,6 @@ C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcorea
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Project_C.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Project_C.RazorComponent.input.cache
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\App.razor.g.cs
-C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Counter.razor.g.cs
-C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\FetchData.razor.g.cs
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Index.razor.g.cs
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\LoginDisplay.razor.g.cs
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\MainLayout.razor.g.cs
@@ -193,8 +191,6 @@ C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcorea
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Project_C.TagHelpers.output.cache
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Project_C.RazorCoreGenerate.cache
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Razor\App.razor.g.cs
-C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\Counter.razor.g.cs
-C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\FetchData.razor.g.cs
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\Index.razor.g.cs
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Razor\Shared\LoginDisplay.razor.g.cs
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Razor\Shared\MainLayout.razor.g.cs
@@ -216,3 +212,7 @@ C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcorea
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Project_C.dll
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Project_C.pdb
 C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Project_C.genruntimeconfig.cache
+C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Notificaties.razor.g.cs
+C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\Notificaties.razor.g.cs
+C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Evaluatieformulier.razor.g.cs
+C:\Users\sccbi\OneDrive\Documents\GitHub\Project-C1\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\Evaluatieformulier.razor.g.cs
