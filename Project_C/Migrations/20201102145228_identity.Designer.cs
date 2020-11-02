@@ -9,7 +9,7 @@ using Project_C.Data;
 namespace Project_C.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201101172949_identity")]
+    [Migration("20201102145228_identity")]
     partial class identity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
