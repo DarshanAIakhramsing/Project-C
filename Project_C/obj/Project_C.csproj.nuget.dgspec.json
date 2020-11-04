@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sccbi\\OneDrive\\Documents\\GitHub\\Project-C1\\Project_C\\Project_C.csproj": {}
+    "P:\\Github\\Project-C\\Project_C\\Project_C.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sccbi\\OneDrive\\Documents\\GitHub\\Project-C1\\Project_C\\Project_C.csproj": {
+    "P:\\Github\\Project-C\\Project_C\\Project_C.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sccbi\\OneDrive\\Documents\\GitHub\\Project-C1\\Project_C\\Project_C.csproj",
+        "projectUniqueName": "P:\\Github\\Project-C\\Project_C\\Project_C.csproj",
         "projectName": "Project_C",
-        "projectPath": "C:\\Users\\sccbi\\OneDrive\\Documents\\GitHub\\Project-C1\\Project_C\\Project_C.csproj",
-        "packagesPath": "C:\\Users\\sccbi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sccbi\\OneDrive\\Documents\\GitHub\\Project-C1\\Project_C\\obj\\",
+        "projectPath": "P:\\Github\\Project-C\\Project_C\\Project_C.csproj",
+        "packagesPath": "C:\\Users\\Kelvin Van Schaijk\\.nuget\\packages\\",
+        "outputPath": "P:\\Github\\Project-C\\Project_C\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\sccbi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Kelvin Van Schaijk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,6 +57,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[3.1.9, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.4, )"
             }
           },
           "imports": [
