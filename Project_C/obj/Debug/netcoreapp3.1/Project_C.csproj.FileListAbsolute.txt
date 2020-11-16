@@ -408,3 +408,5 @@ F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_Logi
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_ValidationScriptsPartial.cshtml.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewImports.cshtml.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewStart.cshtml.g.cs
+F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\ForgotPassword.cshtml.g.cs
+F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
