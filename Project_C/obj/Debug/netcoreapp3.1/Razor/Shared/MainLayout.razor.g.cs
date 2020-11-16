@@ -79,28 +79,23 @@ using Project_C.Shared;
         {
             __builder.OpenElement(0, "div");
             __builder.AddAttribute(1, "class", "sidebar");
-            __builder.AddMarkupContent(2, "\r\n    ");
-            __builder.OpenComponent<Project_C.Shared.NavMenu>(3);
+            __builder.OpenComponent<Project_C.Shared.NavMenu>(2);
             __builder.CloseComponent();
-            __builder.AddMarkupContent(4, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(5, "\r\n\r\n");
+            __builder.AddMarkupContent(3, "\r\n\r\n");
+            __builder.OpenElement(4, "div");
+            __builder.AddAttribute(5, "class", "main");
             __builder.OpenElement(6, "div");
-            __builder.AddAttribute(7, "class", "main");
-            __builder.AddMarkupContent(8, "\r\n    ");
-            __builder.OpenElement(9, "div");
-            __builder.AddAttribute(10, "class", "top-row px-4 auth");
-            __builder.AddMarkupContent(11, "\r\n        ");
-            __builder.OpenComponent<Project_C.Shared.LoginDisplay>(12);
+            __builder.AddAttribute(7, "class", "top-row px-4 auth");
+            __builder.OpenComponent<Project_C.Shared.LoginDisplay>(8);
             __builder.CloseComponent();
-            __builder.AddMarkupContent(13, "\r\n        ");
-            __builder.AddMarkupContent(14, "<a href=\"https://docs.microsoft.com/aspnet/\" target=\"_blank\">About</a>\r\n    ");
+            __builder.AddMarkupContent(9, "\r\n        ");
+            __builder.AddMarkupContent(10, "<a href=\"https://docs.microsoft.com/aspnet/\" target=\"_blank\">About</a>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(15, "\r\n\r\n    ");
-            __builder.OpenElement(16, "div");
-            __builder.AddAttribute(17, "class", "content px-4");
-            __builder.AddMarkupContent(18, "\r\n        ");
-            __builder.AddContent(19, 
+            __builder.AddMarkupContent(11, "\r\n\r\n    ");
+            __builder.OpenElement(12, "div");
+            __builder.AddAttribute(13, "class", "content px-4");
+            __builder.AddContent(14, 
 #nullable restore
 #line 14 "F:\Projects\Project_C\Project_C\Shared\MainLayout.razor"
          Body
@@ -109,9 +104,7 @@ using Project_C.Shared;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(20, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(21, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998
