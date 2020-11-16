@@ -1,0 +1,61 @@
+﻿<Properties StartupConfiguration="{DCCB6F79-1B68-4070-A8B6-B8730720E6E8}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Project_C/wwwroot/css/site.css">
+    <Files>
+      <File FileName="Project_C/appsettings.json" Line="1" Column="1" />
+      <File FileName="Project_C/Pages/Index.razor" Line="1" Column="3" />
+      <File FileName="Project_C/wwwroot/css/bootstrap/bootstrap.min.css" Line="1" Column="1" />
+      <File FileName="Project_C/wwwroot/css/bootstrap/bootstrap.min.css.map" Line="1" Column="1" />
+      <File FileName="Project_C/wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css" Line="1" Column="1" />
+      <File FileName="Project_C/Program.cs" Line="1" Column="1" />
+      <File FileName="Project_C/App.razor" Line="1" Column="1" />
+      <File FileName="Project_C/_Imports.razor" Line="1" Column="1" />
+      <File FileName="Project_C/appsettings.Development.json" Line="1" Column="1" />
+      <File FileName="Project_C/Startup.cs" Line="1" Column="1" />
+      <File FileName="Project_C/Pages/_Host.cshtml" Line="1" Column="1" />
+      <File FileName="Project_C/Pages/Evaluatieformulier.razor" Line="1" Column="1" />
+      <File FileName="Project_C/Pages/Notificaties.razor" Line="1" Column="1" />
+      <File FileName="Project_C/Data/WeatherForecastService.cs" Line="1" Column="1" />
+      <File FileName="Project_C/Shared/LoginDisplay.razor" Line="1" Column="1" />
+      <File FileName="Project_C/wwwroot/css/site.css" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Project_C" expanded="True">
+            <Node name="Project_C" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Areas" expanded="True">
+                <Node name="Identity" expanded="True">
+                  <Node name="Pages" expanded="True">
+                    <Node name="Account" expanded="True" />
+                    <Node name="Shared" expanded="True" />
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="Data" expanded="True" />
+              <Node name="Pages" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Shared" expanded="True" />
+              <Node name="wwwroot" expanded="True">
+                <Node name="css" expanded="True">
+                  <Node name="bootstrap" expanded="True">
+                    <Node name="bootstrap.min.css" expanded="True" />
+                  </Node>
+                  <Node name="site.css" selected="True" />
+                </Node>
+              </Node>
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Project__C PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
