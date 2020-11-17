@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Project_C.Areas.Identity;
 using Project_C.Data;
+using Microsoft.Extensions.Options;
 
 namespace Project_C
 {

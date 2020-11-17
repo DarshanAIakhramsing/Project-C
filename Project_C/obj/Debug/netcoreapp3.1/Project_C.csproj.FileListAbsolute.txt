@@ -284,7 +284,6 @@ F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Project_C.AssemblyInfo.c
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Project_C.RazorComponent.input.cache
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\App.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Evaluatieformulier.razor.g.cs
-F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Index.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Notificaties.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\LoginDisplay.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Shared\MainLayout.razor.g.cs
@@ -318,7 +317,6 @@ F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Project_C.MvcApplication
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Project_C.dll
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\App.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\Evaluatieformulier.razor.g.cs
-F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\Index.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\Notificaties.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Shared\LoginDisplay.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Shared\MainLayout.razor.g.cs
@@ -410,3 +408,8 @@ F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewImports
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewStart.cshtml.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\ForgotPassword.cshtml.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
+F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Index.razor.g.cs
+F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\Index.razor.g.cs
+F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml.g.cs
+F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml.g.cs
+F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
