@@ -12,5 +12,7 @@ namespace Project_C.Data
             : base(options)
         {
         }
+
+        public DbSet<SessionInfo> Session { get; set; }
     }
 }

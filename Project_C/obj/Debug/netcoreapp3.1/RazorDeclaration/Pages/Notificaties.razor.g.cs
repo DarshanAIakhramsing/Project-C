@@ -75,14 +75,41 @@ using Project_C.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "F:\Projects\Project_C\Project_C\Pages\Notificaties.razor"
+using Project_C.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "F:\Projects\Project_C\Project_C\Pages\Notificaties.razor"
+using Project_C.Services;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Notificaties")]
-    public partial class Notificaties : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Notificaties : OwningComponentBase<SessionService>
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 25 "F:\Projects\Project_C\Project_C\Pages\Notificaties.razor"
+       
+    public System.Collections.Generic.IList<SessionInfo> sessies;
+
+    protected override void OnInitialized()
+    {
+        sessies = Service.DisplaySession();
+    }
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591
