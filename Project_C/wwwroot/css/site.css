@@ -117,6 +117,11 @@ app {
     color: red;
 }
 
+.form-group {
+    background-color: #8bcae8 !important;
+    color: white !important;
+}
+
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
