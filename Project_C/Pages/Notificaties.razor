@@ -1,5 +1,32 @@
 @page "/Notificaties"
+@using Project_C.Data;
+@using Project_C.Services;
+@inherits OwningComponentBase<SessionService>
 
-<h1>Notificaties</h1>
+<h3>Person</h3>
 
-Hier kan u al uw uitnodigingen voor nieuwe sessies zien en kiezen of u ze wilt accepteren of weigeren.
+<table border="1">
+    <tr>
+        <th>Sessie naam</th>
+        <th>Datum</th>
+        <th>Locatie</th>
+        <th>Uitnodiging accepteren of weigeren</th>
+    </tr>
+    @foreach (var sessie in sessies)
+    {
+        <tr>
+            <td>@sessie.session_name</td>
+            <td>@sessie.session_date</td>
+            <td>@sessie.session_location</td>
+        </tr>
+    }
+</table>
+
+@code {
+    public System.Collections.Generic.IList<SessionInfo> sessies;
+
+    protected override void OnInitialized()
+    {
+        sessies = Service.DisplaySession();
+    }
+}
