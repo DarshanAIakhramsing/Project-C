@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\Atlas\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Atlas\\.nuget\\packages"
+      "/Users/ferdibilgic/.dotnet/store/|arch|/|tfm|",
+      "/Users/ferdibilgic/.nuget/packages"
     ]
   }
 }
