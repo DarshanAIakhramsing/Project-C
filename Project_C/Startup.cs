@@ -17,6 +17,7 @@ using Project_C.Areas.Identity;
 using Project_C.Data;
 using Project_C.Services;
 using Microsoft.Extensions.Options;
+using Project_C.Models;
 
 namespace Project_C
 {
@@ -36,14 +37,21 @@ namespace Project_C
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddSingleton<WeatherForecastService>();
             services.AddScoped<SessionService>();
+
+            services.AddDefaultIdentity<User>(config =>
+            {
+                config.Password.RequireDigit = false;
+                config.Password.RequireLowercase = false;
+                config.Password.RequiredLength = 0;
+                config.Password.RequireUppercase = false;
+                config.Password.RequireNonAlphanumeric = false;
+            })
+                .AddUserStore<CustomUserStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
