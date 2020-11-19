@@ -13,16 +13,27 @@ using System.Security.Cryptography;
 
 namespace Project_C.Data
 {
-	public class CustomUserStore : IUserStore<User>, IUserPasswordStore<User>
+	public class CustomUserStore : IUserStore<User>, IUserPasswordStore<User>, IUserRoleStore<User>
 	{
-		public CustomUserStore(ApplicationDbContext dbContext)
+		public CustomUserStore(ApplicationDbContext dbContext, IRoleStore<Role> roleStore)
 		{
 			DbContext = dbContext;
+			Roles = roleStore;
 		}
 
 		private ApplicationDbContext DbContext { get; }
+		private IRoleStore<Role> Roles { get; }
 
-		public async Task<IdentityResult> CreateAsync(User user, CancellationToken cancellationToken)
+        public async Task AddToRoleAsync(User user, string roleName, CancellationToken cancellationToken)
+        {
+			user.Roles.Add(new UserRole
+			{
+				User = user,
+				Role = await Roles.FindByNameAsync(roleName, cancellationToken)
+			});
+        }
+
+        public async Task<IdentityResult> CreateAsync(User user, CancellationToken cancellationToken)
 		{
 			Console.WriteLine("Creating new user lol");
 			Console.WriteLine(user.Id);
@@ -45,7 +56,7 @@ namespace Project_C.Data
 
 		public void Dispose()
 		{
-			DbContext.Dispose();
+			Roles.Dispose();
 		}
 
 		public async Task<User> FindByIdAsync(string userId, CancellationToken cancellationToken)
@@ -67,16 +78,56 @@ namespace Project_C.Data
 			return Task.FromResult(user.Password);
 		}
 
-		public Task<string> GetUserIdAsync(User user, CancellationToken cancellationToken) => Task.FromResult(user.Id.ToString());
+        public async Task<IList<string>> GetRolesAsync(User user, CancellationToken cancellationToken)
+        {
+			user = (await DbContext.Users
+				.Include(u => u.Roles)
+				.ThenInclude(ur => ur.Role)
+				.FirstOrDefaultAsync(u => u.Id == user.Id, cancellationToken)
+			);
+
+			return user?.Roles.Select(ur => ur.Role.Name).ToList();
+        }
+
+        public Task<string> GetUserIdAsync(User user, CancellationToken cancellationToken) => Task.FromResult(user.Id.ToString());
 
 		public Task<string> GetUserNameAsync(User user, CancellationToken cancellationToken) => Task.FromResult(user.Email);
 
-		public Task<bool> HasPasswordAsync(User user, CancellationToken cancellationToken)
+        public async Task<IList<User>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
+        {
+			return await DbContext.Users
+				.Include(u => u.Roles)
+				.ThenInclude(ur => ur.Role)
+				.Where(u => u.Roles.Any(ur => ur.Role.Name == roleName))
+				.ToListAsync(cancellationToken);
+        }
+
+        public Task<bool> HasPasswordAsync(User user, CancellationToken cancellationToken)
 		{
 			return Task.FromResult(true);
 		}
 
-		public Task SetNormalizedUserNameAsync(User user, string normalizedName, CancellationToken cancellationToken)
+        public async Task<bool> IsInRoleAsync(User user, string roleName, CancellationToken cancellationToken)
+        {
+			return (await GetRolesAsync(user, cancellationToken))
+				.Contains(roleName);
+        }
+
+        public async Task RemoveFromRoleAsync(User user, string roleName, CancellationToken cancellationToken)
+        {
+			var userRole = (await DbContext.Users
+				.Include(u => u.Roles)
+				.ThenInclude(ur => ur.Role)
+				.FirstOrDefaultAsync(u => u.Id == user.Id, cancellationToken)
+			)?.Roles.FirstOrDefault(ur => ur.Role.Name == roleName);
+
+			if (userRole is null) return;
+
+            DbContext.Remove(userRole);
+			await DbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        public Task SetNormalizedUserNameAsync(User user, string normalizedName, CancellationToken cancellationToken)
 		{
 			return Task.CompletedTask;
 		}

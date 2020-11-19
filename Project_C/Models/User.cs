@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace Project_C.Models
 {
     public class User
-    {   
-        [Key]
+    {
         public int Id { get; set; }
 
         public string Password { get; set; }
@@ -17,6 +16,6 @@ namespace Project_C.Models
 
         public int accept_invitation { get; set; }
 
-
+        public List<UserRole> Roles { get; set; }
     }
 }

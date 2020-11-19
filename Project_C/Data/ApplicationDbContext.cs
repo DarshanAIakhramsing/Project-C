@@ -13,6 +13,19 @@ namespace Project_C.Data
             : base(options)
         {
         }
+        
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+            modelBuilder.Entity<UserRole>(entity =>
+			{
+				//  Add composite primary key on UserId and RoleId
+				entity.HasKey($"{nameof(UserRole.User)}Id", $"{nameof(UserRole.Role)}Id");
+
+				// Configure the many-to-many relation between User and Role
+				entity.HasOne(ur => ur.User)
+					.WithMany(u => u.Roles);
+			});
+        }
 
         public DbSet<SessionInfo> Session { get; set; }
 
@@ -20,8 +33,8 @@ namespace Project_C.Data
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Roles> Roles { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
-        public DbSet<UserRoles> UserRoles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
     }
 }

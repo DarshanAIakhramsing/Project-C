@@ -37,7 +37,7 @@ namespace Project_C.Migrations
                     b.ToTable("Session");
                 });
 
-            modelBuilder.Entity("Project_C.Models.Roles", b =>
+            modelBuilder.Entity("Project_C.Models.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,36 +88,34 @@ namespace Project_C.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Project_C.Models.UserRoles", b =>
+            modelBuilder.Entity("Project_C.Models.UserRole", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("RolesNameId")
+                    b.Property<int?>("RoleId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserNameId")
-                        .HasColumnType("int");
+                    b.HasKey("UserId", "RoleId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("RolesNameId");
-
-                    b.HasIndex("UserNameId");
+                    b.HasIndex("RoleId");
 
                     b.ToTable("UserRoles");
                 });
 
-            modelBuilder.Entity("Project_C.Models.UserRoles", b =>
+            modelBuilder.Entity("Project_C.Models.UserRole", b =>
                 {
-                    b.HasOne("Project_C.Models.Roles", "RolesName")
+                    b.HasOne("Project_C.Models.Role", "Role")
                         .WithMany()
-                        .HasForeignKey("RolesNameId");
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Project_C.Models.User", "UserName")
-                        .WithMany()
-                        .HasForeignKey("UserNameId");
+                    b.HasOne("Project_C.Models.User", "User")
+                        .WithMany("Roles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

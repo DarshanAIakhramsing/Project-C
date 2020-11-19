@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Project_C.Models;
 
 namespace Project_C.Models
 {
-    public class Roles
+    public class UserRole
     {
-        [Key]
-        public int Id { get; set; }
+        public User User { get; set; }
+        public Role Role { get; set; }
 
-        public string Name { get; set; }
     }
 }

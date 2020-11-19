@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Project_C.Migrations
 {
-    public partial class Yeet : Migration
+    public partial class Skeet : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,37 +69,30 @@ namespace Project_C.Migrations
                 name: "UserRoles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserNameId = table.Column<int>(nullable: true),
-                    RolesNameId = table.Column<int>(nullable: true)
+                    UserId = table.Column<int>(nullable: false),
+                    RoleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserRoles", x => x.Id);
+                    table.PrimaryKey("PK_UserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_UserRoles_Roles_RolesNameId",
-                        column: x => x.RolesNameId,
+                        name: "FK_UserRoles_Roles_RoleId",
+                        column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserRoles_Users_UserNameId",
-                        column: x => x.UserNameId,
+                        name: "FK_UserRoles_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserRoles_RolesNameId",
+                name: "IX_UserRoles_RoleId",
                 table: "UserRoles",
-                column: "RolesNameId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserRoles_UserNameId",
-                table: "UserRoles",
-                column: "UserNameId");
+                column: "RoleId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

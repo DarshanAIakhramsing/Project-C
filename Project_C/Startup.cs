@@ -51,6 +51,8 @@ namespace Project_C
                 config.Password.RequireUppercase = false;
                 config.Password.RequireNonAlphanumeric = false;
             })
+                .AddRoles<Role>()
+                .AddRoleStore<CustomRoleStore>()
                 .AddUserStore<CustomUserStore>();
         }
 
