@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "IjxIDTbBq7VBHjWbwNaFa2H+FZrDX5p6KEg/BcPm34cLAPwUBgdvozpLS3rvzRSoyzc7TEUqMQPVevw89uYhbg==",
+  "dgSpecHash": "e0ZMzG78W7K9XWFuFqXzlrHEeilqo5AX1xvVqN/pLHnSXmq0Rq8GExNsvEkEEq4XyGVHDSJQWjzXKBCbaIt7wQ==",
   "success": true,
   "projectFilePath": "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Project_C.csproj",
   "expectedPackageFiles": [
@@ -65,7 +65,7 @@
     "/Users/ferdibilgic/.nuget/packages/microsoft.win32.registry/4.5.0/microsoft.win32.registry.4.5.0.nupkg.sha512",
     "/Users/ferdibilgic/.nuget/packages/mysqlconnector/0.69.9/mysqlconnector.0.69.9.nupkg.sha512",
     "/Users/ferdibilgic/.nuget/packages/netstandard.library/1.6.1/netstandard.library.1.6.1.nupkg.sha512",
-    "/Users/ferdibilgic/.nuget/packages/newtonsoft.json/12.0.2/newtonsoft.json.12.0.2.nupkg.sha512",
+    "/Users/ferdibilgic/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
     "/Users/ferdibilgic/.nuget/packages/nuget.frameworks/4.7.0/nuget.frameworks.4.7.0.nupkg.sha512",
     "/Users/ferdibilgic/.nuget/packages/pomelo.entityframeworkcore.mysql/3.2.3/pomelo.entityframeworkcore.mysql.3.2.3.nupkg.sha512",
     "/Users/ferdibilgic/.nuget/packages/pomelo.jsonobject/2.2.1/pomelo.jsonobject.2.2.1.nupkg.sha512",
