@@ -1,0 +1,55 @@
+@using Project_C.Data
+
+@page "/addsession"
+
+@inject CustomHttpClient Http
+@inject NavigationManager NavigationManager
+@inject AppSettingsService AppSettingsService
+
+<h2>Maak Sessie aan</h2>
+<hr />
+<form>
+    <div class="row">
+        <div class="col-md-8">
+            
+            <div class="form-group">
+                <label for="Naam" class="control-label">Naam</label>
+                <input for="Naam" class="form-control" @bind="@session.session_name" />
+            </div>
+            <div class="form-group">
+                <label for="Datum" class="control-label">Datum</label>
+                <input for="Datum" class="form-control" @bind="@session.session_date" />
+            </div>
+            <div class="form-group">
+                <label for="Location" class="control-label">Location</label>
+                <input for="Location" class="form-control" @bind="@session.session_location" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="button" class="btn btn-primary" @onclick="@CreateSession" value="Save" />
+                <input type="button" class="btn" @onclick="@Cancel" value="Cancel" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@code {
+
+    SessionInfo session = new SessionInfo();
+    string baseUrl;
+
+    protected async Task CreateSession()
+    {
+        baseUrl = AppSettingsService.GetBaseUrl();
+        await Http.PostJsonAsync(baseUrl + "/api/sessions/create", session);
+        NavigationManager.NavigateTo("Aanmaken");
+    }
+
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("Aanmaken");
+    }
+}     

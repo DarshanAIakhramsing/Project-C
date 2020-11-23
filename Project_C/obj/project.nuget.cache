@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2Gpegikp9tn5JHiwmnv7HXREKViDrYYLhkxGXgYh4Mo7sKiTWviTvP92WYTaogZ3BzflanoVADlInnhdbbFY5g==",
+  "dgSpecHash": "jydij/ZaRoFBOxIa6mQL/PqC7huvnWyTKXGf1vl3A+YUv3PH1CtTEysNMQkohtcPylq4Bhq6wDSnFjQWgGyyJg==",
   "success": true,
-  "projectFilePath": "F:\\Projects\\Project_C\\Project_C\\Project_C.csproj",
+  "projectFilePath": "D:\\Projects\\Project_C\\Project_C\\Project_C.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Atlas\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.9\\microsoft.aspnetcore.cryptography.internal.3.1.9.nupkg.sha512",
     "C:\\Users\\Atlas\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.9\\microsoft.aspnetcore.cryptography.keyderivation.3.1.9.nupkg.sha512",
@@ -65,7 +65,7 @@
     "C:\\Users\\Atlas\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\Atlas\\.nuget\\packages\\mysqlconnector\\0.69.9\\mysqlconnector.0.69.9.nupkg.sha512",
     "C:\\Users\\Atlas\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\Atlas\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\Atlas\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\Atlas\\.nuget\\packages\\nuget.frameworks\\4.7.0\\nuget.frameworks.4.7.0.nupkg.sha512",
     "C:\\Users\\Atlas\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\3.2.3\\pomelo.entityframeworkcore.mysql.3.2.3.nupkg.sha512",
     "C:\\Users\\Atlas\\.nuget\\packages\\pomelo.jsonobject\\2.2.1\\pomelo.jsonobject.2.2.1.nupkg.sha512",

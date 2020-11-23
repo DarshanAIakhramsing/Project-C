@@ -1,0 +1,56 @@
+@using Project_C.Data
+
+@page "/Aanmaken"
+
+@inject CustomHttpClient Http
+@inject AppSettingsService AppSettingsService
+
+<h2>Employee Details</h2>
+<p>
+    <a href="/addsession">Create New Session</a>
+</p>
+@if (sessions == null)
+{
+    <p>Geen sessies!</p>
+
+}
+else
+{
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>Naam</th>
+                <th>Datum</th>
+                <th>Locatie</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sessie in sessions)
+            {
+                <tr>
+                    <td>@sessie.session_name</td>
+                    <td>@sessie.session_date</td>
+                    <td>@sessie.session_location</td>
+                    <td>
+                        <a href='/editemployee/@sessie.session_id'>Edit</a>
+                        <a href='/deleteemployee/@sessie.session_id'>Delete</a>
+                    </td>
+                </tr>
+
+
+
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    SessionInfo[] sessions;
+    string baseUrl;
+
+    protected override async Task OnInitializedAsync()
+    {
+        baseUrl = AppSettingsService.GetBaseUrl();
+        sessions = await Http.GetJsonAsync<SessionInfo[]>(baseUrl + "/api/sessions/get");
+    }
+}     

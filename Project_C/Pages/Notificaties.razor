@@ -1,5 +1,54 @@
 @page "/Notificaties"
+@using Project_C.Data;
+@using Project_C.Services;
+@using Project_C.Models;
+@using System.Security.Claims;
+@using Microsoft.AspNetCore.Identity
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject ApplicationDbContext database
+@inject AuthenticationState UserManager
+@inject UserManager<User> UserManager
+@inherits OwningComponentBase<SessionService>
 
-<h1>Notificaties</h1>
+<h3>Person</h3>
 
-Hier kan u al uw uitnodigingen voor nieuwe sessies zien en kiezen of u ze wilt accepteren of weigeren.
+<table border="1">
+    <tr>
+        <th>Sessie naam</th>
+        <th>Datum</th>
+        <th>Locatie</th>
+        <th>Uitnodiging accepteren of weigeren</th>
+    </tr>
+    @foreach (var sessie in sessies)
+    {
+        <tr>
+            <td>@sessie.session_name</td>
+            <td>@sessie.session_date</td>
+            <td>@sessie.session_location</td>
+            <td><button @onclick="ClickHandler">Ja</button></td>
+        </tr>
+    }
+</table>
+
+@code {
+    public System.Collections.Generic.IList<SessionInfo> sessies;
+
+    protected override void OnInitialized()
+    {
+        sessies = Service.DisplaySession();
+    }
+
+    public async Task ClickHandler()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        ClaimsPrincipal ding = authState.User;
+        var currentUser = await UserManager.GetUserAsync(ding);
+        // int currentUserID = int.Parse(currentUser.FindFirst("Id").Value);
+
+        User currentUserId = (from U in database.Users where U.Id == currentUser.Id select U).FirstOrDefault();
+
+        currentUser.accept_invitation++;
+        database.Update(currentUser);
+        await database.SaveChangesAsync();
+    }
+}
