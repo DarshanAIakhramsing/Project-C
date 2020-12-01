@@ -11,6 +11,7 @@ namespace Project_C.Pages
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Components;
 #nullable restore
 #line 1 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
 using System.Net.Http;
@@ -75,21 +76,42 @@ using Project_C.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Aanmaken.razor"
+#line 2 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Medewerkers.razor"
 using Project_C.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Aanmaken.razor"
-using Microsoft.AspNetCore.Components;
+#line 3 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Medewerkers.razor"
+using Project_C.Services;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/aanmaken")]
-    public partial class Aanmaken : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 4 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Medewerkers.razor"
+using Project_C.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Medewerkers.razor"
+using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Medewerkers.razor"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Medewerkers")]
+    public partial class Medewerkers : OwningComponentBase<UserService>
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -97,23 +119,21 @@ using Microsoft.AspNetCore.Components;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 53 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Aanmaken.razor"
+#line 29 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Medewerkers.razor"
        
-    string baseUrl;
-    SessionInfo[] sessions { get; set; }
-    protected override async Task OnInitializedAsync()
+    public System.Collections.Generic.IList<User> users;
+
+    protected override void OnInitialized()
     {
-        baseUrl = AppSettingsService.GetBaseUrl();
-        sessions = await client.GetJsonAsync<SessionInfo[]>("api/session");
+        users = Service.DisplayUser();
     }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AppSettingsService AppSettingsService { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private CustomHttpClient Http { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient client { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private UserManager<User> UserManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ApplicationDbContext database { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
     }
 }
 #pragma warning restore 1591

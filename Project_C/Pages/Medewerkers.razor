@@ -1,0 +1,36 @@
+@page "/Medewerkers"
+@using Project_C.Data;
+@using Project_C.Services;
+@using Project_C.Models;
+@using System.Security.Claims;
+@using Microsoft.AspNetCore.Identity
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject ApplicationDbContext database
+@inject AuthenticationState UserManager
+@inject UserManager<User> UserManager
+@inherits OwningComponentBase<UserService>
+
+<h3>Person</h3>
+
+<table border="1">
+    <tr>
+        <th>Email</th>
+        <th>Sessies bijgewoond</th>
+    </tr>
+    @foreach (var user in users)
+    {
+        <tr>
+            <td>@user.Email</td>
+            <td>@user.accept_invitation</td>
+        </tr>
+    }
+</table>
+
+@code {
+    public System.Collections.Generic.IList<User> users;
+
+    protected override void OnInitialized()
+    {
+        users = Service.DisplayUser();
+    }
+}

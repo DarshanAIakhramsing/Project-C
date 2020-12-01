@@ -42,6 +42,7 @@ namespace Project_C
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddSingleton<WeatherForecastService>();
             services.AddScoped<SessionService>();
+            services.AddScoped<UserService>();
             services.AddSingleton<CustomHttpClient>();
             services.AddSingleton<AppSettingsService>();
 
