@@ -8938,11 +8938,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\Project_C\\Project_C\\Project_C.csproj",
+      "projectUniqueName": "F:\\Projects\\Project_C\\Project_C\\Project_C.csproj",
       "projectName": "Project_C",
-      "projectPath": "D:\\Projects\\Project_C\\Project_C\\Project_C.csproj",
+      "projectPath": "F:\\Projects\\Project_C\\Project_C\\Project_C.csproj",
       "packagesPath": "C:\\Users\\Atlas\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\Project_C\\Project_C\\obj\\",
+      "outputPath": "F:\\Projects\\Project_C\\Project_C\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Atlas\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -51,6 +51,21 @@ namespace Project_C.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SessionModel",
+                columns: table => new
+                {
+                    session_id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    session_name = table.Column<string>(nullable: true),
+                    session_date = table.Column<DateTime>(nullable: false),
+                    session_location = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SessionModel", x => x.session_id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -102,6 +117,9 @@ namespace Project_C.Migrations
 
             migrationBuilder.DropTable(
                 name: "SessionConfirmation");
+
+            migrationBuilder.DropTable(
+                name: "SessionModel");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");
