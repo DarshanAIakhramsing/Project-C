@@ -19,7 +19,6 @@ else
     <table class='table table-hover'>
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Sessie naam</th>
                 <th>Sessie locatie</th>
                 <th>Datum</th>
@@ -28,12 +27,11 @@ else
         <tbody>
             @foreach (var item in session)
             {
-            <tr @onclick="@(() => Show(item.session_id))">
-                <td>@item.session_id</td>
-                <td>@item.session_name</td>
-                <td>@item.session_location</td>
-                <td>@item.session_date</td>
-            </tr>
+                <tr @onclick="@(() => Show(item.session_id))">
+                    <td>@item.session_name</td>
+                    <td>@item.session_location</td>
+                    <td>@item.session_date</td>
+                </tr>
             }
         </tbody>
     </table>
@@ -52,9 +50,11 @@ else
 
 @if (session != null && mode == MODE.EditDelete) // Update & Delete form
 {
-    <input type="hidden" @bind="@session_name" />
+    <input type="hidden" @bind="@session_id" />
     <br />
-    <input placeholder="First Name" @bind="@session_location" />
+    <input placeholder="First Name" @bind="@session_name" />
+    <br />
+    <input placeholder="Last Name" @bind="@session_location" />
     <br />
     <input placeholder="Last Name" @bind="@session_date" />
     <br />
