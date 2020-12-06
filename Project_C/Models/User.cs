@@ -8,6 +8,8 @@ namespace Project_C.Models
 {
     public class User
     {
+        [Key]
+
         public int Id { get; set; }
 
         public string Password { get; set; }

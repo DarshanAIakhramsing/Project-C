@@ -9,7 +9,7 @@ using Project_C.Data;
 namespace Project_C.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201119151342_Skeet")]
+    [Migration("20201128214014_Skeet")]
     partial class Skeet
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,6 +68,26 @@ namespace Project_C.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SessionConfirmation");
+                });
+
+            modelBuilder.Entity("Project_C.Models.SessionModel", b =>
+                {
+                    b.Property<int>("session_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("session_date")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("session_location")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("session_name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("session_id");
+
+                    b.ToTable("SessionModel");
                 });
 
             modelBuilder.Entity("Project_C.Models.User", b =>

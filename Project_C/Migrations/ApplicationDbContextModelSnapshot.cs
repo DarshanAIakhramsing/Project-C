@@ -68,6 +68,26 @@ namespace Project_C.Migrations
                     b.ToTable("SessionConfirmation");
                 });
 
+            modelBuilder.Entity("Project_C.Models.SessionModel", b =>
+                {
+                    b.Property<int>("session_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("session_date")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("session_location")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("session_name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("session_id");
+
+                    b.ToTable("SessionModel");
+                });
+
             modelBuilder.Entity("Project_C.Models.User", b =>
                 {
                     b.Property<int>("Id")

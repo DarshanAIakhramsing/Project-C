@@ -14,38 +14,46 @@ namespace Project_C.Data
 
         public HomeController(ApplicationDbContext dbContext)
         {
-            _dbContext = dbContext;
+            this._dbContext = dbContext;
         }
 
         [HttpGet]
-        [Route("Get")]
-        public async Task<List<SessionInfo>> Get()
+        public async Task<IActionResult> Get()
         {
-            return await _dbContext.Session.ToListAsync();
+            var ses = await _dbContext.Session.ToListAsync();
+            return Ok(ses);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var ses = await _dbContext.Session.FirstOrDefaultAsync(a => a.session_id == id);
+            return Ok(ses);
         }
 
         [HttpPost]
-        [Route("Create")]
-        public async Task<bool> Create([FromBody] SessionInfo session)
+        public async Task<IActionResult> Post(SessionInfo session)
         {
-            if (ModelState.IsValid)
-            {
-                session.session_name = Guid.NewGuid().ToString();
-                _dbContext.Add(session);
-                try
-                {
-                    await _dbContext.SaveChangesAsync();
-                    return true;
-                }
-                catch (DbUpdateException)
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
+            _dbContext.Add(session);
+            await _dbContext.SaveChangesAsync();
+            return Ok(session.session_id);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put(SessionInfo session)
+        {
+            _dbContext.Entry(session).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var ses = new SessionInfo { session_id = id };
+            _dbContext.Remove(ses);
+            await _dbContext.SaveChangesAsync();
+            return NoContent();
         }
     }
 }

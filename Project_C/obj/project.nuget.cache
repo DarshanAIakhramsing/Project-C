@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "jydij/ZaRoFBOxIa6mQL/PqC7huvnWyTKXGf1vl3A+YUv3PH1CtTEysNMQkohtcPylq4Bhq6wDSnFjQWgGyyJg==",
+  "dgSpecHash": "moi9//qSd13Tr5kAsvA/tRL6KTLzFy+FJWcBz5v09RtXYwRK4jL+1DcMlyzcBB861YSIzphMAKtJZD2QXFPU4A==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\Project_C\\Project_C\\Project_C.csproj",
+  "projectFilePath": "F:\\Projects\\Project_C\\Project_C\\Project_C.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Atlas\\.nuget\\packages\\microsoft.aspnetcore.blazor.httpclient\\3.2.0-preview3.20168.3\\microsoft.aspnetcore.blazor.httpclient.3.2.0-preview3.20168.3.nupkg.sha512",
     "C:\\Users\\Atlas\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.9\\microsoft.aspnetcore.cryptography.internal.3.1.9.nupkg.sha512",
     "C:\\Users\\Atlas\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.9\\microsoft.aspnetcore.cryptography.keyderivation.3.1.9.nupkg.sha512",
     "C:\\Users\\Atlas\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\3.1.9\\microsoft.aspnetcore.diagnostics.entityframeworkcore.3.1.9.nupkg.sha512",
@@ -166,6 +167,7 @@
     "C:\\Users\\Atlas\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512",
     "C:\\Users\\Atlas\\.nuget\\packages\\system.text.encoding.extensions\\4.3.0\\system.text.encoding.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\Atlas\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
+    "C:\\Users\\Atlas\\.nuget\\packages\\system.text.json\\4.7.1\\system.text.json.4.7.1.nupkg.sha512",
     "C:\\Users\\Atlas\\.nuget\\packages\\system.text.regularexpressions\\4.3.0\\system.text.regularexpressions.4.3.0.nupkg.sha512",
     "C:\\Users\\Atlas\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\Atlas\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",

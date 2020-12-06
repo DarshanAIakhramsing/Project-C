@@ -36,5 +36,7 @@ namespace Project_C.Data
         public DbSet<Role> Roles { get; set; }
 
         public DbSet<UserRole> UserRoles { get; set; }
+
+        public DbSet<SessionModel> SessionModel { get; set; }
     }
 }

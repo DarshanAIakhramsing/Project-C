@@ -13,77 +13,91 @@ namespace Project_C.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "D:\Projects\Project_C\Project_C\_Imports.razor"
+#line 1 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Projects\Project_C\Project_C\_Imports.razor"
+#line 2 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Projects\Project_C\Project_C\_Imports.razor"
+#line 3 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\Projects\Project_C\Project_C\_Imports.razor"
+#line 4 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\Projects\Project_C\Project_C\_Imports.razor"
+#line 5 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\Projects\Project_C\Project_C\_Imports.razor"
+#line 6 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\Projects\Project_C\Project_C\_Imports.razor"
+#line 7 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\Projects\Project_C\Project_C\_Imports.razor"
+#line 8 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Project_C;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\Projects\Project_C\Project_C\_Imports.razor"
+#line 9 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Project_C.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "D:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+#line 3 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
 using Project_C.Data;
 
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+using Project_C.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+using Project_C.Services;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Aanmaken")]
-    public partial class Aanmaken : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Aanmaken : OwningComponentBase<SessionService>
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -91,22 +105,99 @@ using Project_C.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 47 "D:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
-       
-    SessionInfo[] sessions;
-    string baseUrl;
+#line 66 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+            
+    public System.Collections.Generic.IList<SessionInfo> session;
 
-    protected override async Task OnInitializedAsync()
+    int session_id;
+    string session_name;
+    string session_location;
+    DateTime session_date;
+
+    private enum MODE { None, Add, EditDelete };
+    MODE mode = MODE.None;
+    SessionInfo sessie;
+
+    protected async override void OnInitialized()
     {
-        baseUrl = AppSettingsService.GetBaseUrl();
-        sessions = await Http.GetJsonAsync<SessionInfo[]>(baseUrl + "/api/sessions/get");
+        session = Service.DisplaySession();
+        await load();
     }
+
+    protected async Task load()
+    {
+        session = await sessionCRUD.GetSessionAsync();
+    }
+
+    protected async Task Insert()
+    {
+
+        SessionInfo s = new SessionInfo()
+        {
+            session_name = session_name,
+            session_location = session_location,
+            session_date = session_date
+        };
+
+        await sessionCRUD.InsertSessionAsync(s);
+        ClearFields();
+        await load();
+
+        mode = MODE.None;
+    }
+
+    protected void Add()
+    {
+        ClearFields();
+        mode = MODE.Add;
+    }
+
+    protected async Task Update()
+    {
+
+        SessionInfo s = new SessionInfo()
+        {
+            session_name = session_name,
+            session_location = session_location,
+            session_date = session_date
+        };
+
+        await sessionCRUD.UpdateSessionAsync(session_id, s);
+        ClearFields();
+        await load();
+        mode = MODE.None;
+    }
+
+    protected async Task Delete()
+    {
+        await sessionCRUD.DeleteSessionAsync(session_id);
+        ClearFields();
+        await load();
+        mode = MODE.None;
+    }
+
+
+    protected void ClearFields()
+    {
+        session_name = string.Empty;
+        session_location = string.Empty;
+    }
+
+    protected async Task Show(int id)
+    {
+        SessionInfo session = await sessionCRUD.GetSessionByIdAsync(id);
+        session_id = session.session_id;
+        session_name = session.session_name;
+        session_location = session.session_location;
+        session_date = session.session_date;
+        mode = MODE.EditDelete;
+    }
+
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AppSettingsService AppSettingsService { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private CustomHttpClient Http { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private SessionCRUD sessionCRUD { get; set; }
     }
 }
 #pragma warning restore 1591
