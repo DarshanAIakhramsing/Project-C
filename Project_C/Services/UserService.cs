@@ -19,6 +19,12 @@ namespace Project_C.Services
         public List<User> DisplayUser()
         {
             return _dbcontext.Users.ToList();
+                                   //.OrderBy(User.accepted_invitation);
+        }
+
+        public List<User> DisplayEmail(string email)
+        {
+            return _dbcontext.Users.Where(x => x.Email == email).ToList();
         }
     }
 }

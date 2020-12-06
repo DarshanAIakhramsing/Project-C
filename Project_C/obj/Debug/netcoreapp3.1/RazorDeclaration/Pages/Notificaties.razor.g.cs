@@ -119,7 +119,7 @@ using Microsoft.AspNetCore.Identity;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 33 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
+#line 43 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
        
     public System.Collections.Generic.IList<SessionInfo> sessies;
 

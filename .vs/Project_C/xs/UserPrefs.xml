@@ -1,56 +1,16 @@
-﻿<Properties StartupConfiguration="{DCCB6F79-1B68-4070-A8B6-B8730720E6E8}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
+﻿<Properties StartupConfiguration="{DCCB6F79-1B68-4070-A8B6-B8730720E6E8}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Project_C/Pages/Medewerkers.razor">
     <Files>
-      <File FileName="Project_C/Pages/Medewerkers.razor" Line="15" Column="19" />
-      <File FileName="Project_C/Pages/Notificaties.razor" Line="8" Column="25" />
-      <File FileName="Project_C/Services/SessionService.cs" Line="21" Column="34" />
-      <File FileName="Project_C/Models/User.cs" Line="9" Column="18" />
-      <File FileName="Project_C/Data/SessionInfo.cs" Line="9" Column="18" />
-      <File FileName="Project_C/Data/ApplicationDbContext.cs" Line="10" Column="18" />
-      <File FileName="Project_C/Startup.cs" Line="45" Column="36" />
-      <File FileName="Project_C/Services/UserService.cs" Line="25" Column="1" />
-      <File FileName="Project_C/ScaffoldingReadMe.txt" Line="1" Column="1" />
+      <File FileName="Project_C/Pages/Medewerkers.razor" Line="60" Column="11" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Project_C" expanded="True">
             <Node name="Project_C" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="FrameworkReferences" expanded="True" />
-                <Node name="PackageDependencies" expanded="True" />
-              </Node>
-              <Node name="Areas" expanded="True">
-                <Node name="Identity" expanded="True">
-                  <Node name="Pages" expanded="True">
-                    <Node name="Account" expanded="True" />
-                    <Node name="Shared" expanded="True" />
-                  </Node>
-                </Node>
-              </Node>
-              <Node name="Data" expanded="True" />
-              <Node name="Migrations" expanded="True" />
-              <Node name="Models" expanded="True" />
               <Node name="Pages" expanded="True">
                 <Node name="Medewerkers.razor" selected="True" />
               </Node>
-              <Node name="Properties" expanded="True" />
-              <Node name="Services" expanded="True" />
-              <Node name="Shared" expanded="True" />
-              <Node name="wwwroot" expanded="True">
-                <Node name="css" expanded="True">
-                  <Node name="bootstrap" expanded="True">
-                    <Node name="bootstrap.min.css" expanded="True" />
-                  </Node>
-                  <Node name="open-iconic" expanded="True">
-                    <Node name="font" expanded="True">
-                      <Node name="css" expanded="True" />
-                      <Node name="fonts" expanded="True" />
-                    </Node>
-                  </Node>
-                </Node>
-              </Node>
-              <Node name="appsettings.json" expanded="True" />
             </Node>
           </Node>
         </State>

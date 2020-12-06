@@ -10,21 +10,42 @@
 @inject UserManager<User> UserManager
 @inherits OwningComponentBase<UserService>
 
-<h3>Person</h3>
+<AuthorizeView>
+    <Authorized>
+        <h1>Hello, @context.User.Identity.Name!</h1>
+        You can only see this if you're authenticated.
+    </Authorized>
+    <NotAuthorized>
+        You're not logged in.
+    </NotAuthorized>
+</AuthorizeView>
+<AuthorizeView Roles="Admin">
 
-<table border="1">
-    <tr>
-        <th>Email</th>
-        <th>Sessies bijgewoond</th>
-    </tr>
-    @foreach (var user in users)
-    {
-        <tr>
-            <td>@user.Email</td>
-            <td>@user.accept_invitation</td>
-        </tr>
-    }
-</table>
+
+    <h3>Person</h3>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Email</th>
+                <th>Sessies bijgewoond</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in users)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@user.accept_invitation</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <input type="text" @bind-value="@searchTerm" />
+    <input type="button" value="Search" @onclick="@SearchIssues" />
+
+</AuthorizeView>
 
 @code {
     public System.Collections.Generic.IList<User> users;
@@ -32,5 +53,12 @@
     protected override void OnInitialized()
     {
         users = Service.DisplayUser();
+    }
+
+    private string searchTerm;
+
+    async Task SearchIssues()
+    {
+        users = Service.DisplayEmail(searchTerm);
     }
 }

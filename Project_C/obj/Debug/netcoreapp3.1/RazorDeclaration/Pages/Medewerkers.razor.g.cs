@@ -119,13 +119,20 @@ using Microsoft.AspNetCore.Identity;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 29 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Medewerkers.razor"
+#line 50 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Medewerkers.razor"
        
     public System.Collections.Generic.IList<User> users;
 
     protected override void OnInitialized()
     {
         users = Service.DisplayUser();
+    }
+
+    private string searchTerm;
+
+    async Task SearchIssues()
+    {
+        users = Service.DisplayEmail(searchTerm);
     }
 
 #line default

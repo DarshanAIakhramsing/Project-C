@@ -10,25 +10,35 @@
 @inject UserManager<User> UserManager
 @inherits OwningComponentBase<SessionService>
 
-<h3>Person</h3>
+<AuthorizeView>
+    <Authorized>
+        <h1>Hello, @context.User.Identity.Name!</h1>
+        You can only see this if you're authenticated.
+    </Authorized>
+    <NotAuthorized>
+        You're not logged in.
+    </NotAuthorized>
+</AuthorizeView>
 
-<table border="1">
-    <tr>
-        <th>Sessie naam</th>
-        <th>Datum</th>
-        <th>Locatie</th>
-        <th>Uitnodiging accepteren of weigeren</th>
-    </tr>
-    @foreach (var sessie in sessies)
-    {
+    <h3>Person</h3>
+
+    <table border="1">
         <tr>
-            <td>@sessie.session_name</td>
-            <td>@sessie.session_date</td>
-            <td>@sessie.session_location</td>
-            <td><button @onclick="ClickHandler">Ja</button></td>
+            <th>Sessie naam</th>
+            <th>Datum</th>
+            <th>Locatie</th>
+            <th>Uitnodiging accepteren of weigeren</th>
         </tr>
-    }
-</table>
+        @foreach (var sessie in sessies)
+        {
+            <tr>
+                <td>@sessie.session_name</td>
+                <td>@sessie.session_date</td>
+                <td>@sessie.session_location</td>
+                <td><button @onclick="ClickHandler">Ja</button></td>
+            </tr>
+        }
+    </table>
 
 @code {
     public System.Collections.Generic.IList<SessionInfo> sessies;
