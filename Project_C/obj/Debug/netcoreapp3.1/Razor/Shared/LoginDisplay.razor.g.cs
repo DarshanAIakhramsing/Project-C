@@ -82,7 +82,7 @@ using Project_C.Shared;
                 __builder2.OpenElement(2, "a");
                 __builder2.AddAttribute(3, "href", "Pages/Index");
                 __builder2.AddContent(4, "Hallo, ");
-                __builder2.AddContent(5,
+                __builder2.AddContent(5, 
 #nullable restore
 #line 3 "F:\Projects\Project_C\Project_C\Shared\LoginDisplay.razor"
                                       context.User.Identity.Name
@@ -93,12 +93,12 @@ using Project_C.Shared;
                 );
                 __builder2.AddContent(6, "!");
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(7, "\n        ");
+                __builder2.AddMarkupContent(7, "\r\n        ");
                 __builder2.AddMarkupContent(8, "<form method=\"post\" action=\"Identity/Account/LogOut\"><button type=\"submit\" class=\"nav-link btn btn-link\">Log out</button></form>");
             }
             ));
             __builder.AddAttribute(9, "NotAuthorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
-                __builder2.AddMarkupContent(10, "<a href=\"Identity/Account/Register\">Register</a>\n        ");
+                __builder2.AddMarkupContent(10, "<a href=\"Identity/Account/Register\">Register</a>\r\n        ");
                 __builder2.AddMarkupContent(11, "<a href=\"Identity/Account/Login\">Log in</a>");
             }
             ));

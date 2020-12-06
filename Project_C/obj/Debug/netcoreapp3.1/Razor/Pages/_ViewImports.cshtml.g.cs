@@ -26,13 +26,13 @@ using Project_C.Areas.Identity;
 #line default
 #line hidden
 #nullable disable
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3738de8d6fabe2398a773c6ed400498b26eff918", @"/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"61ee692121c040ec71190f8a2e1db7aa0a06ecec", @"/Pages/_ViewImports.cshtml")]
     public class Pages__ViewImports : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            WriteLiteral("\n\nProject_C.Pages\n");
+            WriteLiteral("\r\n\r\nProject_C.Pages\r\n");
         }
         #pragma warning restore 1998
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

@@ -11,6 +11,7 @@ namespace Project_C.Pages
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Components;
 #nullable restore
 #line 1 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using System.Net.Http;

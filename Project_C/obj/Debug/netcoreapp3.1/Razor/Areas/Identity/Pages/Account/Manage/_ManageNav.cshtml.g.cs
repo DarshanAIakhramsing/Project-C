@@ -47,10 +47,10 @@ using Project_C.Areas.Identity.Pages.Account.Manage;
 #line default
 #line hidden
 #nullable disable
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2a2fcd2ae91e5761efe227270261a7aeb231692e", @"/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bc1e80b3572b063cbeae165166905da21d5a2b79", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b1dce74420b31a61e006c5ef28ddd0ca0e525b87", @"/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"af02272a7b881b71ebc8e0de0a0e11e824f869ff", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"14b2259474a93b99ee002273de8ec01aaa36557c", @"/Areas/Identity/Pages/Account/_ViewImports.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b577a0109be917f5fe240e4b52f7c850deafa0b7", @"/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"de150f5b41eab481380e7baf1046ea2697c87f2f", @"/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml")]
     public class Areas_Identity_Pages_Account_Manage__ManageNav : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("profile"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -97,15 +97,15 @@ using Project_C.Areas.Identity.Pages.Account.Manage;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("<ul class=\"nav nav-pills flex-column\">\n    <li class=\"nav-item\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2a2fcd2ae91e5761efe227270261a7aeb231692e8551", async() => {
+            WriteLiteral("<ul class=\"nav nav-pills flex-column\">\r\n    <li class=\"nav-item\">");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b1dce74420b31a61e006c5ef28ddd0ca0e525b878485", async() => {
                 WriteLiteral("Profile");
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
             BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "class", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-            AddHtmlAttributeValue("", 226, "nav-link", 226, 8, true);
+            AddHtmlAttributeValue("", 231, "nav-link", 231, 8, true);
 #nullable restore
 #line 6 "F:\Projects\Project_C\Project_C\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml"
 AddHtmlAttributeValue(" ", 239, ManageNavPages.IndexNavClass(ViewContext), 240, 42, false);
@@ -124,15 +124,15 @@ AddHtmlAttributeValue(" ", 239, ManageNavPages.IndexNavClass(ViewContext), 240, 
             }
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
-            WriteLiteral("</li>\n    <li class=\"nav-item\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2a2fcd2ae91e5761efe227270261a7aeb231692e10381", async() => {
+            WriteLiteral("</li>\r\n    <li class=\"nav-item\">");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b1dce74420b31a61e006c5ef28ddd0ca0e525b8710320", async() => {
                 WriteLiteral("Email");
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
             BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "class", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-            AddHtmlAttributeValue("", 363, "nav-link", 363, 8, true);
+            AddHtmlAttributeValue("", 369, "nav-link", 369, 8, true);
 #nullable restore
 #line 7 "F:\Projects\Project_C\Project_C\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml"
 AddHtmlAttributeValue(" ", 377, ManageNavPages.EmailNavClass(ViewContext), 378, 42, false);
@@ -151,15 +151,15 @@ AddHtmlAttributeValue(" ", 377, ManageNavPages.EmailNavClass(ViewContext), 378, 
             }
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
-            WriteLiteral("</li>\n    <li class=\"nav-item\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2a2fcd2ae91e5761efe227270261a7aeb231692e12210", async() => {
+            WriteLiteral("</li>\r\n    <li class=\"nav-item\">");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b1dce74420b31a61e006c5ef28ddd0ca0e525b8712154", async() => {
                 WriteLiteral("Password");
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
             BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "class", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-            AddHtmlAttributeValue("", 496, "nav-link", 496, 8, true);
+            AddHtmlAttributeValue("", 503, "nav-link", 503, 8, true);
 #nullable restore
 #line 8 "F:\Projects\Project_C\Project_C\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml"
 AddHtmlAttributeValue(" ", 511, ManageNavPages.ChangePasswordNavClass(ViewContext), 512, 51, false);
@@ -178,7 +178,7 @@ AddHtmlAttributeValue(" ", 511, ManageNavPages.ChangePasswordNavClass(ViewContex
             }
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
-            WriteLiteral("</li>\n");
+            WriteLiteral("</li>\r\n");
 #nullable restore
 #line 9 "F:\Projects\Project_C\Project_C\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml"
      if (hasExternalLogins)
@@ -188,7 +188,7 @@ AddHtmlAttributeValue(" ", 511, ManageNavPages.ChangePasswordNavClass(ViewContex
 #line hidden
 #nullable disable
             WriteLiteral("        <li id=\"external-logins\" class=\"nav-item\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2a2fcd2ae91e5761efe227270261a7aeb231692e14326", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b1dce74420b31a61e006c5ef28ddd0ca0e525b8714260", async() => {
                 WriteLiteral("External logins");
             }
             );
@@ -196,7 +196,7 @@ AddHtmlAttributeValue(" ", 511, ManageNavPages.ChangePasswordNavClass(ViewContex
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
             __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_6);
             BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "class", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-            AddHtmlAttributeValue("", 739, "nav-link", 739, 8, true);
+            AddHtmlAttributeValue("", 749, "nav-link", 749, 8, true);
 #nullable restore
 #line 11 "F:\Projects\Project_C\Project_C\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml"
 AddHtmlAttributeValue(" ", 757, ManageNavPages.ExternalLoginsNavClass(ViewContext), 758, 51, false);
@@ -214,7 +214,7 @@ AddHtmlAttributeValue(" ", 757, ManageNavPages.ExternalLoginsNavClass(ViewContex
             }
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
-            WriteLiteral("</li>\n");
+            WriteLiteral("</li>\r\n");
 #nullable restore
 #line 12 "F:\Projects\Project_C\Project_C\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml"
     }
@@ -223,14 +223,14 @@ AddHtmlAttributeValue(" ", 757, ManageNavPages.ExternalLoginsNavClass(ViewContex
 #line hidden
 #nullable disable
             WriteLiteral("    <li class=\"nav-item\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2a2fcd2ae91e5761efe227270261a7aeb231692e16396", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b1dce74420b31a61e006c5ef28ddd0ca0e525b8716319", async() => {
                 WriteLiteral("Two-factor authentication");
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
             BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "class", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-            AddHtmlAttributeValue("", 895, "nav-link", 895, 8, true);
+            AddHtmlAttributeValue("", 907, "nav-link", 907, 8, true);
 #nullable restore
 #line 13 "F:\Projects\Project_C\Project_C\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml"
 AddHtmlAttributeValue(" ", 915, ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext), 916, 60, false);
@@ -249,15 +249,15 @@ AddHtmlAttributeValue(" ", 915, ManageNavPages.TwoFactorAuthenticationNavClass(V
             }
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
-            WriteLiteral("</li>\n    <li class=\"nav-item\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2a2fcd2ae91e5761efe227270261a7aeb231692e18264", async() => {
+            WriteLiteral("</li>\r\n    <li class=\"nav-item\">");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b1dce74420b31a61e006c5ef28ddd0ca0e525b8718192", async() => {
                 WriteLiteral("Personal data");
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
             BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "class", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-            AddHtmlAttributeValue("", 1089, "nav-link", 1089, 8, true);
+            AddHtmlAttributeValue("", 1102, "nav-link", 1102, 8, true);
 #nullable restore
 #line 14 "F:\Projects\Project_C\Project_C\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml"
 AddHtmlAttributeValue(" ", 1110, ManageNavPages.PersonalDataNavClass(ViewContext), 1111, 49, false);
@@ -276,7 +276,7 @@ AddHtmlAttributeValue(" ", 1110, ManageNavPages.PersonalDataNavClass(ViewContext
             }
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
-            WriteLiteral("</li>\n</ul>\n");
+            WriteLiteral("</li>\r\n</ul>\r\n");
         }
         #pragma warning restore 1998
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

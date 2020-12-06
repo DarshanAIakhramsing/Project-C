@@ -8,6 +8,7 @@ namespace Project_C.Pages
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Components;
 #nullable restore
 #line 1 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using System.Net.Http;
@@ -102,7 +103,6 @@ using Project_C.Services;
 #line 12 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
  if (session == null)
 {
-    
 
 #line default
 #line hidden
@@ -110,18 +110,6 @@ using Project_C.Services;
             __builder.AddMarkupContent(0, "<p><em>Loading...</em></p>");
 #nullable restore
 #line 15 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
-}
-else if (sessions.Length == 0)
-{
-    
-
-#line default
-#line hidden
-#nullable disable
-            __builder.AddContent(3, "No Records Found.");
-#nullable restore
-#line 21 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Aanmaken.razor"
-                                  
 }
 else
 {
