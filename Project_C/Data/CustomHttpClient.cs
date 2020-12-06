@@ -7,7 +7,7 @@ namespace Project_C.Data
 {
     public class CustomHttpClient : HttpClient
     {
-        public async Task<T> GetJsonAsync<T>(string requestUri)
+        public async Task<T> GetFromJsonAsync<T>(string requestUri)
         {
             HttpClient httpClient = new HttpClient();
             var httpContent = await httpClient.GetAsync(requestUri);

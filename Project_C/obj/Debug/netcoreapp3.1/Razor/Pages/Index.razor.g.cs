@@ -78,7 +78,7 @@ using Project_C.Shared;
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
-            __builder.AddMarkupContent(0, "<h1>Welkom bij CimSolutions!</h1>\r\n\r\nZie hieronder uw aankomende sessies.\r\n\r\n");
+            __builder.AddMarkupContent(0, "<h1>Welkom bij CimSolutions!</h1>\n\nZie hieronder uw aankomende sessies.\n\n");
             __builder.OpenComponent<Microsoft.AspNetCore.Components.Authorization.AuthorizeView>(1);
             __builder.AddAttribute(2, "Authorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
                 __builder2.OpenElement(3, "h1");
@@ -94,15 +94,15 @@ using Project_C.Shared;
                 );
                 __builder2.AddContent(6, "!");
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(7, "\r\n        You can only see this if you\'re authenticated.\r\n    ");
+                __builder2.AddMarkupContent(7, "\n        You can only see this if you\'re authenticated.\n    ");
             }
             ));
             __builder.AddAttribute(8, "NotAuthorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
-                __builder2.AddMarkupContent(9, "\r\n        You\'re not logged in.\r\n    ");
+                __builder2.AddMarkupContent(9, "\n        You\'re not logged in.\n    ");
             }
             ));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(10, "\r\n");
+            __builder.AddMarkupContent(10, "\n");
             __builder.OpenComponent<Microsoft.AspNetCore.Components.Authorization.AuthorizeView>(11);
             __builder.AddAttribute(12, "Roles", "Admin");
             __builder.AddAttribute(13, "ChildContent", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {

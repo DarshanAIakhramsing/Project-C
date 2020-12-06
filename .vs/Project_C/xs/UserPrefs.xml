@@ -1,54 +1,16 @@
 ﻿<Properties StartupConfiguration="{DCCB6F79-1B68-4070-A8B6-B8730720E6E8}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Project_C/Pages/Aanmaken.razor">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Project_C/Pages/Medewerkers.razor">
     <Files>
-      <File FileName="Project_C/Pages/Notificaties.razor" Line="18" Column="37" />
-      <File FileName="Project_C/Pages/Aanmaken.razor" Line="40" Column="1" />
-      <File FileName="Project_C/Data/ApplicationDbContext.cs" Line="30" Column="56" />
-      <File FileName="Project_C/Data/SessionInfo.cs" />
-      <File FileName="Project_C/Startup.cs" Line="73" Column="31" />
-      <File FileName="Project_C/appsettings.json" Line="3" Column="101" />
-      <File FileName="Project_C/Migrations/HomeController.cs" Line="13" Column="58" />
-      <File FileName="Project_C/Data/CustomHttpClient.cs" Line="9" Column="6" />
-      <File FileName="Project_C/Data/AppSettingsService.cs" Line="3" Column="25" />
-      <File FileName="Project_C/Pages/AddSession.razor" Line="47" Column="58" />
-      <File FileName="Project_C/Areas/Identity/Pages/Account/Login.cshtml" Line="6" Column="7" />
-      <File FileName="Project_C/Program.cs" Line="18" Column="1" />
+      <File FileName="Project_C/Pages/Medewerkers.razor" Line="60" Column="11" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Project_C" expanded="True">
             <Node name="Project_C" expanded="True">
-              <Node name="Areas" expanded="True">
-                <Node name="Identity" expanded="True">
-                  <Node name="Pages" expanded="True">
-                    <Node name="Account" expanded="True" />
-                    <Node name="Shared" expanded="True" />
-                  </Node>
-                </Node>
-              </Node>
-              <Node name="Data" expanded="True" />
-              <Node name="Migrations" expanded="True" />
               <Node name="Pages" expanded="True">
-                <Node name="Aanmaken.razor" selected="True" />
+                <Node name="Medewerkers.razor" selected="True" />
               </Node>
-              <Node name="Properties" expanded="True" />
-              <Node name="Services" expanded="True" />
-              <Node name="Shared" expanded="True" />
-              <Node name="wwwroot" expanded="True">
-                <Node name="css" expanded="True">
-                  <Node name="bootstrap" expanded="True">
-                    <Node name="bootstrap.min.css" expanded="True" />
-                  </Node>
-                  <Node name="open-iconic" expanded="True">
-                    <Node name="font" expanded="True">
-                      <Node name="css" expanded="True" />
-                      <Node name="fonts" expanded="True" />
-                    </Node>
-                  </Node>
-                </Node>
-              </Node>
-              <Node name="appsettings.json" expanded="True" />
             </Node>
           </Node>
         </State>

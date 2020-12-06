@@ -78,7 +78,31 @@ using Project_C.Shared;
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
-            __builder.AddMarkupContent(0, "<h1>Evaluatie Formulier</h1>\r\n\r\nHier kan u een evaluatie formulier invullen van de laatste sessie die u heeft gevolgd.\r\n");
+            __builder.OpenComponent<Microsoft.AspNetCore.Components.Authorization.AuthorizeView>(0);
+            __builder.AddAttribute(1, "Authorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
+                __builder2.OpenElement(2, "h1");
+                __builder2.AddContent(3, "Hello, ");
+                __builder2.AddContent(4, 
+#nullable restore
+#line 5 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Evaluatieformulier.razor"
+                    context.User.Identity.Name
+
+#line default
+#line hidden
+#nullable disable
+                );
+                __builder2.AddContent(5, "!");
+                __builder2.CloseElement();
+                __builder2.AddMarkupContent(6, "\n        You can only see this if you\'re authenticated.\n    ");
+            }
+            ));
+            __builder.AddAttribute(7, "NotAuthorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
+                __builder2.AddMarkupContent(8, "\n        You\'re not logged in.\n    ");
+            }
+            ));
+            __builder.CloseComponent();
+            __builder.AddMarkupContent(9, "\n\n");
+            __builder.AddMarkupContent(10, "<h1>Evaluatie Formulier</h1>\n\nHier kan u een evaluatie formulier invullen van de laatste sessie die u heeft gevolgd.\n");
         }
         #pragma warning restore 1998
     }

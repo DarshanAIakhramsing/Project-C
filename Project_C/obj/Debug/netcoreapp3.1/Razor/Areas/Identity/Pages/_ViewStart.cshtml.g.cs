@@ -33,14 +33,14 @@ using Project_C.Areas.Identity.Pages;
 #line default
 #line hidden
 #nullable disable
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0ea4e2edd7aef7d88ddb6bb3ad20bfc24d25a542", @"/Areas/Identity/Pages/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"af02272a7b881b71ebc8e0de0a0e11e824f869ff", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3f97c2cafc6556bde30d1b402afe05205d8578cb", @"/Areas/Identity/Pages/_ViewStart.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bc1e80b3572b063cbeae165166905da21d5a2b79", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
     public class Areas_Identity_Pages__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            WriteLiteral("\r\n");
+            WriteLiteral("\n");
 #nullable restore
 #line 2 "F:\Projects\Project_C\Project_C\Areas\Identity\Pages\_ViewStart.cshtml"
   

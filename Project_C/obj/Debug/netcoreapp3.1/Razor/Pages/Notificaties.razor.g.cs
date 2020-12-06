@@ -113,10 +113,34 @@ using Microsoft.AspNetCore.Identity;
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
-            __builder.AddMarkupContent(0, "<h3>Person</h3>\r\n\r\n");
-            __builder.OpenElement(1, "table");
-            __builder.AddAttribute(2, "border", "1");
-            __builder.AddMarkupContent(3, "<tr><th>Sessie naam</th>\r\n        <th>Datum</th>\r\n        <th>Locatie</th>\r\n        <th>Uitnodiging accepteren of weigeren</th></tr>");
+            __builder.OpenComponent<Microsoft.AspNetCore.Components.Authorization.AuthorizeView>(0);
+            __builder.AddAttribute(1, "Authorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
+                __builder2.OpenElement(2, "h1");
+                __builder2.AddContent(3, "Hello, ");
+                __builder2.AddContent(4, 
+#nullable restore
+#line 15 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
+                    context.User.Identity.Name
+
+#line default
+#line hidden
+#nullable disable
+                );
+                __builder2.AddContent(5, "!");
+                __builder2.CloseElement();
+                __builder2.AddMarkupContent(6, "\n        You can only see this if you\'re authenticated.\n    ");
+            }
+            ));
+            __builder.AddAttribute(7, "NotAuthorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
+                __builder2.AddMarkupContent(8, "\n        You\'re not logged in.\n    ");
+            }
+            ));
+            __builder.CloseComponent();
+            __builder.AddMarkupContent(9, "\n\n    ");
+            __builder.AddMarkupContent(10, "<h3>Person</h3>\n\n    ");
+            __builder.OpenElement(11, "table");
+            __builder.AddAttribute(12, "border", "1");
+            __builder.AddMarkupContent(13, "<tr><th>Sessie naam</th>\n            <th>Datum</th>\n            <th>Locatie</th>\n            <th>Uitnodiging accepteren of weigeren</th></tr>");
 #nullable restore
 #line 22 "F:\Projects\Project_C\Project_C\Pages\Notificaties.razor"
      foreach (var sessie in sessies)
@@ -125,9 +149,9 @@ using Microsoft.AspNetCore.Identity;
 #line default
 #line hidden
 #nullable disable
-            __builder.OpenElement(4, "tr");
-            __builder.OpenElement(5, "td");
-            __builder.AddContent(6, 
+            __builder.OpenElement(14, "tr");
+            __builder.OpenElement(15, "td");
+            __builder.AddContent(16, 
 #nullable restore
 #line 25 "F:\Projects\Project_C\Project_C\Pages\Notificaties.razor"
                  sessie.session_name
@@ -137,9 +161,9 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(7, "\r\n            ");
-            __builder.OpenElement(8, "td");
-            __builder.AddContent(9, 
+            __builder.AddMarkupContent(17, "\n                ");
+            __builder.OpenElement(18, "td");
+            __builder.AddContent(19, 
 #nullable restore
 #line 26 "F:\Projects\Project_C\Project_C\Pages\Notificaties.razor"
                  sessie.session_date
@@ -149,9 +173,9 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(10, "\r\n            ");
-            __builder.OpenElement(11, "td");
-            __builder.AddContent(12, 
+            __builder.AddMarkupContent(20, "\n                ");
+            __builder.OpenElement(21, "td");
+            __builder.AddContent(22, 
 #nullable restore
 #line 27 "F:\Projects\Project_C\Project_C\Pages\Notificaties.razor"
                  sessie.session_location
@@ -161,10 +185,10 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(13, "\r\n            ");
-            __builder.OpenElement(14, "td");
-            __builder.OpenElement(15, "button");
-            __builder.AddAttribute(16, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddMarkupContent(23, "\n                ");
+            __builder.OpenElement(24, "td");
+            __builder.OpenElement(25, "button");
+            __builder.AddAttribute(26, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 28 "F:\Projects\Project_C\Project_C\Pages\Notificaties.razor"
                                   ClickHandler
@@ -173,7 +197,7 @@ using Microsoft.AspNetCore.Identity;
 #line hidden
 #nullable disable
             ));
-            __builder.AddContent(17, "Ja");
+            __builder.AddContent(27, "Ja");
             __builder.CloseElement();
             __builder.CloseElement();
             __builder.CloseElement();
