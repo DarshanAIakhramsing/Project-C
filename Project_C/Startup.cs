@@ -43,7 +43,6 @@ namespace Project_C
             services.AddScoped<SessionService>();
             services.AddScoped<SessionCRUD>();
             services.AddScoped<UserService>();
-            services.AddSingleton<CustomHttpClient>();
             services.AddSingleton<AppSettingsService>();
 
             services.AddDefaultIdentity<User>(config =>

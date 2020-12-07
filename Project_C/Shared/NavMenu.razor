@@ -18,18 +18,20 @@
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Notificaties
             </NavLink>
         </li>
-        
+
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="evaluatieformulier">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Evaluatie Formulier
             </NavLink>
         </li>
-        <AuthorizeView Roles="Admin">
+        <AuthorizeView Roles="Organisator">
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="Aanmaken">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Sessie aanmaken
                 </NavLink>
             </li>
+        </AuthorizeView>
+        <AuthorizeView Roles="Admin">
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="Medewerkers">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Medewerkers

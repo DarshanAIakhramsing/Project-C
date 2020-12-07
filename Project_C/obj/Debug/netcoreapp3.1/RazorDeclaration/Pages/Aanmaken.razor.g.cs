@@ -105,94 +105,95 @@ using Project_C.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 66 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
-            
-    public System.Collections.Generic.IList<SessionInfo> session;
+#line 70 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+                
+        public System.Collections.Generic.IList<SessionInfo> session;
 
-    int session_id;
-    string session_name;
-    string session_location;
-    DateTime session_date;
+        int session_id;
+        string session_name;
+        string session_location;
+        DateTime session_date;
 
-    private enum MODE { None, Add, EditDelete };
-    MODE mode = MODE.None;
-    SessionInfo sessie;
+        private enum MODE { None, Add, EditDelete };
+        MODE mode = MODE.None;
+        SessionInfo sessie;
 
-    protected async override void OnInitialized()
-    {
-        session = Service.DisplaySession();
-        await load();
-    }
-
-    protected async Task load()
-    {
-        session = await sessionCRUD.GetSessionAsync();
-    }
-
-    protected async Task Insert()
-    {
-
-        SessionInfo s = new SessionInfo()
+        protected async override void OnInitialized()
         {
-            session_name = session_name,
-            session_location = session_location,
-            session_date = session_date
-        };
+            session = Service.DisplaySession();
+            await load();
+        }
 
-        await sessionCRUD.InsertSessionAsync(s);
-        ClearFields();
-        await load();
-
-        mode = MODE.None;
-    }
-
-    protected void Add()
-    {
-        ClearFields();
-        mode = MODE.Add;
-    }
-
-    protected async Task Update()
-    {
-
-        SessionInfo s = new SessionInfo()
+        protected async Task load()
         {
-            session_name = session_name,
-            session_location = session_location,
-            session_date = session_date
-        };
+            session = await sessionCRUD.GetSessionAsync();
+        }
 
-        await sessionCRUD.UpdateSessionAsync(session_id, s);
-        ClearFields();
-        await load();
-        mode = MODE.None;
-    }
+        protected async Task Insert()
+        {
 
-    protected async Task Delete()
-    {
-        await sessionCRUD.DeleteSessionAsync(session_id);
-        ClearFields();
-        await load();
-        mode = MODE.None;
-    }
+            SessionInfo s = new SessionInfo()
+            {
+                session_name = session_name,
+                session_location = session_location,
+                session_date = session_date
+            };
+
+            await sessionCRUD.InsertSessionAsync(s);
+            ClearFields();
+            await load();
+
+            mode = MODE.None;
+        }
+
+        protected void Add()
+        {
+            ClearFields();
+            mode = MODE.Add;
+        }
+
+        protected async Task Update()
+        {
+
+            SessionInfo s = new SessionInfo()
+            {
+                session_name = session_name,
+                session_location = session_location,
+                session_date = session_date
+            };
+
+            await sessionCRUD.UpdateSessionAsync(session_id, s);
+            ClearFields();
+            await load();
+            mode = MODE.None;
+        }
+
+        protected async Task Delete()
+        {
+            await sessionCRUD.DeleteSessionAsync(session_id);
+            ClearFields();
+            await load();
+            mode = MODE.None;
+        }
 
 
-    protected void ClearFields()
-    {
-        session_name = string.Empty;
-        session_location = string.Empty;
-    }
+        protected void ClearFields()
+        {
+            session_name = string.Empty;
+            session_location = string.Empty;
+        }
 
-    protected async Task Show(int id)
-    {
-        SessionInfo session = await sessionCRUD.GetSessionByIdAsync(id);
-        session_id = session.session_id;
-        session_name = session.session_name;
-        session_location = session.session_location;
-        session_date = session.session_date;
-        mode = MODE.EditDelete;
-    }
+        protected async Task Show(int id)
+        {
+            SessionInfo session = await sessionCRUD.GetSessionByIdAsync(id);
+            session_id = session.session_id;
+            session_name = session.session_name;
+            session_location = session.session_location;
+            session_date = session.session_date;
+            mode = MODE.EditDelete;
+        }
 
+    
 
 #line default
 #line hidden
