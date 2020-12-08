@@ -108,6 +108,21 @@ namespace Project_C.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Project_C.Models.UserMeeting", b =>
+                {
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SessionInfosession_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "SessionInfosession_id");
+
+                    b.HasIndex("SessionInfosession_id");
+
+                    b.ToTable("UserMeetings");
+                });
+
             modelBuilder.Entity("Project_C.Models.UserRole", b =>
                 {
                     b.Property<int?>("UserId")
@@ -121,6 +136,21 @@ namespace Project_C.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("Project_C.Models.UserMeeting", b =>
+                {
+                    b.HasOne("Project_C.Data.SessionInfo", "SessionInfo")
+                        .WithMany()
+                        .HasForeignKey("SessionInfosession_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Project_C.Models.User", "User")
+                        .WithMany("Meetings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Project_C.Models.UserRole", b =>
