@@ -1,16 +1,33 @@
 ﻿<Properties StartupConfiguration="{DCCB6F79-1B68-4070-A8B6-B8730720E6E8}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Project_C/Pages/Medewerkers.razor">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Project_C/Models/UserRole.cs">
     <Files>
-      <File FileName="Project_C/Pages/Medewerkers.razor" Line="60" Column="11" />
+      <File FileName="Project_C/Pages/Medewerkers.razor" Line="16" Column="28" />
+      <File FileName="Project_C/Pages/Aanmaken.razor" />
+      <File FileName="Project_C/Models/UserMeeting.cs" Line="15" Column="1" />
+      <File FileName="Project_C/Models/UserRole.cs" Line="10" Column="18" />
+      <File FileName="Project_C/Data/ApplicationDbContext.cs" Line="33" Column="97" />
+      <File FileName="Project_C/Models/User.cs" Line="24" Column="24" />
+      <File FileName="Project_C/Models/SessionConfirmation.cs" Line="1" Column="1" />
+      <File FileName="Project_C/Models/Role.cs" Line="9" Column="18" />
+      <File FileName="Project_C/Data/UserInfo.cs" Line="10" Column="18" />
+      <File FileName="Project_C/Services/UserService.cs" Line="14" Column="16" />
+      <File FileName="Project_C/Data/SessionInfo.cs" Line="14" Column="30" />
+      <File FileName="Project_C/Models/SessionModel.cs" Line="1" Column="1" />
+      <File FileName="Project_C/Models/DbContextFactory.cs" Line="1" Column="1" />
+      <File FileName="Project_C/Migrations/20201208155051_Meeting.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Project_C" expanded="True">
             <Node name="Project_C" expanded="True">
-              <Node name="Pages" expanded="True">
-                <Node name="Medewerkers.razor" selected="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Migrations" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="UserRole.cs" selected="True" />
               </Node>
+              <Node name="Pages" expanded="True" />
+              <Node name="Services" expanded="True" />
             </Node>
           </Node>
         </State>
