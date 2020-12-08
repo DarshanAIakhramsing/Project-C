@@ -136,7 +136,7 @@ using Project_C.Services;
             {
                 session_name = session_name,
                 session_location = session_location,
-                session_date = session_date
+                session_date = DateTime.Parse(session_date.ToString("dd/MM/yyyy HH:mm:ss"))
             };
 
             await sessionCRUD.InsertSessionAsync(s);
@@ -159,7 +159,7 @@ using Project_C.Services;
             {
                 session_name = session_name,
                 session_location = session_location,
-                session_date = session_date
+                session_date = DateTime.Parse(session_date.ToString("dd/MM/yyyy HH:mm:ss"))
             };
 
             await sessionCRUD.UpdateSessionAsync(session_id, s);
@@ -189,7 +189,7 @@ using Project_C.Services;
             session_id = session.session_id;
             session_name = session.session_name;
             session_location = session.session_location;
-            session_date = session.session_date;
+            session_date = DateTime.Parse(session.session_date.ToString("dd/MM/yyyy HH:mm:ss"));
             mode = MODE.EditDelete;
         }
 

@@ -60,7 +60,7 @@
         <br />
         <input placeholder="Last Name" @bind="@session_location" />
         <br />
-        <input placeholder="Last Name" @bind="@session_date" />
+        <input placeholder="Datum" @bind="@session_date" />
         <br />
         <button @onclick="@Update" class="btn btn-primary">Update</button>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -97,7 +97,7 @@
             {
                 session_name = session_name,
                 session_location = session_location,
-                session_date = session_date
+                session_date = DateTime.Parse(session_date.ToString("dd/MM/yyyy HH:mm:ss"))
             };
 
             await sessionCRUD.InsertSessionAsync(s);
@@ -120,7 +120,7 @@
             {
                 session_name = session_name,
                 session_location = session_location,
-                session_date = session_date
+                session_date = DateTime.Parse(session_date.ToString("dd/MM/yyyy HH:mm:ss"))
             };
 
             await sessionCRUD.UpdateSessionAsync(session_id, s);
@@ -150,7 +150,7 @@
             session_id = session.session_id;
             session_name = session.session_name;
             session_location = session.session_location;
-            session_date = session.session_date;
+            session_date = DateTime.Parse(session.session_date.ToString("dd/MM/yyyy HH:mm:ss"));
             mode = MODE.EditDelete;
         }
 
