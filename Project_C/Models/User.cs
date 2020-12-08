@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Project_C.Data;
 
 namespace Project_C.Models
 {
@@ -19,5 +20,7 @@ namespace Project_C.Models
         public int accept_invitation { get; set; }
 
         public List<UserRole> Roles { get; set; }
+
+        public List<UserMeeting> Meetings { get; set; }
     }
 }
