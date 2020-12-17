@@ -35,7 +35,7 @@ namespace Project_C.Data
 
         public async Task<IdentityResult> CreateAsync(User user, CancellationToken cancellationToken)
 		{
-			Console.WriteLine("Creating new user lol");
+			Console.WriteLine("New user has been added to the system");
 			Console.WriteLine(user.Id);
 			Console.WriteLine(user.Password);
 
