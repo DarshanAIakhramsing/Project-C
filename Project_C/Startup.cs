@@ -17,6 +17,7 @@ using Project_C.Data;
 using Project_C.Services;
 using Microsoft.Extensions.Options;
 using Project_C.Models;
+using System.Threading;
 
 namespace Project_C
 {
@@ -39,11 +40,11 @@ namespace Project_C
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
-            services.AddSingleton<WeatherForecastService>();
             services.AddScoped<SessionService>();
             services.AddScoped<SessionCRUD>();
             services.AddScoped<UserService>();
-            services.AddSingleton<AppSettingsService>();
+
+            services.Configure<AppSettings>(Configuration.GetSection("MySettings"));
 
             services.AddDefaultIdentity<User>(config =>
             {
@@ -56,6 +57,31 @@ namespace Project_C
                 .AddRoles<Role>()
                 .AddRoleStore<CustomRoleStore>()
                 .AddUserStore<CustomUserStore>();
+
+            services.AddHostedService<Yeet>();
+        }
+
+        class Yeet : IHostedService
+        {
+            public Yeet(IServiceProvider serviceProvider) => ServiceProvider = serviceProvider;
+
+            public IServiceProvider ServiceProvider { get; }
+
+            public async Task StartAsync(CancellationToken cancellationToken)
+            {
+                using (var scope = ServiceProvider.CreateScope())
+                {
+                    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                    var settings = scope.ServiceProvider.GetRequiredService<IOptions<AppSettings>>().Value;
+
+                    var sessions = await dbContext.Session.ToListAsync();
+                }
+            }
+
+            public Task StopAsync(CancellationToken cancellationToken)
+            {
+                return Task.CompletedTask;
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

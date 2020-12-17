@@ -105,40 +105,53 @@ using Project_C.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 70 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
-                
-        public System.Collections.Generic.IList<SessionInfo> session;
+#line 80 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+       
+    public System.Collections.Generic.IList<SessionInfo> session = new SessionInfo[0];
 
-        int session_id;
-        string session_name;
-        string session_location;
-        DateTime session_date;
+    int session_id;
+    string session_name;
+    string session_location;
+    DateTime session_date;
 
-        private enum MODE { None, Add, EditDelete };
-        MODE mode = MODE.None;
-        SessionInfo sessie;
+    private enum MODE { None, Add, EditDelete };
+    MODE mode = MODE.None;
+    SessionInfo sessie;
 
-        protected async override void OnInitialized()
+    protected async override void OnInitialized()
+    {
+        session = Service.DisplaySession();
+        await load();
+    }
+
+    protected async Task load()
+    {
+        session = await sessionCRUD.GetSessionAsync();
+    }
+
+    protected async Task Insert()
+    {
+
+        SessionInfo s = new SessionInfo()
         {
-            session = Service.DisplaySession();
-            await load();
+            session_name = session_name,
+            session_location = session_location,
+            session_date = DateTime.Parse(session_date.ToString("dd/MM/yyyy HH:mm:ss"))
+        };
+
+        
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 113 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+         if (session_name == string.Empty || session_location == string.Empty)
+        {
+            Console.WriteLine("Empty");
         }
-
-        protected async Task load()
+        else
         {
-            session = await sessionCRUD.GetSessionAsync();
-        }
-
-        protected async Task Insert()
-        {
-
-            SessionInfo s = new SessionInfo()
-            {
-                session_name = session_name,
-                session_location = session_location,
-                session_date = DateTime.Parse(session_date.ToString("dd/MM/yyyy HH:mm:ss"))
-            };
-
             await sessionCRUD.InsertSessionAsync(s);
             ClearFields();
             await load();
@@ -146,21 +159,43 @@ using Project_C.Services;
             mode = MODE.None;
         }
 
-        protected void Add()
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 124 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+         
+    }
+
+    protected void Add()
+    {
+        ClearFields();
+        mode = MODE.Add;
+    }
+
+    protected async Task Update()
+    {
+
+        SessionInfo s = new SessionInfo()
         {
-            ClearFields();
-            mode = MODE.Add;
+            session_name = session_name,
+            session_location = session_location,
+            session_date = DateTime.Parse(session_date.ToString("dd/MM/yyyy HH:mm:ss"))
+        };
+
+        
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 143 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+         if (session_name == string.Empty || session_location == string.Empty)
+        {
+            Console.WriteLine("Empty");
         }
-
-        protected async Task Update()
+        else
         {
-
-            SessionInfo s = new SessionInfo()
-            {
-                session_name = session_name,
-                session_location = session_location,
-                session_date = DateTime.Parse(session_date.ToString("dd/MM/yyyy HH:mm:ss"))
-            };
 
             await sessionCRUD.UpdateSessionAsync(session_id, s);
             ClearFields();
@@ -168,32 +203,39 @@ using Project_C.Services;
             mode = MODE.None;
         }
 
-        protected async Task Delete()
-        {
-            await sessionCRUD.DeleteSessionAsync(session_id);
-            ClearFields();
-            await load();
-            mode = MODE.None;
-        }
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 154 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+         
+    }
+
+    protected async Task Delete()
+    {
+        await sessionCRUD.DeleteSessionAsync(session_id);
+        ClearFields();
+        await load();
+        mode = MODE.None;
+    }
 
 
-        protected void ClearFields()
-        {
-            session_name = string.Empty;
-            session_location = string.Empty;
-        }
+    protected void ClearFields()
+    {
+        session_name = string.Empty;
+        session_location = string.Empty;
+    }
 
-        protected async Task Show(int id)
-        {
-            SessionInfo session = await sessionCRUD.GetSessionByIdAsync(id);
-            session_id = session.session_id;
-            session_name = session.session_name;
-            session_location = session.session_location;
-            session_date = DateTime.Parse(session.session_date.ToString("dd/MM/yyyy HH:mm:ss"));
-            mode = MODE.EditDelete;
-        }
+    protected async Task Show(int id)
+    {
+        SessionInfo session = await sessionCRUD.GetSessionByIdAsync(id);
+        session_id = session.session_id;
+        session_name = session.session_name;
+        session_location = session.session_location;
+        session_date = DateTime.Parse(session.session_date.ToString("dd/MM/yyyy HH:mm:ss"));
+        mode = MODE.EditDelete;
+    }
 
-    
 
 #line default
 #line hidden
