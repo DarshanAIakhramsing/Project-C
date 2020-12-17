@@ -8,6 +8,7 @@
 @inject ApplicationDbContext database
 @inject AuthenticationState UserManager
 @inject UserManager<User> UserManager
+@inject SessionCRUD SessionManager
 @inherits OwningComponentBase<SessionService>
 
 <AuthorizeView>
@@ -35,17 +36,23 @@
                 <td>@sessie.session_name</td>
                 <td>@sessie.session_date</td>
                 <td>@sessie.session_location</td>
-                <td><button @onclick="ClickHandler">Ja</button></td>
+                <td><button @onclick="@((args) => ButtonClicked(sessie.session_id))">Ja</button></td>
             </tr>
         }
     </table>
 
 @code {
     public System.Collections.Generic.IList<SessionInfo> sessies;
+    public System.Collections.Generic.IList<UserMeeting> meetings;
 
     protected override void OnInitialized()
     {
         sessies = Service.DisplaySession();
+    }
+
+    public void ButtonClicked(int ButtonID)
+    {
+        Console.WriteLine(ButtonID);
     }
 
     public async Task ClickHandler()
@@ -53,9 +60,18 @@
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         ClaimsPrincipal ding = authState.User;
         var currentUser = await UserManager.GetUserAsync(ding);
-        // int currentUserID = int.Parse(currentUser.FindFirst("Id").Value);
+        //int currentSessionID = sessies.session_id;
 
         User currentUserId = (from U in database.Users where U.Id == currentUser.Id select U).FirstOrDefault();
+        //SessionInfo currentSessionId = (from S in database.Session where S.session_id ==  select S).FirstOrDefault();
+
+        UserMeeting um = new UserMeeting()
+        {
+            User = currentUserId,
+            //SessionInfo = currentUserId
+        };
+
+        //await NotificationCreate.InsertMeetingAsync(um);
 
         currentUser.accept_invitation++;
         database.Update(currentUser);

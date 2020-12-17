@@ -119,13 +119,19 @@ using Microsoft.AspNetCore.Identity;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 43 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
+#line 44 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
        
     public System.Collections.Generic.IList<SessionInfo> sessies;
+    public System.Collections.Generic.IList<UserMeeting> meetings;
 
     protected override void OnInitialized()
     {
         sessies = Service.DisplaySession();
+    }
+
+    public void ButtonClicked(int ButtonID)
+    {
+        Console.WriteLine(ButtonID);
     }
 
     public async Task ClickHandler()
@@ -133,9 +139,18 @@ using Microsoft.AspNetCore.Identity;
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         ClaimsPrincipal ding = authState.User;
         var currentUser = await UserManager.GetUserAsync(ding);
-        // int currentUserID = int.Parse(currentUser.FindFirst("Id").Value);
+        //int currentSessionID = sessies.session_id;
 
         User currentUserId = (from U in database.Users where U.Id == currentUser.Id select U).FirstOrDefault();
+        //SessionInfo currentSessionId = (from S in database.Session where S.session_id ==  select S).FirstOrDefault();
+
+        UserMeeting um = new UserMeeting()
+        {
+            User = currentUserId,
+            //SessionInfo = currentUserId
+        };
+
+        //await NotificationCreate.InsertMeetingAsync(um);
 
         currentUser.accept_invitation++;
         database.Update(currentUser);
@@ -145,6 +160,7 @@ using Microsoft.AspNetCore.Identity;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private SessionCRUD SessionManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private UserManager<User> UserManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ApplicationDbContext database { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
