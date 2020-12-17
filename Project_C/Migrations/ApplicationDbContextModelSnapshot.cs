@@ -19,20 +19,24 @@ namespace Project_C.Migrations
 
             modelBuilder.Entity("Project_C.Data.SessionInfo", b =>
                 {
-                    b.Property<int>("session_id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("session_date")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("session_location")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
+                        .HasMaxLength(255);
 
-                    b.Property<string>("session_name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
+                        .HasMaxLength(255);
 
-                    b.HasKey("session_id");
+                    b.HasKey("Id");
 
                     b.ToTable("Session");
                 });
@@ -49,43 +53,13 @@ namespace Project_C.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
-                });
 
-            modelBuilder.Entity("Project_C.Models.SessionConfirmation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("AcceptedInvites")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SessionConfirmation");
-                });
-
-            modelBuilder.Entity("Project_C.Models.SessionModel", b =>
-                {
-                    b.Property<int>("session_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("session_date")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("session_location")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("session_name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("session_id");
-
-                    b.ToTable("SessionModel");
+                    b.HasData(
+                        new
+                        {
+                            Id = -1,
+                            Name = "Organisator"
+                        });
                 });
 
             modelBuilder.Entity("Project_C.Models.User", b =>
@@ -108,6 +82,21 @@ namespace Project_C.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Project_C.Models.UserMeeting", b =>
+                {
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SessionInfoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "SessionInfoId");
+
+                    b.HasIndex("SessionInfoId");
+
+                    b.ToTable("UserMeetings");
+                });
+
             modelBuilder.Entity("Project_C.Models.UserRole", b =>
                 {
                     b.Property<int?>("UserId")
@@ -121,6 +110,21 @@ namespace Project_C.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("Project_C.Models.UserMeeting", b =>
+                {
+                    b.HasOne("Project_C.Data.SessionInfo", "SessionInfo")
+                        .WithMany()
+                        .HasForeignKey("SessionInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Project_C.Models.User", "User")
+                        .WithMany("Meetings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Project_C.Models.UserRole", b =>

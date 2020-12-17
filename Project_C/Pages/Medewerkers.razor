@@ -1,4 +1,4 @@
-@page "/Medewerkers"
+@page "/medewerkers"
 @using Project_C.Data;
 @using Project_C.Services;
 @using Project_C.Models;
@@ -11,12 +11,8 @@
 @inherits OwningComponentBase<UserService>
 
 <AuthorizeView>
-    <Authorized>
-        <h1>Hello, @context.User.Identity.Name!</h1>
-        You can only see this if you're authenticated.
-    </Authorized>
     <NotAuthorized>
-        You're not logged in.
+        U bent niet geautoriseerd.
     </NotAuthorized>
 </AuthorizeView>
 <AuthorizeView Roles="Admin">
@@ -59,6 +55,6 @@
 
     async Task SearchIssues()
     {
-        users = await Service.DisplayEmail(searchTerm);
+        users = Service.DisplayEmail(searchTerm);
     }
 }

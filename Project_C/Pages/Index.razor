@@ -1,18 +1,15 @@
-﻿@page "/Pages/Index"
+﻿@page "/index"
 
-<h1>Welkom bij CimSolutions!</h1>
-
-Zie hieronder uw aankomende sessies.
+<h1>Welkom bij CimSolutions!</h1><br />
 
 <AuthorizeView>
     <Authorized>
-        <h1>Hello, @context.User.Identity.Name!</h1>
-        You can only see this if you're authenticated.
+        <h1>Welkom, @context.User.Identity.Name!</h1><br />
     </Authorized>
     <NotAuthorized>
-        You're not logged in.
+        U bent niet geautoriseerd.
     </NotAuthorized>
 </AuthorizeView>
 <AuthorizeView Roles="Admin">
-    <h1>Sup Admin!</h1>
+    <h1>Welkom administrator!</h1>
 </AuthorizeView>

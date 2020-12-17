@@ -74,7 +74,7 @@ namespace Project_C.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/Pages/Index");
+            returnUrl = returnUrl ?? Url.Content("~/index");
 
             if (ModelState.IsValid)
             {
