@@ -8,27 +8,30 @@
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="index">
+            <NavLink class="nav-link" href="/Pages/Index">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </li>
 
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="sessieoverzicht">
+            <NavLink class="nav-link" href="Notificaties">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Notificaties
             </NavLink>
         </li>
-
-        <AuthorizeView Roles="Organisator, Admin">
+        
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="evaluatieformulier">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Evaluatie Formulier
+            </NavLink>
+        </li>
+        <AuthorizeView Roles="Admin">
             <li class="nav-item px-3">
-                <NavLink class="nav-link" href="sessies">
+                <NavLink class="nav-link" href="Aanmaken">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Sessie aanmaken
                 </NavLink>
             </li>
-        </AuthorizeView>
-        <AuthorizeView Roles="Admin">
             <li class="nav-item px-3">
-                <NavLink class="nav-link" href="medewerkers">
+                <NavLink class="nav-link" href="Medewerkers">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Medewerkers
                 </NavLink>
             </li>

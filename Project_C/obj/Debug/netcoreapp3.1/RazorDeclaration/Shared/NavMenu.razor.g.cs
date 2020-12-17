@@ -83,7 +83,7 @@ using Project_C.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 44 "F:\Projects\Project_C\Project_C\Shared\NavMenu.razor"
+#line 42 "F:\Projects\Project_C\Project_C\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

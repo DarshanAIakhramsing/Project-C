@@ -27,7 +27,7 @@ namespace Project_C.Data
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var ses = await _dbContext.Session.FirstOrDefaultAsync(a => a.Id == id);
+            var ses = await _dbContext.Session.FirstOrDefaultAsync(a => a.session_id == id);
             return Ok(ses);
         }
 
@@ -36,7 +36,7 @@ namespace Project_C.Data
         {
             _dbContext.Add(session);
             await _dbContext.SaveChangesAsync();
-            return Ok(session.Id);
+            return Ok(session.session_id);
         }
 
         [HttpPut]
@@ -50,7 +50,7 @@ namespace Project_C.Data
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var ses = new SessionInfo { Id = id };
+            var ses = new SessionInfo { session_id = id };
             _dbContext.Remove(ses);
             await _dbContext.SaveChangesAsync();
             return NoContent();

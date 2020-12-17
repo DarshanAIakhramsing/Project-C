@@ -13,49 +13,66 @@ using System.Security.Cryptography;
 
 namespace Project_C.Data
 {
-    public class SessionCRUD : IDisposable, IAsyncDisposable
+    public class SessionCRUD
     {
-        public ApplicationDbContext DbContext { get; }
+        public ApplicationDbContext DbContext { get; set; }
 
         public SessionCRUD(ApplicationDbContext dbContext)
         {
             DbContext = dbContext;
         }
 
-        public async Task<IList<SessionInfo>> GetSessionsAsync() => await DbContext.Session.ToListAsync();
+        public async Task<List<SessionInfo>> GetSessionAsync()
+        {
+            return await DbContext.Session.ToListAsync();
+        }
 
-        public async Task<SessionInfo> GetSessionAsync(int id) => await DbContext.Session.FindAsync(id);
+        public async Task<SessionInfo> GetSessionByIdAsync(int id)
+        {
+            return await DbContext.Session.FindAsync(id);
+        }
 
-        public async Task InsertSessionAsync(SessionInfo session)
+        public async Task<SessionInfo> InsertSessionAsync(SessionInfo session)
         {
             DbContext.Session.Add(session);
             await DbContext.SaveChangesAsync();
+
+            return session;
         }
 
-        public async Task UpdateSessionAsync(SessionInfo session)
+        public async Task<SessionInfo> UpdateSessionAsync(int id, SessionInfo s)
         {
+            var session = await DbContext.Session.FindAsync(id);
+
+            if (session == null)
+                return null;
+
+            session.session_name = s.session_name;
+            session.session_location = s.session_location;
+            session.session_date = s.session_date;
+
             DbContext.Session.Update(session);
             await DbContext.SaveChangesAsync();
+
+            return session;
         }
 
-        public async Task DeleteSessionAsync(SessionInfo session)
+        public async Task<SessionInfo> DeleteSessionAsync(int id)
         {
-            DbContext.Session.Remove(session);
+            var student = await DbContext.Session.FindAsync(id);
+
+            if (student == null)
+                return null;
+
+            DbContext.Session.Remove(student);
             await DbContext.SaveChangesAsync();
+
+            return student;
         }
 
-        public bool SessionExist(int id) => GetSessionAsync(id) is not null;
-
-        #region Disposable support
-        public ValueTask DisposeAsync()
+        private bool SessionExist(int id)
         {
-            return ((IAsyncDisposable)DbContext).DisposeAsync();
+            return DbContext.Session.Any(e => e.session_id == id);
         }
-
-        public void Dispose()
-        {
-            ((IDisposable)DbContext).Dispose();
-        } 
-        #endregion
     }
 }

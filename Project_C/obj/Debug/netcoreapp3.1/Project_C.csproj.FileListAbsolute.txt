@@ -411,6 +411,7 @@ F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Project_C.MvcApplication
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Project_C.RazorComponent.input.cache
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\App.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Aanmaken.razor.g.cs
+F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\AddSession.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Evaluatieformulier.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Index.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Medewerkers.razor.g.cs
@@ -568,6 +569,7 @@ F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Project_C.TagHelpers.out
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Project_C.RazorCoreGenerate.cache
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\App.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\Aanmaken.razor.g.cs
+F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\AddSession.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\Evaluatieformulier.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\Index.razor.g.cs
 F:\Projects\Project_C\Project_C\obj\Debug\netcoreapp3.1\Razor\Pages\Medewerkers.razor.g.cs

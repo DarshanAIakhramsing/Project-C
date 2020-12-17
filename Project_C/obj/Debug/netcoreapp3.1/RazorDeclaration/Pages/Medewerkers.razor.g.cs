@@ -132,7 +132,7 @@ using Microsoft.AspNetCore.Identity;
 
     async Task SearchIssues()
     {
-        users = Service.DisplayEmail(searchTerm);
+        users = await Service.DisplayEmail(searchTerm);
     }
 
 #line default
