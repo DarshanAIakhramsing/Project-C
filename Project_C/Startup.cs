@@ -34,15 +34,9 @@ namespace Project_C
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(
-                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
-            services.AddScoped<SessionService>();
-            services.AddScoped<SessionCRUD>();
-            services.AddScoped<UserService>();
 
             services.Configure<AppSettings>(Configuration.GetSection("MySettings"));
 
@@ -59,6 +53,13 @@ namespace Project_C
                 .AddUserStore<CustomUserStore>();
 
             services.AddHostedService<Yeet>();
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseMySql(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<SessionService>();
+            services.AddScoped<SessionCRUD>();
+            services.AddScoped<UserService>();
         }
 
         class Yeet : IHostedService

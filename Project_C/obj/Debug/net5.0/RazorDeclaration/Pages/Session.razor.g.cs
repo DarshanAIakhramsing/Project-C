@@ -96,6 +96,13 @@ using Project_C.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "F:\Projects\Project_C\Project_C\Pages\Session.razor"
+using System.ComponentModel.DataAnnotations;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/sessies")]
     public partial class Session : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -105,81 +112,67 @@ using Project_C.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 73 "F:\Projects\Project_C\Project_C\Pages\Session.razor"
+#line 69 "F:\Projects\Project_C\Project_C\Pages\Session.razor"
        
-    public System.Collections.Generic.IList<SessionInfo> Sessions { get; set; }
+    public class EditSessionModel
+    {
+        [Required, StringLength(255, MinimumLength = 1)]
+        public string Name { get; set; }
 
-    SessionInfo CurrentSession { get; set; } = new();
+        [Required, StringLength(255, MinimumLength = 1)]
+        public string Location { get; set; }
+
+        public DateTime Date { get; set; }
+    }
+
+    EditSessionModel EditModel { get; set; } = new();
+
+    public System.Collections.Generic.IList<SessionInfo> Sessions { get; set; }
 
     private enum MODE { None, Add, EditDelete };
 
-    MODE mode = MODE.None;
-    SessionInfo sessie;
+    public int SelectedSessionID = -1;
 
-    protected async override void OnInitialized()
+    MODE mode = MODE.None;
+
+    public async void Submit()
     {
-        await Load();
+        var session = (from S in Sessions where S.Id == SelectedSessionID select S).FirstOrDefault() ?? new();
+        session.Name = EditModel.Name;
+        session.Location = EditModel.Location;
+        session.Date = EditModel.Date;
+        await sessionCRUD.UpdateSessionAsync(session);
+        if (!Sessions.Contains(session)) Sessions.Add(session);
         StateHasChanged();
     }
 
-    protected async Task Load()
+    protected async override void OnInitialized()
     {
         Sessions = await sessionCRUD.GetSessionsAsync();
+        StateHasChanged();
     }
 
-    protected async Task Insert()
-    {
-        PrepareModel();
-
-        await sessionCRUD.InsertSessionAsync(CurrentSession);
-        Sessions.Add(CurrentSession);
-        ClearFields();
-
-        mode = MODE.None;
-    }
-
-    protected void Add()
-    {
-        ClearFields();
-        mode = MODE.Add;
-    }
-
-    protected async Task Update()
-    {
-        PrepareModel();
-
-        await sessionCRUD.UpdateSessionAsync(CurrentSession);
-        ClearFields();
-        mode = MODE.None;
-    }
 
     protected async Task Delete()
     {
-        await sessionCRUD.DeleteSessionAsync(CurrentSession);
-        Sessions.Remove(CurrentSession);
-        ClearFields();
+        var toDelete = (from S in Sessions where S.Id == SelectedSessionID select S).First();
+        Sessions.Remove(toDelete);
+        await sessionCRUD.DeleteSessionAsync(toDelete);
+
+        SelectedSessionID = -1;
+        EditModel = new();
+        StateHasChanged();
         mode = MODE.None;
     }
 
-    private void PrepareModel()
+    protected void SelectSession(SessionInfo session)
     {
-        if (string.IsNullOrWhiteSpace(CurrentSession.Name))
-            CurrentSession.Name = null;
-        if (string.IsNullOrWhiteSpace(CurrentSession.Location))
-            CurrentSession.Location = null;
-    }
-
-    protected void ClearFields()
-    {
-        CurrentSession = new();
-    }
-
-    protected void Show(SessionInfo session)
-    {
-        CurrentSession = session;
         mode = MODE.EditDelete;
+        SelectedSessionID = session.Id;
+        EditModel.Name = session.Name;
+        EditModel.Location = session.Location;
+        EditModel.Date = session.Date;
     }
-
 
 #line default
 #line hidden
