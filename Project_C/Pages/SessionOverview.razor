@@ -1,0 +1,83 @@
+@page "/sessieoverzicht"
+@using Project_C.Data;
+@using Project_C.Services;
+@using Project_C.Models;
+@using System.Security.Claims;
+@using Microsoft.AspNetCore.Identity
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject ApplicationDbContext database
+@inject AuthenticationState UserManager
+@inject UserManager<User> UserManager
+@inject NotificationCreate NotificationCreate
+@inherits OwningComponentBase<SessionService>
+
+<AuthorizeView>
+    <NotAuthorized>
+        U bent niet geautoriseerd.
+    </NotAuthorized>
+    <Authorized>
+
+        <h3>Sessie overzicht</h3>
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Naam</th>
+                    <th>Datum</th>
+                    <th>Locatie</th>
+                    <th>Acceptatie</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sessie in sessies)
+                {
+                    <tr>
+                        <td>@sessie.Name</td>
+                        <td>@sessie.Date</td>
+                        <td>@sessie.Location</td>
+                        <td><button @onclick="@((args) => ClickHandler(sessie.Id))" class="btn btn-success">Accepteren</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+    public System.Collections.Generic.IList<SessionInfo> sessies;
+    public System.Collections.Generic.IList<UserMeeting> meetings;
+
+    UserMeeting CurrentMeeting { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        sessies = Service.DisplaySession();
+    }
+
+    public void ButtonClicked(int ButtonID)
+    {
+        Console.WriteLine(ButtonID);
+    }
+
+    public async Task ClickHandler(int ButtonID)
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        ClaimsPrincipal ding = authState.User;
+        var currentUser = await UserManager.GetUserAsync(ding);
+
+        User currentUserId = (from U in database.Users where U.Id == currentUser.Id select U).FirstOrDefault();
+        SessionInfo currentSessionId = (from S in database.Session where S.Id == ButtonID select S).FirstOrDefault();
+
+        UserMeeting BringIt = new UserMeeting()
+        {
+            User = currentUserId,
+            SessionInfo = currentSessionId
+        };
+
+        await NotificationCreate.InsertMeetingAsync(BringIt);
+
+        currentUser.accept_invitation++;
+        database.Update(currentUser);
+        await database.SaveChangesAsync();
+    }
+}

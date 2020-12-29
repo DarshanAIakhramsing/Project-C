@@ -13,84 +13,84 @@ namespace Project_C.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 1 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 2 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 3 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 4 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 5 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 6 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 7 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 8 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Project_C;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 9 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Project_C.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Aanmaken.razor"
+#line 3 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
 using Project_C.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Aanmaken.razor"
+#line 4 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
 using Project_C.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Aanmaken.razor"
+#line 5 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
 using Project_C.Services;
 
 #line default
@@ -105,9 +105,9 @@ using Project_C.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 66 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Aanmaken.razor"
-            
-    public System.Collections.Generic.IList<SessionInfo> session;
+#line 80 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+       
+    public System.Collections.Generic.IList<SessionInfo> session = new SessionInfo[0];
 
     int session_id;
     string session_name;
@@ -136,14 +136,35 @@ using Project_C.Services;
         {
             session_name = session_name,
             session_location = session_location,
-            session_date = session_date
+            session_date = DateTime.Parse(session_date.ToString("dd/MM/yyyy HH:mm:ss"))
         };
 
-        await sessionCRUD.InsertSessionAsync(s);
-        ClearFields();
-        await load();
+        
 
-        mode = MODE.None;
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 113 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+         if (session_name == string.Empty || session_location == string.Empty)
+        {
+            Console.WriteLine("Empty");
+        }
+        else
+        {
+            await sessionCRUD.InsertSessionAsync(s);
+            ClearFields();
+            await load();
+
+            mode = MODE.None;
+        }
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 124 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+         
     }
 
     protected void Add()
@@ -159,13 +180,35 @@ using Project_C.Services;
         {
             session_name = session_name,
             session_location = session_location,
-            session_date = session_date
+            session_date = DateTime.Parse(session_date.ToString("dd/MM/yyyy HH:mm:ss"))
         };
 
-        await sessionCRUD.UpdateSessionAsync(session_id, s);
-        ClearFields();
-        await load();
-        mode = MODE.None;
+        
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 143 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+         if (session_name == string.Empty || session_location == string.Empty)
+        {
+            Console.WriteLine("Empty");
+        }
+        else
+        {
+
+            await sessionCRUD.UpdateSessionAsync(session_id, s);
+            ClearFields();
+            await load();
+            mode = MODE.None;
+        }
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 154 "F:\Projects\Project_C\Project_C\Pages\Aanmaken.razor"
+         
     }
 
     protected async Task Delete()
@@ -189,7 +232,7 @@ using Project_C.Services;
         session_id = session.session_id;
         session_name = session.session_name;
         session_location = session.session_location;
-        session_date = session.session_date;
+        session_date = DateTime.Parse(session.session_date.ToString("dd/MM/yyyy HH:mm:ss"));
         mode = MODE.EditDelete;
     }
 

@@ -10,98 +10,98 @@ namespace Project_C.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 1 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 2 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 3 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 4 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 5 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 6 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 7 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 8 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Project_C;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 9 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Project_C.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
+#line 2 "F:\Projects\Project_C\Project_C\Pages\Notificaties.razor"
 using Project_C.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
+#line 3 "F:\Projects\Project_C\Project_C\Pages\Notificaties.razor"
 using Project_C.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
+#line 4 "F:\Projects\Project_C\Project_C\Pages\Notificaties.razor"
 using Project_C.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
+#line 5 "F:\Projects\Project_C\Project_C\Pages\Notificaties.razor"
 using System.Security.Claims;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
+#line 6 "F:\Projects\Project_C\Project_C\Pages\Notificaties.razor"
 using Microsoft.AspNetCore.Identity;
 
 #line default
@@ -117,7 +117,7 @@ using Microsoft.AspNetCore.Identity;
             __builder.AddAttribute(1, "Authorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
                 __builder2.OpenElement(2, "h1");
                 __builder2.AddContent(3, "Hello, ");
-                __builder2.AddContent(4, 
+                __builder2.AddContent(4,
 #nullable restore
 #line 16 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
                     context.User.Identity.Name
@@ -128,19 +128,19 @@ using Microsoft.AspNetCore.Identity;
                 );
                 __builder2.AddContent(5, "!");
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(6, "\n        You can only see this if you\'re authenticated.\n    ");
+                __builder2.AddMarkupContent(6, "\r\n        You can only see this if you\'re authenticated.\r\n    ");
             }
             ));
             __builder.AddAttribute(7, "NotAuthorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
-                __builder2.AddMarkupContent(8, "\n        You\'re not logged in.\n    ");
+                __builder2.AddMarkupContent(8, "\r\n        You\'re not logged in.\r\n    ");
             }
             ));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(9, "\n\n    ");
-            __builder.AddMarkupContent(10, "<h3>Person</h3>\n\n    ");
+            __builder.AddMarkupContent(9, "\r\n\r\n    ");
+            __builder.AddMarkupContent(10, "<h3>Person</h3>\r\n\r\n    ");
             __builder.OpenElement(11, "table");
             __builder.AddAttribute(12, "border", "1");
-            __builder.AddMarkupContent(13, "<tr><th>Sessie naam</th>\n            <th>Datum</th>\n            <th>Locatie</th>\n            <th>Uitnodiging accepteren of weigeren</th></tr>");
+            __builder.AddMarkupContent(13, "<tr><th>Sessie naam</th>\r\n            <th>Datum</th>\r\n            <th>Locatie</th>\r\n            <th>Uitnodiging accepteren of weigeren</th></tr>");
 #nullable restore
 #line 33 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
          foreach (var sessie in sessies)
@@ -151,7 +151,7 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             __builder.OpenElement(14, "tr");
             __builder.OpenElement(15, "td");
-            __builder.AddContent(16, 
+            __builder.AddContent(16,
 #nullable restore
 #line 36 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
                      sessie.session_name
@@ -161,9 +161,9 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(17, "\n                ");
+            __builder.AddMarkupContent(17, "\r\n                ");
             __builder.OpenElement(18, "td");
-            __builder.AddContent(19, 
+            __builder.AddContent(19,
 #nullable restore
 #line 37 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
                      sessie.session_date
@@ -173,9 +173,9 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(20, "\n                ");
+            __builder.AddMarkupContent(20, "\r\n                ");
             __builder.OpenElement(21, "td");
-            __builder.AddContent(22, 
+            __builder.AddContent(22,
 #nullable restore
 #line 38 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
                      sessie.session_location
@@ -185,10 +185,10 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(23, "\n                ");
+            __builder.AddMarkupContent(23, "\r\n                ");
             __builder.OpenElement(24, "td");
             __builder.OpenElement(25, "button");
-            __builder.AddAttribute(26, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+            __builder.AddAttribute(26, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this,
 #nullable restore
 #line 39 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
                                         (args) => ButtonClicked(sessie.session_id)
@@ -213,7 +213,7 @@ using Microsoft.AspNetCore.Identity;
         #pragma warning restore 1998
 #nullable restore
 #line 44 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Notificaties.razor"
-       
+
     public System.Collections.Generic.IList<SessionInfo> sessies;
     public System.Collections.Generic.IList<UserMeeting> meetings;
 
