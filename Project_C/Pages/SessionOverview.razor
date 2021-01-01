@@ -28,15 +28,23 @@
                     <th>Acceptatie</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody>  
                 @foreach (var sessie in sessies)
                 {
-                    <tr>
-                        <td>@sessie.Name</td>
-                        <td>@sessie.Date</td>
-                        <td>@sessie.Location</td>
+                <tr>
+                    <td>@sessie.Name</td>
+                    <td>@sessie.Date</td>
+                    <td>@sessie.Location</td>
+                    @if (Accepted(sessie.Id))
+                    {
+                        <td>Al geaccepteerd!</td>
+                    }
+                    else
+                    {
                         <td><button @onclick="@((args) => ClickHandler(sessie.Id))" class="btn btn-success">Accepteren</button></td>
-                    </tr>
+                    }
+                    <td><button @onclick="@((args) => ClickHandler(sessie.Id))" class="btn btn-success">Accepteren (niet else)</button></td>
+                </tr>
                 }
             </tbody>
         </table>
@@ -54,9 +62,46 @@
         sessies = Service.DisplaySession();
     }
 
-    public void ButtonClicked(int ButtonID)
+    @*public async Task OnInitializedAsync()
     {
-        Console.WriteLine(ButtonID);
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        ClaimsPrincipal ding = authState.User;
+        var currentUser = UserManager.GetUserAsync(ding);
+    }*@
+
+
+
+    @*public async Task<bool> Accepted(int MeetingID)
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        ClaimsPrincipal ding = authState.User;
+        var currentUser = await UserManager.GetUserAsync(ding);
+
+        User currentUserId = (from U in database.Users where U.Id == currentUser.Id select U).FirstOrDefault();
+        var result = (from M in database.UserMeetings where M.User.Id == currentUser.Id && M.SessionInfo.Id == MeetingID select M).First();
+        if(result == null) {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }*@
+
+    public bool Accepted2(int MeetingID)
+    {
+        var authState = AuthenticationStateProvider.GetAuthenticationStateAsync();
+        ClaimsPrincipal ding = authState.User;
+        var currentUser = UserManager.GetUserAsync(ding);
+        var result = (from M in database.UserMeetings where M.User.Id == currentUser.Id && M.SessionInfo.Id == MeetingID select M).First();
+        if (result == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     public async Task ClickHandler(int ButtonID)

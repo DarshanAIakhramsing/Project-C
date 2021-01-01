@@ -22,12 +22,12 @@ namespace Project_C.Data
             DbContext = dbContext;
         }
 
-        public async Task<UserMeeting> InsertMeetingAsync(UserMeeting meeting)
+        public async Task InsertMeetingAsync(UserMeeting meeting)
         {
             DbContext.UserMeetings.Add(meeting);
             await DbContext.SaveChangesAsync();
 
-            return meeting;
+            //return meeting;
         }
     }
 }

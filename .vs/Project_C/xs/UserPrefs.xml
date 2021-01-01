@@ -1,9 +1,20 @@
 ﻿<Properties StartupConfiguration="{DCCB6F79-1B68-4070-A8B6-B8730720E6E8}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Project_C/Pages/Notificaties.razor">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Project_C/Pages/SessionOverview.razor">
     <Files>
-      <File FileName="Project_C/Pages/Notificaties.razor" Line="52" Column="1" />
-      <File FileName="Project_C/Data/SessionInfo.cs" Line="10" Column="18" />
-      <File FileName="Project_C/Services/SessionService.cs" Line="21" Column="1" />
+      <File FileName="Project_C/Services/SessionService.cs" Line="19" Column="34" />
+      <File FileName="Project_C/Pages/Medewerkers.razor" />
+      <File FileName="Project_C/Pages/SessionOverview.razor" Line="108" Column="6" />
+      <File FileName="Project_C/Data/ApplicationDbContext.cs" />
+      <File FileName="Project_C/Models/SessionInfo.cs" />
+      <File FileName="Project_C/Data/NotificationCreate.cs" />
+      <File FileName="Project_C/Models/UserMeeting.cs" />
+      <File FileName="Project_C/Pages/Session.razor" />
+      <File FileName="Project_C/Data/SessionCRUD.cs" />
+      <File FileName="Project_C/Program.cs" />
+      <File FileName="Project_C/Models/User.cs" />
+      <File FileName="Project_C/Startup.cs" />
+      <File FileName="Project_C/Pages/Index.razor" />
+      <File FileName="Project_C/Pages/Error.cshtml" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -23,7 +34,7 @@
               <Node name="Migrations" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Pages" expanded="True">
-                <Node name="Notificaties.razor" selected="True" />
+                <Node name="SessionOverview.razor" selected="True" />
               </Node>
               <Node name="Properties" expanded="True" />
               <Node name="Services" expanded="True" />
