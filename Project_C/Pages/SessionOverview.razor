@@ -8,6 +8,7 @@
 @inject ApplicationDbContext database
 @inject AuthenticationState UserManager
 @inject UserManager<User> UserManager
+@inject NotificationCreate NotificationCreate
 @inherits OwningComponentBase<SessionService>
 
 <AuthorizeView>
@@ -16,44 +17,109 @@
     </NotAuthorized>
     <Authorized>
 
-        <h3>Persoon</h3>
+        <h3>Sessie overzicht</h3>
 
-        <table border="1">
-            <tr>
-                <th>Sessie naam</th>
-                <th>Datum</th>
-                <th>Locatie</th>
-                <th>Uitnodiging accepteren of weigeren</th>
-            </tr>
-            @foreach (var sessie in sessies)
-            {
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Naam</th>
+                    <th>Datum</th>
+                    <th>Locatie</th>
+                    <th>Acceptatie</th>
+                </tr>
+            </thead>
+            <tbody>  
+                @foreach (var sessie in sessies)
+                {
                 <tr>
                     <td>@sessie.Name</td>
                     <td>@sessie.Date</td>
                     <td>@sessie.Location</td>
-                    <td><button @onclick="ClickHandler">Ja</button></td>
+                    @if (Accepted(sessie.Id))
+                    {
+                        <td>Al geaccepteerd!</td>
+                    }
+                    else
+                    {
+                        <td><button @onclick="@((args) => ClickHandler(sessie.Id))" class="btn btn-success">Accepteren</button></td>
+                    }
+                    <td><button @onclick="@((args) => ClickHandler(sessie.Id))" class="btn btn-success">Accepteren (niet else)</button></td>
                 </tr>
-            }
+                }
+            </tbody>
         </table>
     </Authorized>
 </AuthorizeView>
 
 @code {
     public System.Collections.Generic.IList<SessionInfo> sessies;
+    public System.Collections.Generic.IList<UserMeeting> meetings;
+
+    UserMeeting CurrentMeeting { get; set; } = new();
 
     protected override void OnInitialized()
     {
         sessies = Service.DisplaySession();
     }
 
-    public async Task ClickHandler()
+    @*public async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        ClaimsPrincipal ding = authState.User;
+        var currentUser = UserManager.GetUserAsync(ding);
+    }*@
+
+
+
+    @*public async Task<bool> Accepted(int MeetingID)
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         ClaimsPrincipal ding = authState.User;
         var currentUser = await UserManager.GetUserAsync(ding);
-        // int currentUserID = int.Parse(currentUser.FindFirst("Id").Value);
 
         User currentUserId = (from U in database.Users where U.Id == currentUser.Id select U).FirstOrDefault();
+        var result = (from M in database.UserMeetings where M.User.Id == currentUser.Id && M.SessionInfo.Id == MeetingID select M).First();
+        if(result == null) {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }*@
+
+    public bool Accepted2(int MeetingID)
+    {
+        var authState = AuthenticationStateProvider.GetAuthenticationStateAsync();
+        ClaimsPrincipal ding = authState.User;
+        var currentUser = UserManager.GetUserAsync(ding);
+        var result = (from M in database.UserMeetings where M.User.Id == currentUser.Id && M.SessionInfo.Id == MeetingID select M).First();
+        if (result == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public async Task ClickHandler(int ButtonID)
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        ClaimsPrincipal ding = authState.User;
+        var currentUser = await UserManager.GetUserAsync(ding);
+
+        User currentUserId = (from U in database.Users where U.Id == currentUser.Id select U).FirstOrDefault();
+        SessionInfo currentSessionId = (from S in database.Session where S.Id == ButtonID select S).FirstOrDefault();
+
+        UserMeeting BringIt = new UserMeeting()
+        {
+            User = currentUserId,
+            SessionInfo = currentSessionId
+        };
+
+        await NotificationCreate.InsertMeetingAsync(BringIt);
 
         currentUser.accept_invitation++;
         database.Update(currentUser);

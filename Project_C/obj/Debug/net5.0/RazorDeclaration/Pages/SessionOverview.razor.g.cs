@@ -13,98 +13,98 @@ namespace Project_C.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "F:\Projects\Project_C\Project_C\_Imports.razor"
+#line 1 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "F:\Projects\Project_C\Project_C\_Imports.razor"
+#line 2 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "F:\Projects\Project_C\Project_C\_Imports.razor"
+#line 3 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "F:\Projects\Project_C\Project_C\_Imports.razor"
+#line 4 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "F:\Projects\Project_C\Project_C\_Imports.razor"
+#line 5 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "F:\Projects\Project_C\Project_C\_Imports.razor"
+#line 6 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "F:\Projects\Project_C\Project_C\_Imports.razor"
+#line 7 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "F:\Projects\Project_C\Project_C\_Imports.razor"
+#line 8 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
 using Project_C;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "F:\Projects\Project_C\Project_C\_Imports.razor"
+#line 9 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
 using Project_C.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "F:\Projects\Project_C\Project_C\Pages\SessionOverview.razor"
+#line 2 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
 using Project_C.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "F:\Projects\Project_C\Project_C\Pages\SessionOverview.razor"
+#line 3 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
 using Project_C.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "F:\Projects\Project_C\Project_C\Pages\SessionOverview.razor"
+#line 4 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
 using Project_C.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "F:\Projects\Project_C\Project_C\Pages\SessionOverview.razor"
+#line 5 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
 using System.Security.Claims;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "F:\Projects\Project_C\Project_C\Pages\SessionOverview.razor"
+#line 6 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
 using Microsoft.AspNetCore.Identity;
 
 #line default
@@ -119,23 +119,59 @@ using Microsoft.AspNetCore.Identity;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 41 "F:\Projects\Project_C\Project_C\Pages\SessionOverview.razor"
+#line 54 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
        
     public System.Collections.Generic.IList<SessionInfo> sessies;
+    public System.Collections.Generic.IList<UserMeeting> meetings;
+
+    UserMeeting CurrentMeeting { get; set; } = new();
 
     protected override void OnInitialized()
     {
         sessies = Service.DisplaySession();
     }
 
-    public async Task ClickHandler()
+    
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 89 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
+       
+
+    public bool Accepted2(int MeetingID)
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        ClaimsPrincipal ding = authState.User;
+        var currentUser = UserManager.GetUserAsync(ding);
+        var result = (from M in database.UserMeetings where M.User.Id == currentUser.Id && M.SessionInfo.Id == MeetingID select M).First();
+        if (result == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public async Task ClickHandler(int ButtonID)
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         ClaimsPrincipal ding = authState.User;
         var currentUser = await UserManager.GetUserAsync(ding);
-        // int currentUserID = int.Parse(currentUser.FindFirst("Id").Value);
 
         User currentUserId = (from U in database.Users where U.Id == currentUser.Id select U).FirstOrDefault();
+        SessionInfo currentSessionId = (from S in database.Session where S.Id == ButtonID select S).FirstOrDefault();
+
+        UserMeeting BringIt = new UserMeeting()
+        {
+            User = currentUserId,
+            SessionInfo = currentSessionId
+        };
+
+        await NotificationCreate.InsertMeetingAsync(BringIt);
 
         currentUser.accept_invitation++;
         database.Update(currentUser);
@@ -145,6 +181,7 @@ using Microsoft.AspNetCore.Identity;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NotificationCreate NotificationCreate { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private UserManager<User> UserManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ApplicationDbContext database { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }

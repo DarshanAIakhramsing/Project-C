@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Projects\\Project_C\\Project_C\\Project_C.csproj": {}
+    "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Project_C.csproj": {}
   },
   "projects": {
-    "F:\\Projects\\Project_C\\Project_C\\Project_C.csproj": {
+    "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Project_C.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Projects\\Project_C\\Project_C\\Project_C.csproj",
+        "projectUniqueName": "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Project_C.csproj",
         "projectName": "Project_C",
-        "projectPath": "F:\\Projects\\Project_C\\Project_C\\Project_C.csproj",
-        "packagesPath": "C:\\Users\\Atlas\\.nuget\\packages\\",
-        "outputPath": "F:\\Projects\\Project_C\\Project_C\\obj\\",
+        "projectPath": "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Project_C.csproj",
+        "packagesPath": "/Users/ferdibilgic/.nuget/packages/",
+        "outputPath": "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Atlas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/ferdibilgic/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -95,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.101/RuntimeIdentifierGraph.json"
         }
       }
     }
