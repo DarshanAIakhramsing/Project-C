@@ -22,6 +22,7 @@
                         <th>Sessie naam</th>
                         <th>Sessie locatie</th>
                         <th>Datum</th>
+                        <th>Tijdstip</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +31,8 @@
                         <tr @onclick="@(() => SelectSession(item))">
                             <td>@item.Name</td>
                             <td>@item.Location</td>
-                            <td>@item.Date</td>
+                            <td>@item.Date.ToShortDateString()</td>
+                            <td>@item.Time.TimeOfDay</td>
                         </tr>
                     }
                 </tbody>
@@ -40,24 +42,42 @@
         <EditForm Model="@EditModel" OnValidSubmit="@Submit">
             <DataAnnotationsValidator />
             <ValidationSummary />
-
-            <InputText id="Naam" @bind-Value="@EditModel.Name">Naam: </InputText>
-            <InputText id="Locatie" @bind-Value="@EditModel.Location">Locatie: </InputText>
-            <InputDate id="Datum" @bind-Value="@EditModel.Date" @bind-Value:format="dd/MM/yyyy hh:mm">Datum: </InputDate>
+            <label>
+                Sessie naam:
+                <InputText id="Name" @bind-Value="@EditModel.Name">Sessie naam:</InputText>
+            </label>
+            <br />
+            <label>
+                Sessie Locatie:
+                <InputText id="Location" @bind-Value="@EditModel.Location">Sessie locatie:</InputText>
+            </label>
+            <br />
+            <label>
+                Datum:
+                <InputDate id="Date" type="time" @bind-Value="@EditModel.Date" @bind-Value:format="dd/MM/yyyy">Datum:</InputDate>
+            </label>
+            <br />
+            <label>
+                Tijdstip:
+                <input id="Time" type="time" @bind-value="@EditModel.Time" />
+            </label>
+            <br />
 
             @switch (mode)
             {
                 case MODE.None:
-                    <button type="submit">Insert</button>
+                    <button type="submit">Voeg toe</button>
                     break;
                 case MODE.EditDelete:
-                    <button type="submit">Edit</button>
+                    <button type="submit">Wijzig</button>
                     break;
             }
         </EditForm>
+
         @if (mode == MODE.EditDelete)
         {
-            <button @onclick="Delete">Delete</button>
+            <br />
+            <button @onclick="Delete">Verwijder</button>
         }
 
     </Authorized>
@@ -76,7 +96,11 @@
         public string Location { get; set; }
 
         public DateTime Date { get; set; }
+
+        public DateTime Time { get; set; }
+
     }
+    private bool IsShow { get; set; } = false;
 
     EditSessionModel EditModel { get; set; } = new();
 
@@ -94,6 +118,7 @@
         session.Name = EditModel.Name;
         session.Location = EditModel.Location;
         session.Date = EditModel.Date;
+        session.Time = EditModel.Time;
         await sessionCRUD.UpdateSessionAsync(session);
         if (!Sessions.Contains(session)) Sessions.Add(session);
         StateHasChanged();
@@ -125,5 +150,6 @@
         EditModel.Name = session.Name;
         EditModel.Location = session.Location;
         EditModel.Date = session.Date;
+        EditModel.Time = session.Time;
     }
 }

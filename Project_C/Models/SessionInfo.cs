@@ -15,5 +15,7 @@ namespace Project_C.Data
         public string Location { get; set; }
 
         public DateTime Date { get; set; }
+
+        public DateTime Time { get; set; }
     }
 }
