@@ -55,7 +55,6 @@ namespace Project_C.Data
 
         public DbSet<SessionInfo> Session { get; set; }
 
-
         public DbSet<User> Users { get; set; }
 
         public DbSet<Role> Roles { get; set; }

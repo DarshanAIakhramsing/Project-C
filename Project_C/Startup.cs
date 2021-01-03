@@ -37,6 +37,10 @@ namespace Project_C
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
+            services.AddScoped<SessionService>();
+            services.AddScoped<SessionCRUD>();
+            services.AddScoped<NotificationCreate>();
+            services.AddScoped<UserService>();
 
             services.Configure<AppSettings>(Configuration.GetSection("MySettings"));
 
