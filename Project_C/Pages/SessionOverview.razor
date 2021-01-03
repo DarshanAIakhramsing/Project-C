@@ -1,0 +1,126 @@
+@page "/sessieoverzicht"
+@using Project_C.Data;
+@using Project_C.Services;
+@using Project_C.Models;
+@using System.Security.Claims;
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore;
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject ApplicationDbContext database
+@inject AuthenticationState UserManager
+@inject UserManager<User> UserManager
+@inject NotificationCreate NotificationCreate
+@inject NavigationManager uriHelper
+@inherits OwningComponentBase<SessionService>
+
+<AuthorizeView>
+    <NotAuthorized>
+        U bent niet geautoriseerd.
+    </NotAuthorized>
+    <Authorized>
+
+        <h3>Sessie overzicht</h3>
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Naam</th>
+                    <th>Datum</th>
+                    <th>Locatie</th>
+                    <th>Acceptatie</th>
+                </tr>
+            </thead>
+            <tbody>
+                @*A foreach loop that used the methods used further in the code*@
+                @foreach (var (accepted, session) in AcceptedSessions)
+                {
+                    <tr>
+                        <td>@session.Name</td>
+                        <td>@session.Date</td>
+                        <td>@session.Location</td>
+                        @*Uses a boolean for true or false*@
+                        @if (accepted)
+                        {
+                            <td>Al geaccepteerd!</td>
+                        }
+                        else
+                        {
+                            @*Calls the clickhandler method and also sends session ID as an argument*@
+                            <td><button @onclick="@((args) => ClickHandler(session.Id))" class="btn btn-success">Accepteren</button></td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+    public System.Collections.Generic.IList<SessionInfo> sessies;
+    public System.Collections.Generic.IList<UserMeeting> meetings;
+    public List<(bool, SessionInfo)> AcceptedSessions = new List<(bool, SessionInfo)> { };
+
+    UserMeeting CurrentMeeting { get; set; } = new();
+
+    //Once the page starts this method will display all the sessions so it can be used in the foreach loop
+    protected override void OnInitialized()
+    {
+        sessies = Service.DisplaySession();
+    }
+
+    //A tuple is being made with true and false values
+    protected async override Task OnInitializedAsync()
+    {
+        foreach (var sessie in sessies)
+        {
+            AcceptedSessions.Add((await GetValidation(sessie.Id), sessie));
+        }
+    }
+
+    //Executes the query to compare the user with the meeting ID given
+    public async Task<bool> AcceptedValidation(int meetingID)
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        ClaimsPrincipal user = authState.User;
+        var currentUser = await UserManager.GetUserAsync(user);
+
+        return await database.UserMeetings.FirstOrDefaultAsync(x => x.User == currentUser && x.SessionInfo.Id == meetingID) != null;
+    }
+
+    //Returns a boolean to see if its true or false
+    public async Task<bool> GetValidation(int MeetingID)
+    {
+        bool isValid = await AcceptedValidation(MeetingID);
+        return isValid;
+    }
+
+    //Method for when a button is clicked on the session overview page, with an argument of the button that got clicked
+    public async Task ClickHandler(int ButtonID)
+    {
+        //The bottom 3 lines gets the current user by authentication and then looks in the list which user fits the description
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        ClaimsPrincipal user = authState.User;
+
+        var currentUser = await UserManager.GetUserAsync(user);
+        //Gets the first or default made session that has the session ID of the button that got pressed
+        var currentSession = (from S in database.Session where S.Id == ButtonID select S).FirstOrDefault();
+
+        //Combines the values of the user (ID) and the meeting (ID) and combines them into a new entry for the database to connect them
+        UserMeeting meeting = new UserMeeting()
+        {
+            User = currentUser,
+            SessionInfo = currentSession
+        };
+
+        await NotificationCreate.InsertMeetingAsync(meeting);
+
+        //Each user who accepts an invite his participation counter goes up
+        currentUser.accept_invitation++;
+        //Updates the current user in the local database
+        database.Update(currentUser);
+        //Actually saves the changes of the user to the actual database
+        await database.SaveChangesAsync();
+        //Force refreshes the page
+        uriHelper.NavigateTo(uriHelper.Uri, forceLoad: true);
+    }
+}

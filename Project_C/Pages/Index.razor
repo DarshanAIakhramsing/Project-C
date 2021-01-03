@@ -1,18 +1,21 @@
-﻿@page "/Pages/Index"
+﻿@page "/index"
 
-<h1>Welkom bij CimSolutions!</h1>
+<h1>Welkom bij CimSolutions!</h1><br />
 
-Zie hieronder uw aankomende sessies.
+@*Below we see a lot of uses for AuthorizeView, NotAuthorized and Roles. AuthorizeView means everything inside of that tag can only be seen if
+    you are logged in, NotAuthorized is what you will see if you access the page without being logged in as any user and the Roles is meant
+    only for users with that specific role which in this case is the admin, these roles can be assigned in the database but because we were told
+    there would only need to be one admin who can do everything and one organisator who can create sessions*@
 
 <AuthorizeView>
     <Authorized>
-        <h1>Hello, @context.User.Identity.Name!</h1>
-        You can only see this if you're authenticated.
+        @*This piece of code calls the name/email of the current logged in user*@
+        <h1>Welkom, @context.User.Identity.Name!</h1><br />
     </Authorized>
     <NotAuthorized>
-        You're not logged in.
+        U bent niet geautoriseerd.
     </NotAuthorized>
 </AuthorizeView>
 <AuthorizeView Roles="Admin">
-    <h1>Sup Admin!</h1>
+    <h1>Welkom administrator!</h1>
 </AuthorizeView>

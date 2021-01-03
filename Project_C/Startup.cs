@@ -17,6 +17,7 @@ using Project_C.Data;
 using Project_C.Services;
 using Microsoft.Extensions.Options;
 using Project_C.Models;
+using System.Threading;
 
 namespace Project_C
 {
@@ -33,18 +34,15 @@ namespace Project_C
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(
-                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
-            services.AddSingleton<WeatherForecastService>();
             services.AddScoped<SessionService>();
             services.AddScoped<SessionCRUD>();
+            services.AddScoped<NotificationCreate>();
             services.AddScoped<UserService>();
-            services.AddSingleton<CustomHttpClient>();
-            services.AddSingleton<AppSettingsService>();
+
+            services.Configure<AppSettings>(Configuration.GetSection("MySettings"));
 
             services.AddDefaultIdentity<User>(config =>
             {
@@ -57,6 +55,38 @@ namespace Project_C
                 .AddRoles<Role>()
                 .AddRoleStore<CustomRoleStore>()
                 .AddUserStore<CustomUserStore>();
+
+            services.AddHostedService<Yeet>();
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseMySql(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<SessionService>();
+            services.AddScoped<SessionCRUD>();
+            services.AddScoped<UserService>();
+        }
+
+        class Yeet : IHostedService
+        {
+            public Yeet(IServiceProvider serviceProvider) => ServiceProvider = serviceProvider;
+
+            public IServiceProvider ServiceProvider { get; }
+
+            public async Task StartAsync(CancellationToken cancellationToken)
+            {
+                using (var scope = ServiceProvider.CreateScope())
+                {
+                    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                    var settings = scope.ServiceProvider.GetRequiredService<IOptions<AppSettings>>().Value;
+
+                    var sessions = await dbContext.Session.ToListAsync();
+                }
+            }
+
+            public Task StopAsync(CancellationToken cancellationToken)
+            {
+                return Task.CompletedTask;
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

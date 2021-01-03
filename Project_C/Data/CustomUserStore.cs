@@ -35,7 +35,7 @@ namespace Project_C.Data
 
         public async Task<IdentityResult> CreateAsync(User user, CancellationToken cancellationToken)
 		{
-			Console.WriteLine("Creating new user lol");
+			Console.WriteLine("New user has been added to the system");
 			Console.WriteLine(user.Id);
 			Console.WriteLine(user.Password);
 
@@ -78,6 +78,7 @@ namespace Project_C.Data
 			return Task.FromResult(user.Password);
 		}
 
+		//Gets the roles for the user
         public async Task<IList<string>> GetRolesAsync(User user, CancellationToken cancellationToken)
         {
 			user = (await DbContext.Users
