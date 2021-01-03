@@ -110,6 +110,13 @@ using Microsoft.AspNetCore.Identity;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 7 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
+using Microsoft.EntityFrameworkCore;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/sessieoverzicht")]
     public partial class SessionOverview : OwningComponentBase<SessionService>
     {
@@ -119,68 +126,80 @@ using Microsoft.AspNetCore.Identity;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
+#line 58 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
        
     public System.Collections.Generic.IList<SessionInfo> sessies;
     public System.Collections.Generic.IList<UserMeeting> meetings;
+    public List<(bool, SessionInfo)> AcceptedSessions = new List<(bool, SessionInfo)> { };
 
     UserMeeting CurrentMeeting { get; set; } = new();
 
+    //Once the page starts this method will display all the sessions so it can be used in the foreach loop
     protected override void OnInitialized()
     {
         sessies = Service.DisplaySession();
     }
 
-    
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 89 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
-       
-
-    public bool Accepted2(int MeetingID)
+    //A tuple is being made with true and false values
+    protected async override Task OnInitializedAsync()
     {
-        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        ClaimsPrincipal ding = authState.User;
-        var currentUser = UserManager.GetUserAsync(ding);
-        var result = (from M in database.UserMeetings where M.User.Id == currentUser.Id && M.SessionInfo.Id == MeetingID select M).First();
-        if (result == null)
+        foreach (var sessie in sessies)
         {
-            return false;
-        }
-        else
-        {
-            return true;
+            AcceptedSessions.Add((await GetValidation(sessie.Id), sessie));
         }
     }
 
+    //Executes the query to compare the user with the meeting ID given
+    public async Task<bool> AcceptedValidation(int meetingID)
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        ClaimsPrincipal user = authState.User;
+        var currentUser = await UserManager.GetUserAsync(user);
+
+        return await database.UserMeetings.FirstOrDefaultAsync(x => x.User == currentUser && x.SessionInfo.Id == meetingID) != null;
+    }
+
+    //Returns a boolean to see if its true or false
+    public async Task<bool> GetValidation(int MeetingID)
+    {
+        bool isValid = await AcceptedValidation(MeetingID);
+        return isValid;
+    }
+
+    //Method for when a button is clicked on the session overview page, with an argument of the button that got clicked
     public async Task ClickHandler(int ButtonID)
     {
+        //The bottom 3 lines gets the current user by authentication and then looks in the list which user fits the description
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        ClaimsPrincipal ding = authState.User;
-        var currentUser = await UserManager.GetUserAsync(ding);
+        ClaimsPrincipal user = authState.User;
 
-        User currentUserId = (from U in database.Users where U.Id == currentUser.Id select U).FirstOrDefault();
-        SessionInfo currentSessionId = (from S in database.Session where S.Id == ButtonID select S).FirstOrDefault();
+        var currentUser = await UserManager.GetUserAsync(user);
+        //Gets the first or default made session that has the session ID of the button that got pressed
+        var currentSession = (from S in database.Session where S.Id == ButtonID select S).FirstOrDefault();
 
-        UserMeeting BringIt = new UserMeeting()
+        //Combines the values of the user (ID) and the meeting (ID) and combines them into a new entry for the database to connect them
+        UserMeeting meeting = new UserMeeting()
         {
-            User = currentUserId,
-            SessionInfo = currentSessionId
+            User = currentUser,
+            SessionInfo = currentSession
         };
 
-        await NotificationCreate.InsertMeetingAsync(BringIt);
+        await NotificationCreate.InsertMeetingAsync(meeting);
 
+        //Each user who accepts an invite his participation counter goes up
         currentUser.accept_invitation++;
+        //Updates the current user in the local database
         database.Update(currentUser);
+        //Actually saves the changes of the user to the actual database
         await database.SaveChangesAsync();
+        //Force refreshes the page
+        uriHelper.NavigateTo(uriHelper.Uri, forceLoad: true);
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager uriHelper { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NotificationCreate NotificationCreate { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private UserManager<User> UserManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ApplicationDbContext database { get; set; }
