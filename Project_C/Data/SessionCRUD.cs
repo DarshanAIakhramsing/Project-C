@@ -32,12 +32,15 @@ namespace Project_C.Data
             await DbContext.SaveChangesAsync();
         }
 
+
+        //Updates all the changes made to the database
         public async Task UpdateSessionAsync(SessionInfo session)
         {
             DbContext.Session.Update(session);
             await DbContext.SaveChangesAsync();
         }
 
+        //Deletes the session out of the database
         public async Task DeleteSessionAsync(SessionInfo session)
         {
             DbContext.Session.Remove(session);

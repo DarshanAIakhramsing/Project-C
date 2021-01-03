@@ -78,6 +78,7 @@ namespace Project_C.Data
 			return Task.FromResult(user.Password);
 		}
 
+		//Gets the roles for the user
         public async Task<IList<string>> GetRolesAsync(User user, CancellationToken cancellationToken)
         {
 			user = (await DbContext.Users
