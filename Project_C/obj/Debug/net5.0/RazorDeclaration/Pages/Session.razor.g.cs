@@ -13,85 +13,92 @@ namespace Project_C.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 1 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 2 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 3 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 4 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 5 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 6 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 7 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 8 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Project_C;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 9 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Project_C.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Session.razor"
+#line 3 "F:\Projects\Project_C\Project_C\Pages\Session.razor"
 using Project_C.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Session.razor"
+#line 4 "F:\Projects\Project_C\Project_C\Pages\Session.razor"
 using Project_C.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Session.razor"
+#line 5 "F:\Projects\Project_C\Project_C\Pages\Session.razor"
 using Project_C.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "F:\Projects\Project_C\Project_C\Pages\Session.razor"
+using System.ComponentModel.DataAnnotations;
 
 #line default
 #line hidden
@@ -105,85 +112,83 @@ using Project_C.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 75 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/Session.razor"
+#line 91 "F:\Projects\Project_C\Project_C\Pages\Session.razor"
        
-    public System.Collections.Generic.IList<SessionInfo> Sessions { get; set; }
 
-    SessionInfo CurrentSession { get; set; } = new();
+    //A model so to manipulate these values in this file
+    public class EditSessionModel
+    {
+        [Required, StringLength(255, MinimumLength = 1)]
+        public string Name { get; set; }
+
+        [Required, StringLength(255, MinimumLength = 1)]
+        public string Location { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public DateTime Time { get; set; }
+
+    }
+    private bool IsShow { get; set; } = false;
+
+    EditSessionModel EditModel { get; set; } = new();
+
+    public System.Collections.Generic.IList<SessionInfo> Sessions { get; set; }
 
     private enum MODE { None, Add, EditDelete };
 
-    MODE mode = MODE.None;
-    SessionInfo sessie;
+    public int SelectedSessionID = -1;
 
-    protected async override void OnInitialized()
+    MODE mode = MODE.None;
+
+
+    //Inserts the values of the form into these database fields
+    public async void Submit()
     {
-        await Load();
+        var session = (from S in Sessions where S.Id == SelectedSessionID select S).FirstOrDefault() ?? new();
+        session.Name = EditModel.Name;
+        session.Location = EditModel.Location;
+        session.Date = EditModel.Date;
+        session.Time = EditModel.Time;
+        await sessionCRUD.UpdateSessionAsync(session);
+        if (!Sessions.Contains(session)) Sessions.Add(session);
         StateHasChanged();
     }
 
-    protected async Task Load()
+    protected async override void OnInitialized()
     {
         Sessions = await sessionCRUD.GetSessionsAsync();
+        StateHasChanged();
     }
 
-    protected async Task Insert()
-    {
-        PrepareModel();
-
-        await sessionCRUD.InsertSessionAsync(CurrentSession);
-        Sessions.Add(CurrentSession);
-        ClearFields();
-
-        mode = MODE.None;
-    }
-
-    protected void Add()
-    {
-        ClearFields();
-        mode = MODE.Add;
-    }
-
-    protected async Task Update()
-    {
-        PrepareModel();
-
-        await sessionCRUD.UpdateSessionAsync(CurrentSession);
-        ClearFields();
-        mode = MODE.None;
-    }
 
     protected async Task Delete()
     {
-        await sessionCRUD.DeleteSessionAsync(CurrentSession);
-        Sessions.Remove(CurrentSession);
-        ClearFields();
+        var toDelete = (from S in Sessions where S.Id == SelectedSessionID select S).First();
+        Sessions.Remove(toDelete);
+        await sessionCRUD.DeleteSessionAsync(toDelete);
+
+        SelectedSessionID = -1;
+        EditModel = new();
+        StateHasChanged();
         mode = MODE.None;
     }
 
-    private void PrepareModel()
+    //Edits the selected session
+    protected void SelectSession(SessionInfo session)
     {
-        if (string.IsNullOrWhiteSpace(CurrentSession.Name))
-            CurrentSession.Name = null;
-        if (string.IsNullOrWhiteSpace(CurrentSession.Location))
-            CurrentSession.Location = null;
-    }
-
-    protected void ClearFields()
-    {
-        CurrentSession = new();
-    }
-
-    protected void Show(SessionInfo session)
-    {
-        CurrentSession = session;
         mode = MODE.EditDelete;
+        SelectedSessionID = session.Id;
+        EditModel.Name = session.Name;
+        EditModel.Location = session.Location;
+        EditModel.Date = session.Date;
+        EditModel.Time = session.Time;
     }
-
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager uriHelper { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private SessionCRUD sessionCRUD { get; set; }
     }
 }

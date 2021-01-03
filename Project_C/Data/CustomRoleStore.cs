@@ -26,7 +26,8 @@ namespace Project_C.Data
             await DbContext.AddAsync(role, cancellationToken);
 			return IdentityResult.Success;
         }
-
+        
+        //Removes the role 
         public async Task<IdentityResult> DeleteAsync(Role role, CancellationToken cancellationToken)
         {
             EntityEntry<Role> entry = DbContext.Remove(role);
@@ -40,6 +41,7 @@ namespace Project_C.Data
         {
             // Do nothing
         }
+
 
         public async Task<Role> FindByIdAsync(string roleId, CancellationToken cancellationToken)
         {
@@ -71,6 +73,7 @@ namespace Project_C.Data
             return Task.CompletedTask;
         }
 
+        //Updates the role fields in the database
         public async Task<IdentityResult> UpdateAsync(Role role, CancellationToken cancellationToken)
         {
 			EntityEntry<Role> entry = DbContext.Update(role);

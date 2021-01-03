@@ -3,147 +3,160 @@
 @using Project_C.Data
 @using Project_C.Models
 @using Project_C.Services
+@using System.ComponentModel.DataAnnotations;
 
 @inject SessionCRUD sessionCRUD
+@inject NavigationManager uriHelper
 
 
 <AuthorizeView Roles="Organisator, Admin">
-    <Authorized>
+    <Authorized Context="Auth">
         @if (Sessions == null)
         {
             <p><em>Loading...</em></p>
         }
         else
         {
-            <h3>Maak een sessie aan</h3>
-            <table class="table">
-                <thead class="thead-dark">
+            //<button @onclick="@Add" class="btn btn-success">Sessie aanmaken</button>
+            <table class='table table-hover'>
+                <thead>
                     <tr>
                         <th>Sessie naam</th>
                         <th>Sessie locatie</th>
                         <th>Datum</th>
+                        <th>Tijdstip</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Sessions)
                     {
-                        <tr @onclick="@(() => Show(item))">
+                        <tr @onclick="@(() => SelectSession(item))">
                             <td>@item.Name</td>
                             <td>@item.Location</td>
-                            <td>@item.Date</td>
+                            <td>@item.Date.ToShortDateString()</td>
+                            <td>@item.Time.TimeOfDay</td>
                         </tr>
                     }
                 </tbody>
             </table>
-
-            <button @onclick="@Add" class="btn btn-success">Sessie toevoegen</button>
         }
+
+        <EditForm Model="@EditModel" OnValidSubmit="@Submit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <label>
+                Sessie naam:
+                <InputText id="Name" @bind-Value="@EditModel.Name">Sessie naam:</InputText>
+            </label>
+            <br />
+            <label>
+                Sessie Locatie:
+                <InputText id="Location" @bind-Value="@EditModel.Location">Sessie locatie:</InputText>
+            </label>
+            <br />
+            <label>
+                Datum:
+                <InputDate id="Date" type="time" @bind-Value="@EditModel.Date" @bind-Value:format="dd/MM/yyyy">Datum:</InputDate>
+            </label>
+            <br />
+            <label>
+                Tijdstip:
+                <input id="Time" type="time" @bind-value="@EditModel.Time" />
+            </label>
+            <br />
+
+            @switch (mode)
+            {
+                case MODE.None:
+                    <button type="submit">Voeg toe</button>
+                    break;
+                case MODE.EditDelete:
+                    <button type="submit">Wijzig</button>
+                    break;
+            }
+        </EditForm>
+
+        @if (mode == MODE.EditDelete)
+        {
+            <br />
+            <button @onclick="Delete">Verwijder</button>
+        }
+
     </Authorized>
     <NotAuthorized>
         U bent niet geautoriseerd.
     </NotAuthorized>
 </AuthorizeView>
 
-@switch (mode)
-{
-    case MODE.Add:
-        <input placeholder="Naam" @bind="@CurrentSession.Name" />
-        <br />
-        <input placeholder="Locatie" @bind="@CurrentSession.Location" />
-        <br />
-        <input placeholder="Datum" @bind="@CurrentSession.Date" />
-        <br />
-        <button @onclick="@Insert" class="btn btn-warning">Insert</button>
-        break;
-
-    case MODE.EditDelete:
-        <input type="hidden" @bind-value="@CurrentSession.Id" />
-        <br />
-        <input placeholder="First Name" @bind-value="@CurrentSession.Name" />
-        <br />
-        <input placeholder="Last Name" @bind-value="@CurrentSession.Location" />
-        <br />
-        <input placeholder="Datum" @bind-value="@CurrentSession.Date" />
-        <br />
-        <button @onclick="@Update" class="btn btn-primary">Update</button>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <button @onclick="@Delete" class="btn btn-danger">Delete</button>
-        break;
-}
-
-
 @code {
-    public System.Collections.Generic.IList<SessionInfo> Sessions { get; set; }
 
-    SessionInfo CurrentSession { get; set; } = new();
+    //A model so to manipulate these values in this file
+    public class EditSessionModel
+    {
+        [Required, StringLength(255, MinimumLength = 1)]
+        public string Name { get; set; }
+
+        [Required, StringLength(255, MinimumLength = 1)]
+        public string Location { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public DateTime Time { get; set; }
+
+    }
+    private bool IsShow { get; set; } = false;
+
+    EditSessionModel EditModel { get; set; } = new();
+
+    public System.Collections.Generic.IList<SessionInfo> Sessions { get; set; }
 
     private enum MODE { None, Add, EditDelete };
 
-    MODE mode = MODE.None;
-    SessionInfo sessie;
+    public int SelectedSessionID = -1;
 
-    protected async override void OnInitialized()
+    MODE mode = MODE.None;
+
+
+    //Inserts the values of the form into these database fields
+    public async void Submit()
     {
-        await Load();
+        var session = (from S in Sessions where S.Id == SelectedSessionID select S).FirstOrDefault() ?? new();
+        session.Name = EditModel.Name;
+        session.Location = EditModel.Location;
+        session.Date = EditModel.Date;
+        session.Time = EditModel.Time;
+        await sessionCRUD.UpdateSessionAsync(session);
+        if (!Sessions.Contains(session)) Sessions.Add(session);
         StateHasChanged();
     }
 
-    protected async Task Load()
+    protected async override void OnInitialized()
     {
         Sessions = await sessionCRUD.GetSessionsAsync();
+        StateHasChanged();
     }
 
-    protected async Task Insert()
-    {
-        PrepareModel();
-
-        await sessionCRUD.InsertSessionAsync(CurrentSession);
-        Sessions.Add(CurrentSession);
-        ClearFields();
-
-        mode = MODE.None;
-    }
-
-    protected void Add()
-    {
-        ClearFields();
-        mode = MODE.Add;
-    }
-
-    protected async Task Update()
-    {
-        PrepareModel();
-
-        await sessionCRUD.UpdateSessionAsync(CurrentSession);
-        ClearFields();
-        mode = MODE.None;
-    }
 
     protected async Task Delete()
     {
-        await sessionCRUD.DeleteSessionAsync(CurrentSession);
-        Sessions.Remove(CurrentSession);
-        ClearFields();
+        var toDelete = (from S in Sessions where S.Id == SelectedSessionID select S).First();
+        Sessions.Remove(toDelete);
+        await sessionCRUD.DeleteSessionAsync(toDelete);
+
+        SelectedSessionID = -1;
+        EditModel = new();
+        StateHasChanged();
         mode = MODE.None;
     }
 
-    private void PrepareModel()
+    //Edits the selected session
+    protected void SelectSession(SessionInfo session)
     {
-        if (string.IsNullOrWhiteSpace(CurrentSession.Name))
-            CurrentSession.Name = null;
-        if (string.IsNullOrWhiteSpace(CurrentSession.Location))
-            CurrentSession.Location = null;
-    }
-
-    protected void ClearFields()
-    {
-        CurrentSession = new();
-    }
-
-    protected void Show(SessionInfo session)
-    {
-        CurrentSession = session;
         mode = MODE.EditDelete;
+        SelectedSessionID = session.Id;
+        EditModel.Name = session.Name;
+        EditModel.Location = session.Location;
+        EditModel.Date = session.Date;
+        EditModel.Time = session.Time;
     }
-
 }

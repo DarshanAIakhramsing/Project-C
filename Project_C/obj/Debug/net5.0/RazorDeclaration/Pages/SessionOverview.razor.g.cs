@@ -13,105 +13,105 @@ namespace Project_C.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 1 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 2 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 3 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 4 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 5 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 6 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 7 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 8 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Project_C;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/_Imports.razor"
+#line 9 "F:\Projects\Project_C\Project_C\_Imports.razor"
 using Project_C.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
+#line 2 "F:\Projects\Project_C\Project_C\Pages\SessionOverview.razor"
 using Project_C.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
+#line 3 "F:\Projects\Project_C\Project_C\Pages\SessionOverview.razor"
 using Project_C.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
+#line 4 "F:\Projects\Project_C\Project_C\Pages\SessionOverview.razor"
 using Project_C.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
+#line 5 "F:\Projects\Project_C\Project_C\Pages\SessionOverview.razor"
 using System.Security.Claims;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
+#line 6 "F:\Projects\Project_C\Project_C\Pages\SessionOverview.razor"
 using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
+#line 7 "F:\Projects\Project_C\Project_C\Pages\SessionOverview.razor"
 using Microsoft.EntityFrameworkCore;
 
 #line default
@@ -126,7 +126,7 @@ using Microsoft.EntityFrameworkCore;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 58 "/Users/ferdibilgic/Documents/GitHub/Project-C/Project_C/Pages/SessionOverview.razor"
+#line 58 "F:\Projects\Project_C\Project_C\Pages\SessionOverview.razor"
        
     public System.Collections.Generic.IList<SessionInfo> sessies;
     public System.Collections.Generic.IList<UserMeeting> meetings;
