@@ -25,8 +25,9 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Naam</th>
-                    <th>Datum</th>
                     <th>Locatie</th>
+                    <th>Datum</th>
+                    <th>Tijd stip</th>
                     <th>Acceptatie</th>
                 </tr>
             </thead>
@@ -34,21 +35,22 @@
                 @*A foreach loop that used the methods used further in the code*@
                 @foreach (var (accepted, session) in AcceptedSessions)
                 {
-                    <tr>
-                        <td>@session.Name</td>
-                        <td>@session.Date</td>
-                        <td>@session.Location</td>
-                        @*Uses a boolean for true or false*@
-                        @if (accepted)
-                        {
-                            <td>Al geaccepteerd!</td>
-                        }
-                        else
-                        {
-                            @*Calls the clickhandler method and also sends session ID as an argument*@
-                            <td><button @onclick="@((args) => ClickHandler(session.Id))" class="btn btn-success">Accepteren</button></td>
-                        }
-                    </tr>
+                <tr>
+                    <td>@session.Name</td>
+                    <td>@session.Location</td>
+                    <td>@session.Date.ToShortDateString()</td>
+                    <td>@session.Time.TimeOfDay</td>
+                    @*Uses a boolean for true or false*@
+                    @if (accepted)
+                    {
+                        <td>Al geaccepteerd!</td>
+                    }
+                    else
+                    {
+                        @*Calls the clickhandler method and also sends session ID as an argument*@
+                        <td><button @onclick="@((args) => ClickHandler(session.Id))" class="btn btn-success">Accepteren</button></td>
+                    }
+                </tr>
                 }
             </tbody>
         </table>
