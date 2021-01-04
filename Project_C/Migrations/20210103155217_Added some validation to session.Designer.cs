@@ -9,8 +9,8 @@ using Project_C.Data;
 namespace Project_C.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201228220122_Added time coloumn")]
-    partial class Addedtimecoloumn
+    [Migration("20210103155217_Added some validation to session")]
+    partial class Addedsomevalidationtosession
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

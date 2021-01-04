@@ -47,6 +47,7 @@
             <label>
                 Sessie naam:
                 <InputText id="Name" @bind-Value="@EditModel.Name">Sessie naam:</InputText>
+
             </label>
             <br />
             <label>
@@ -93,14 +94,16 @@
     //A model so to manipulate these values in this file
     public class EditSessionModel
     {
-        [Required, StringLength(255, MinimumLength = 1)]
+        [Required(ErrorMessage = "Vul de sessie naam in"), StringLength(255, MinimumLength = 1)]
         public string Name { get; set; }
 
-        [Required, StringLength(255, MinimumLength = 1)]
+        [Required(ErrorMessage = "Vul de locatie naam in"), StringLength(255, MinimumLength = 1)]
         public string Location { get; set; }
 
+        [Required(ErrorMessage = "Vul de datum in")]
         public DateTime Date { get; set; }
 
+        [Required(ErrorMessage = "Vul het tijdstip in")]
         public DateTime Time { get; set; }
 
     }

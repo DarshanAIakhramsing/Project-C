@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Project_C.Migrations
 {
-    public partial class InitialDatabaseMigration : Migration
+    public partial class Addedsomevalidationtosession : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,25 +29,12 @@ namespace Project_C.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 255, nullable: false),
                     Location = table.Column<string>(maxLength: 255, nullable: false),
-                    Date = table.Column<DateTime>(nullable: false)
+                    Date = table.Column<DateTime>(nullable: false),
+                    Time = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Session", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SessionConfirmation",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Email = table.Column<string>(nullable: true),
-                    AcceptedInvites = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SessionConfirmation", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -131,9 +118,6 @@ namespace Project_C.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "SessionConfirmation");
-
             migrationBuilder.DropTable(
                 name: "UserMeetings");
 
