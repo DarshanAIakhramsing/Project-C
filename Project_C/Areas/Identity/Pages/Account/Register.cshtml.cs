@@ -47,7 +47,7 @@ namespace Project_C.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required(ErrorMessage = "Voer uw email adres in")]
-            [EmailAddress]
+            [EmailAddress(ErrorMessage = "Dit is geen geldig email adres")]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
