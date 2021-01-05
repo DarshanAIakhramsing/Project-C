@@ -46,20 +46,20 @@ namespace Project_C.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Voer uw email adres in")]
+            [EmailAddress(ErrorMessage = "Dit is geen geldig email adres")]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Het wachtwoord moet minimaal tussen 6 en 15 karakters lang zijn")]
+            [StringLength(100, MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "De wachtwoorden komen niet overeen")]
             public string ConfirmPassword { get; set; }
         }
 
