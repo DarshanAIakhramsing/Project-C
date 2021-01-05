@@ -43,11 +43,11 @@ namespace Project_C.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Voer uw email adres in")]
             [EmailAddress]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Voer het wachtwoord in")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 

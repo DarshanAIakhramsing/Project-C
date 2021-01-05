@@ -17,7 +17,7 @@
         }
         else
         {
-            //<button @onclick="@Add" class="btn btn-success">Sessie aanmaken</button>
+            <button @onclick="@Add" class="btn btn-success">Sessie aanmaken</button>
             <table class='table table-hover'>
                 <thead>
                     <tr>
@@ -41,48 +41,72 @@
             </table>
         }
 
-        <EditForm Model="@EditModel" OnValidSubmit="@Submit">
-            <DataAnnotationsValidator />
-            <ValidationSummary />
-            <label>
-                Sessie naam:
-                <InputText id="Name" @bind-Value="@EditModel.Name">Sessie naam:</InputText>
 
-            </label>
-            <br />
-            <label>
-                Sessie Locatie:
-                <InputText id="Location" @bind-Value="@EditModel.Location">Sessie locatie:</InputText>
-            </label>
-            <br />
-            <label>
-                Datum:
-                <InputDate id="Date" type="time" @bind-Value="@EditModel.Date" @bind-Value:format="dd/MM/yyyy">Datum:</InputDate>
-            </label>
-            <br />
-            <label>
-                Tijdstip:
-                <input id="Time" type="time" @bind-value="@EditModel.Time" />
-            </label>
-            <br />
-
-            @switch (mode)
-            {
-                case MODE.None:
-                    <button type="submit">Voeg toe</button>
-                    break;
-                case MODE.EditDelete:
-                    <button type="submit">Wijzig</button>
-                    break;
-            }
-        </EditForm>
-
-        @if (mode == MODE.EditDelete)
+        @if (Sessions != null && mode == MODE.Add)
         {
-            <br />
-            <button @onclick="Delete">Verwijder</button>
+            <EditForm Model="@EditModel" OnValidSubmit="@Submit">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <label>
+                    Sessie naam:
+                    <InputText id="Name" @bind-Value="@EditModel.Name">Sessie naam:</InputText>
+
+                </label>
+                <br />
+                <label>
+                    Sessie Locatie:
+                    <InputText id="Location" @bind-Value="@EditModel.Location">Sessie locatie:</InputText>
+                </label>
+                <br />
+                <label>
+                    Datum:
+                    <InputDate id="Date" type="time" @bind-Value="@EditModel.Date" @bind-Value:format="dd/MM/yyyy">Datum:</InputDate>
+                </label>
+                <br />
+                <label>
+                    Tijdstip:
+                    <input id="Time" type="time" @bind-value="@EditModel.Time" />
+                </label>
+                <br />
+                <button type="submit">Aanmaken</button>
+            </EditForm>
         }
 
+        @if (Sessions != null && mode == MODE.EditDelete)
+        {
+            <EditForm Model="@EditModel" OnValidSubmit="@Submit">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <label>
+                    Sessie naam:
+                    <InputText id="Name" @bind-Value="@EditModel.Name">Sessie naam:</InputText>
+
+                </label>
+                <br />
+                <label>
+                    Sessie Locatie:
+                    <InputText id="Location" @bind-Value="@EditModel.Location">Sessie locatie:</InputText>
+                </label>
+                <br />
+                <label>
+                    Datum:
+                    <InputDate id="Date" type="time" @bind-Value="@EditModel.Date" @bind-Value:format="dd/MM/yyyy">Datum:</InputDate>
+                </label>
+                <br />
+                <label>
+                    Tijdstip:
+                    <input id="Time" type="time" @bind-value="@EditModel.Time" />
+                </label>
+                <br />
+                <button type="submit">Wijzigen</button>
+                <br />
+            </EditForm>
+        }
+
+        @if (Sessions != null && mode == MODE.EditDelete)
+        {
+            <button @onclick="@Delete">Verwijderen</button>
+        }
     </Authorized>
     <NotAuthorized>
         U bent niet geautoriseerd.
@@ -161,5 +185,10 @@
         EditModel.Location = session.Location;
         EditModel.Date = session.Date;
         EditModel.Time = session.Time;
+    }
+
+    public void Add()
+    {
+        mode = MODE.Add;
     }
 }
