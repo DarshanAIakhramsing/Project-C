@@ -363,3 +363,17 @@ FodyWeavers.xsd
 .vs
 Project_C/bin
 Project_C/obj
+Project_C/bin
+Project_C/obj/Debug/net5.0/ref
+Project_C/obj/Debug/net5.0/RazorDeclaration
+Project_C/obj/Debug/net5.0
+Project_C/bin
+Project_C/obj/Debug/net5.0/ref
+Project_C/obj/Debug/net5.0/RazorDeclaration/Pages
+Project_C/obj/Debug/net5.0/RazorDeclaration
+Project_C/obj/Debug/net5.0/Razor/Shared
+Project_C/obj/Debug/net5.0/apphost.exe
+Project_C/obj/Debug/net5.0/Razor/Pages
+Project_C/obj/Debug/net5.0/Razor/Areas/Identity/Pages/Account
+Project_C/obj/Debug/net5.0/Razor/Areas/Identity/Pages/Shared/_LoginPartial.cshtml.g.cs
+Project_C/obj
