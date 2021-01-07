@@ -8,7 +8,7 @@
 @inject SessionCRUD sessionCRUD
 @inject NavigationManager uriHelper
 
-
+<title>Sessies</title>
 <AuthorizeView Roles="Organisator, Admin">
     <Authorized Context="Auth">
         @if (Sessions == null)
@@ -19,7 +19,7 @@
         {
             //<button @onclick="@Add" class="btn btn-success">Sessie aanmaken</button>
             <table class='table table-hover'>
-                <thead>
+                <thead class="thead-dark">
                     <tr>
                         <th>Sessie naam</th>
                         <th>Sessie locatie</th>
@@ -69,10 +69,10 @@
             @switch (mode)
             {
                 case MODE.None:
-                    <button type="submit">Voeg toe</button>
+                    <button type="submit" class="btn btn-success">Voeg toe</button>
                     break;
                 case MODE.EditDelete:
-                    <button type="submit">Wijzig</button>
+                    <button type="submit" class="btn btn-success">Wijzig</button>
                     break;
             }
         </EditForm>
@@ -80,7 +80,7 @@
         @if (mode == MODE.EditDelete)
         {
             <br />
-            <button @onclick="Delete">Verwijder</button>
+            <button @onclick="Delete" class="btn btn-success">Verwijder</button>
         }
 
     </Authorized>
