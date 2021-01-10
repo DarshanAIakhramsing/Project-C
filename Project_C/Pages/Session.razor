@@ -74,7 +74,7 @@
 
         @if (Sessions != null && mode == MODE.EditDelete)
         {
-            <EditForm Model="@EditModel" OnValidSubmit="@Submit">
+            <EditForm Model="@EditModel" OnValidSubmit="@Edit">
                 <DataAnnotationsValidator />
                 <ValidationSummary />
                 <label>
@@ -131,7 +131,6 @@
         public DateTime Time { get; set; }
 
     }
-    private bool IsShow { get; set; } = false;
 
     EditSessionModel EditModel { get; set; } = new();
 
@@ -145,7 +144,7 @@
 
 
     //Inserts the values of the form into these database fields
-    public async void Submit()
+    public async void Edit()
     {
         var session = (from S in Sessions where S.Id == SelectedSessionID select S).FirstOrDefault() ?? new();
         session.Name = EditModel.Name;
@@ -156,6 +155,19 @@
         if (!Sessions.Contains(session)) Sessions.Add(session);
         StateHasChanged();
     }
+
+    public async void Submit()
+    {
+        var session = new SessionInfo();
+        session.Name = EditModel.Name;
+        session.Location = EditModel.Location;
+        session.Date = EditModel.Date;
+        session.Time = EditModel.Time;
+        await sessionCRUD.UpdateSessionAsync(session);
+        if (!Sessions.Contains(session)) Sessions.Add(session);
+        StateHasChanged();
+    }
+
 
     protected async override void OnInitialized()
     {
@@ -172,7 +184,6 @@
 
         SelectedSessionID = -1;
         EditModel = new();
-        StateHasChanged();
         mode = MODE.None;
     }
 
@@ -187,8 +198,19 @@
         EditModel.Time = session.Time;
     }
 
+    protected void ClearFields()
+    {
+        EditModel.Name = string.Empty;
+        EditModel.Location = string.Empty;
+        EditModel.Date = new DateTime();
+        EditModel.Time = new DateTime();
+    }
+
     public void Add()
     {
+        ClearFields();
+
         mode = MODE.Add;
     }
+
 }

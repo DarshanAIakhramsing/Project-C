@@ -1,7 +1,8 @@
 ﻿@page "/index"
 @inject NavigationManager uriHelper
 
-<title>Testing</title>
+@using System.Globalization;
+
 <h1>Welkom bij CimSolutions!</h1>
 <br />
 
@@ -14,11 +15,51 @@
     <Authorized>
         @*This piece of code calls the name/email of the current logged in user*@
         <h1>Welkom, @context.User.Identity.Name!</h1><br />
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>@ConvertToWeek(0)</th>
+                    <th>@ConvertToWeek(1)</th>
+                    <th>@ConvertToWeek(2)</th>
+                    <th>@ConvertToWeek(3)</th>
+                    <th>@ConvertToWeek(4)</th>
+                    <th>@ConvertToWeek(5)</th>
+                    <th>@ConvertToWeek(6)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </Authorized>
     <NotAuthorized>
         U bent nog niet ingelogd.
     </NotAuthorized>
 </AuthorizeView>
-<AuthorizeView Roles="Admin">
-    <h1>Welkom administrator!</h1>
-</AuthorizeView>
+
+@code
+{
+    public DateTime dayOfWeek { get; set; }
+
+    DateTime[] numOfDays = new DateTime[1];
+
+
+    public string ConvertToWeek(int day)
+    {
+        DateTime startOfWeek = DateTime.Today.AddDays(
+            (int)CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek -
+                (int)DateTime.Today.DayOfWeek);
+
+        string result = string.Join("," + Environment.NewLine, Enumerable
+          .Range(day, 1)
+          .Select(i => startOfWeek
+             .AddDays(i)
+             .ToString("dd-MMMM")));
+
+        return result;
+    }
+
+}
