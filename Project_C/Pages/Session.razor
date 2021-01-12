@@ -25,16 +25,18 @@
                         <th>Sessie locatie</th>
                         <th>Datum</th>
                         <th>Tijdstip</th>
+                        <th>Wijzig sessie</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Sessions)
                     {
-                        <tr @onclick="@(() => SelectSession(item))">
+                        <tr>
                             <td>@item.Name</td>
                             <td>@item.Location</td>
                             <td>@item.Date.ToShortDateString()</td>
                             <td>@item.Time.TimeOfDay</td>
+                            <td><button @onclick="@(() => SelectSession(item))" class="btn btn-primary">Wijzig</button></td>
                         </tr>
                     }
                 </tbody>
@@ -105,7 +107,7 @@
 
         @if (Sessions != null && mode == MODE.EditDelete)
         {
-            <button @onclick="@Delete" class="btn btn-success">Verwijderen</button>
+            <button @onclick="@Delete" class="btn btn-danger">Verwijderen</button>
         }
     </Authorized>
     <NotAuthorized>
