@@ -3,7 +3,7 @@
 @using Project_C.Services;
 @using Project_C.Models;
 @using System.Security.Claims;
-@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Identity;
 @using Microsoft.EntityFrameworkCore;
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject ApplicationDbContext database
@@ -13,6 +13,7 @@
 @inject NavigationManager uriHelper
 @inherits OwningComponentBase<SessionService>
 
+<title>Sessie overzicht</title>
 <AuthorizeView>
     <NotAuthorized>
         U bent niet geautoriseerd.
@@ -21,12 +22,13 @@
 
         <h3>Sessie overzicht</h3>
 
-        <table class="table">
+        <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>
                     <th>Naam</th>
-                    <th>Datum</th>
                     <th>Locatie</th>
+                    <th>Datum</th>
+                    <th>Tijdstip</th>
                     <th>Acceptatie</th>
                 </tr>
             </thead>
@@ -36,8 +38,9 @@
                 {
                     <tr>
                         <td>@session.Name</td>
-                        <td>@session.Date</td>
                         <td>@session.Location</td>
+                        <td>@session.Date.ToShortDateString()</td>
+                        <td>@session.Time.TimeOfDay</td>
                         @*Uses a boolean for true or false*@
                         @if (accepted)
                         {

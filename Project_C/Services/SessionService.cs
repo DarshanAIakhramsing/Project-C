@@ -16,6 +16,7 @@ namespace Project_C.Services
             _dbcontext = _db;
         }
 
+        //Returns all the sessions in the form of a list
         public List<SessionInfo> DisplaySession()
         {
             return _dbcontext.Session.ToList();
