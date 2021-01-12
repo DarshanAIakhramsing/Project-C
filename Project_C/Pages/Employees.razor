@@ -1,4 +1,4 @@
-@page "/employees"
+@page "/medewerkers"
 @using Project_C.Data;
 @using Project_C.Services;
 @using Project_C.Models;
@@ -10,6 +10,7 @@
 @inherits OwningComponentBase<UserService>
 
 @*V Explanation on Index page V*@
+<title>Medewerkers</title>
 <AuthorizeView>
     <NotAuthorized>
         U bent niet geautoriseerd.
@@ -18,9 +19,14 @@
 <AuthorizeView Roles="Admin">
 
 
-    <h3>Person</h3>
+    <h3>Medewerkers</h3><br />
 
-    <table class="table">
+    @*Two input fields one of type text which is a box you can write it and one button, the button enables the method SearchIssues and the text searchTerm
+        will be placed in a private string, later called on by the method SearchIssues*@
+    <input type="text" @bind-value="@searchTerm" />
+    <input type="button" value="Search" @onclick="@SearchIssues" class="btn btn-success" /><br /><br />
+
+    <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
                 <th>Email</th>
@@ -39,10 +45,7 @@
         </tbody>
     </table>
 
-    @*Two input fields one of type text which is a box you can write it and one button, the button enables the method SearchIssues and the text searchTerm
-        will be placed in a private string, later called on by the method SearchIssues*@
-    <input type="text" @bind-value="@searchTerm" />
-    <input type="button" value="Search" @onclick="@SearchIssues" />
+
 
 </AuthorizeView>
 
