@@ -16,7 +16,7 @@
         @*This piece of code calls the name/email of the current logged in user*@
         <h1>Welkom, @context.User.Identity.Name!</h1><br />
 
-        <table class="table">
+        @*<table class="table">
             <thead class="thead-dark">
                 <tr>
                     <th>@ConvertToWeek(0)</th>
@@ -33,7 +33,7 @@
                     <td></td>
                 </tr>
             </tbody>
-        </table>
+        </table>*@
     </Authorized>
     <NotAuthorized>
         U bent nog niet ingelogd.

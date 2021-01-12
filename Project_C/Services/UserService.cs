@@ -16,15 +16,17 @@ namespace Project_C.Services
             _dbcontext = _db;
         }
 
+        //Returns all users in a list
         public List<User> DisplayUser()
         {
             return _dbcontext.Users.ToList();
                                    //.OrderBy(User.accepted_invitation);
         }
 
+        //Returns a list of users that match or are similair to the email that was filled in the textfield
         public List<User> DisplayEmail(string email)
         {
-            return _dbcontext.Users.Where(x => x.Email == email).ToList();
+            return _dbcontext.Users.Where(x => x.Email.Contains(email)).ToList();
         }
     }
 }
