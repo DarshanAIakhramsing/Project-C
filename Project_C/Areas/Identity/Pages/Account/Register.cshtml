@@ -20,6 +20,7 @@
             <div class="form-group">
                 <label asp-for="Input.Password">Wachtwoord</label>
                 <input asp-for="Input.Password" class="form-control" />
+                <p>Het wachtwoord moet een hoofdletter hebben, een Niet-alfanumerieke teken (bijvoorbeeld !, $, # en %) en een cijfer</p>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="form-group">

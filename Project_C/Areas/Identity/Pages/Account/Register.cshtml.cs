@@ -51,8 +51,8 @@ namespace Project_C.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required(ErrorMessage = "Het wachtwoord moet minimaal tussen 6 en 15 karakters lang zijn")]
-            [StringLength(100, MinimumLength = 6)]
+            [Required]
+            [StringLength(15, MinimumLength = 8, ErrorMessage = "Het wachtwoord moet minimaal tussen 8 en 15 karakters lang zijn")]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }

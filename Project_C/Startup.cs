@@ -34,11 +34,11 @@ namespace Project_C
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<SessionCRUD>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddScoped<SessionService>();
-            services.AddScoped<SessionCRUD>();
             services.AddScoped<NotificationCreate>();
             services.AddScoped<UserService>();
 
@@ -46,11 +46,11 @@ namespace Project_C
 
             services.AddDefaultIdentity<User>(config =>
             {
-                config.Password.RequireDigit = false;
+                config.Password.RequireDigit = true;
                 config.Password.RequireLowercase = false;
                 config.Password.RequiredLength = 0;
-                config.Password.RequireUppercase = false;
-                config.Password.RequireNonAlphanumeric = false;
+                config.Password.RequireUppercase = true;
+                config.Password.RequireNonAlphanumeric = true;
             })
                 .AddRoles<Role>()
                 .AddRoleStore<CustomRoleStore>()
