@@ -145,7 +145,7 @@
     MODE mode = MODE.None;
 
 
-    //Inserts the values of the form into these database fields
+    //Edits the values of the form into these database fields
     public async void Edit()
     {
         var session = (from S in Sessions where S.Id == SelectedSessionID select S).FirstOrDefault() ?? new();
@@ -158,6 +158,7 @@
         StateHasChanged();
     }
 
+    //Inserts the values into the database
     public async void Submit()
     {
         var session = new SessionInfo();
@@ -170,14 +171,14 @@
         StateHasChanged();
     }
 
-
+    //Overrides the function when the page loads
     protected async override void OnInitialized()
     {
         Sessions = await sessionCRUD.GetSessionsAsync();
         StateHasChanged();
     }
 
-
+    //Deletes the session
     protected async Task Delete()
     {
         var toDelete = (from S in Sessions where S.Id == SelectedSessionID select S).First();
@@ -189,7 +190,7 @@
         mode = MODE.None;
     }
 
-    //Edits the selected session
+    //Gets the info of the selected session so you can edit them
     protected void SelectSession(SessionInfo session)
     {
         mode = MODE.EditDelete;
@@ -200,6 +201,7 @@
         EditModel.Time = session.Time;
     }
 
+    //Clear the fields of the form
     protected void ClearFields()
     {
         EditModel.Name = string.Empty;
@@ -208,6 +210,7 @@
         EditModel.Time = new DateTime();
     }
 
+    //Switches modes to add and clears fields
     public void Add()
     {
         ClearFields();
