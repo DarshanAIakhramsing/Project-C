@@ -3,37 +3,14 @@
 
 @using System.Globalization;
 
-<h1>Welkom bij CimSolutions!</h1>
-<br />
-
 @*Below we see a lot of uses for AuthorizeView, NotAuthorized and Roles. AuthorizeView means everything inside of that tag can only be seen if
     you are logged in, NotAuthorized is what you will see if you access the page without being logged in as any user and the Roles is meant
-    only for users with that specific role which in this case is the admin, these roles can be assigned in the database but because we were told
+    only for users with that specific role these roles can be assigned in the database but because we were told
     there would only need to be one admin who can do everything and one organisator who can create sessions*@
 
 <AuthorizeView>
     <Authorized>
-        @*This piece of code calls the name/email of the current logged in user*@
-        <h1>Welkom, @context.User.Identity.Name!</h1><br />
-
-        @*<table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th>@ConvertToWeek(0)</th>
-                    <th>@ConvertToWeek(1)</th>
-                    <th>@ConvertToWeek(2)</th>
-                    <th>@ConvertToWeek(3)</th>
-                    <th>@ConvertToWeek(4)</th>
-                    <th>@ConvertToWeek(5)</th>
-                    <th>@ConvertToWeek(6)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>*@
+            <img src="Logo/CimsolutionsLogo.png" alt="Cimsolutions planner image" class="center">
     </Authorized>
     <NotAuthorized>
         U bent nog niet ingelogd.
