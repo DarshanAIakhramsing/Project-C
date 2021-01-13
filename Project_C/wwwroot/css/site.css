@@ -141,6 +141,12 @@ app {
     top: 0.5rem;
 }
 
+.center {
+    position: absolute;
+    top: 35%;
+    left: 27%;
+}
+
 @media (max-width: 767.98px) {
     .main .top-row:not(.auth) {
         display: none;

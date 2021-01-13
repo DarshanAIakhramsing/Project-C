@@ -44,4 +44,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.2.0-preview3.20168.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Logo\" />
+  </ItemGroup>
+
 </Project>

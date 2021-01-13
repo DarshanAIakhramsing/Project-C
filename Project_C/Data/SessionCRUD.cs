@@ -22,8 +22,10 @@ namespace Project_C.Data
             DbContext = dbContext;
         }
 
+        //Gets the sessions in a list
         public async Task<IList<SessionInfo>> GetSessionsAsync() => await DbContext.Session.ToListAsync();
 
+        //Gets the session by id
         public async Task<SessionInfo> GetSessionAsync(int id) => await DbContext.Session.FindAsync(id);
 
         public async Task InsertSessionAsync(SessionInfo session)
