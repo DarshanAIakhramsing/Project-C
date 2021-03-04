@@ -60,7 +60,7 @@ namespace Project_C.Data
         public void Dispose()
         {
             ((IDisposable)DbContext).Dispose();
-        } 
+        }
         #endregion
     }
 }
