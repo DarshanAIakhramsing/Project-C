@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project_C", "Project_C\Project_C.csproj", "{DCCB6F79-1B68-4070-A8B6-B8730720E6E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Session.Unit.Test", "Session.Unit.Test\Session.Unit.Test.csproj", "{25EF1B8E-7CF6-4DC1-93A8-68CECD1517C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoginAutomationTest", "Session.Unit.Test\LoginAutomationTest.csproj", "{25EF1B8E-7CF6-4DC1-93A8-68CECD1517C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

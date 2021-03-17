@@ -50,14 +50,11 @@ namespace Session.Unit.Test
         {
             using (IWebDriver driver = new ChromeDriver())
             {
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
                 driver.Navigate().GoToUrl("https://localhost:5001/");
                 driver.FindElement(By.Name("Input.Email")).SendKeys("darshan@cimsolutions.nl");
                 driver.FindElement(By.Name("Input.Password")).SendKeys("Darshan12345!" + Keys.Enter);
-                wait.Until(webDriver => webDriver.FindElement(By.Name("Cimsolutions planner image")).Displayed);
-                IWebElement firstResult = driver.FindElement(By.Name("Cimsolutions planner image"));
-                Console.WriteLine(firstResult.GetAttribute("textContent"));
-
+                IWebElement logo = driver.FindElement(By.Id("CIMSOLUTIONS"));
+                System.Console.WriteLine(logo.Enabled);
             }
         }
     }
