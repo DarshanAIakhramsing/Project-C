@@ -51,13 +51,13 @@
                 <ValidationSummary />
                 <label>
                     Sessie naam:
-                    <InputText id="Name" @bind-Value="@EditModel.Name">Sessie naam:</InputText>
+                    <InputText id="Name" @bind-Value="@EditModel.Name" placeholder="Vul een naam in">Sessie naam:</InputText>
 
                 </label>
                 <br />
                 <label>
                     Sessie Locatie:
-                    <InputText id="Location" @bind-Value="@EditModel.Location">Sessie locatie:</InputText>
+                    <InputText id="Location" @bind-Value="@EditModel.Location" placeholder="Vul een locatie in">Sessie locatie:</InputText>
                 </label>
                 <br />
                 <label>
@@ -76,6 +76,7 @@
 
         @if (Sessions != null && mode == MODE.EditDelete)
         {
+            <p>@displayText</p>
             <EditForm Model="@EditModel" OnValidSubmit="@Edit">
                 <DataAnnotationsValidator />
                 <ValidationSummary />
@@ -103,12 +104,15 @@
                 <button type="submit" class="btn btn-success">Wijzigen</button><br />
                 <br />
             </EditForm>
+
         }
 
         @if (Sessions != null && mode == MODE.EditDelete)
         {
             <button @onclick="@Delete" class="btn btn-danger">Verwijderen</button>
         }
+
+
     </Authorized>
     <NotAuthorized>
         U bent niet geautoriseerd.
@@ -144,10 +148,14 @@
 
     MODE mode = MODE.None;
 
+    public string displayText;
+
 
     //Edits the values of the form into these database fields
     public async void Edit()
     {
+        Console.WriteLine("Edit gelukt!");
+        displayText = "Edit is gelukt!";
         var session = (from S in Sessions where S.Id == SelectedSessionID select S).FirstOrDefault() ?? new();
         session.Name = EditModel.Name;
         session.Location = EditModel.Location;
@@ -199,6 +207,7 @@
         EditModel.Location = session.Location;
         EditModel.Date = session.Date;
         EditModel.Time = session.Time;
+        displayText = "";
     }
 
     //Clear the fields of the form
@@ -208,6 +217,7 @@
         EditModel.Location = string.Empty;
         EditModel.Date = new DateTime();
         EditModel.Time = new DateTime();
+        displayText = "";
     }
 
     //Switches modes to add and clears fields
@@ -216,6 +226,9 @@
         ClearFields();
 
         mode = MODE.Add;
+
+        EditModel.Date = DateTime.Now;
+        EditModel.Time = DateTime.Now;
     }
 
 }
