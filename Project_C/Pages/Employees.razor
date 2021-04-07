@@ -21,10 +21,10 @@
 
     <h3>Medewerkers</h3><br />
 
-    @*Two input fields one of type text which is a box you can write it and one button, the button enables the method SearchIssues and the text searchTerm
-        will be placed in a private string, later called on by the method SearchIssues*@
-    <input type="text" @bind-value="@searchTerm" />
-    <input type="button" value="Search" @onclick="@SearchIssues" class="btn btn-success" /><br /><br />
+    @*An input field that enables the method SearchIssues and the text searchTerm
+        will be placed in a private string, later called on by the method SearchIssues.
+        This is all happening on keypress and automatically updates*@
+    <input type="text" value="@searchTerm" @oninput="@SearchIssues" placeholder="Search!" /><br /><br />
 
     <table class="table table-hover">
         <thead class="thead-dark">
@@ -60,11 +60,12 @@
     }
 
     //A private string of the text that was filled in in the textbox with value searchTerm
-    private string searchTerm;
+    public string searchTerm;
 
     //This will display only the users with the exact name that was put into the searchbox (i.e. Example@hotmail.com)
-    protected void SearchIssues()
+    protected void SearchIssues(ChangeEventArgs args)
     {
+        searchTerm = args.Value.ToString();
         users = Service.DisplayEmail(searchTerm);
     }
 }
