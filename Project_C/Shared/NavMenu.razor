@@ -5,22 +5,18 @@
     </button>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+<div class="@NavMenuCssClass" id="nav" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="index">
+        <li id="Index" class="nav-item px-3">
+            <NavLink class="nav-link" id="Index" href="index">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </li>
-        <AuthorizeView>
-            <Authorized>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="sessieoverzicht">
-                        <span class="oi oi-list-rich" aria-hidden="true"></span> Sessie overzicht
-                    </NavLink>
-                </li>
-            </Authorized>
-        </AuthorizeView>
+        <li class="nav-item px-3" id="SessieOverzicht">
+            <NavLink class="nav-link" name="Sessie Overzicht" href="sessieoverzicht">
+                <a class="oi oi-list-rich" aria-hidden="true"></a> Sessie overzicht
+            </NavLink>
+        </li>
 
         <AuthorizeView Roles="Organisator, Admin">
             <li class="nav-item px-3">

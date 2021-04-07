@@ -20,7 +20,7 @@
     </NotAuthorized>
     <Authorized>
 
-        <h3>Sessie overzicht</h3>
+        <h3 id="Header">Sessie overzicht</h3>
 
         <table class="table table-hover">
             <thead class="thead-dark">
@@ -49,7 +49,7 @@
                         else
                         {
                             @*Calls the clickhandler method and also sends session ID as an argument*@
-                            <td><button @onclick="@((args) => ClickHandler(session.Id))" class="btn btn-success">Accepteren</button></td>
+                            <td><button @onclick="@((args) => ClickHandler(session.Id))" id="Accepteer Sessie" class="btn btn-success">Accepteren</button></td>
                         }
                     </tr>
                 }
