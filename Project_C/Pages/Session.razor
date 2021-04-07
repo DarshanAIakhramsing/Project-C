@@ -17,7 +17,7 @@
         }
         else
         {
-            <button @onclick="@Add" class="btn btn-success">Sessie aanmaken</button><br /><br />
+            <button @onclick="@Add" id="Sessie Aanmaken" class="btn btn-success">Sessie aanmaken</button><br /><br />
             <table class='table table-hover'>
                 <thead class="thead-dark">
                     <tr>
@@ -70,7 +70,7 @@
                     <input id="Time" type="time" @bind-value="@EditModel.Time" />
                 </label>
                 <br />
-                <button type="submit" class="btn btn-success">Aanmaken</button>
+                <button type="submit" id="Verstuur" class="btn btn-success">Aanmaken</button>
             </EditForm>
         }
 

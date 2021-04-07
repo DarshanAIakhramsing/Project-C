@@ -14,12 +14,12 @@ using System.Collections.Generic;
 
 namespace AcceptSessionAutomationTest
 {
-    public class UnitTest1 : IDisposable
+    public class Test : IDisposable
     {
         public readonly IWebDriver driver;
         private readonly Thread server;
 
-        public UnitTest1()
+        public Test()
         {
             var assembly = Assembly.Load("Project_C");
 
@@ -52,12 +52,17 @@ namespace AcceptSessionAutomationTest
 
             using (IWebDriver driver = new ChromeDriver())
             {
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(115));
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
                 driver.Navigate().GoToUrl("https://localhost:5001/");
                 driver.FindElement(By.Name("Input.Email")).SendKeys("darshan@cimsolutions.nl");
                 driver.FindElement(By.Name("Input.Password")).SendKeys("Darshan12345!" + Keys.Enter);
-                driver.FindElement(By.Id("SessieOverzicht")).Click();
-                wait.Until(e => e.FindElement(By.Id("Header")));
+                driver.Navigate().GoToUrl("https://localhost:5001/sessies");
+                wait.Until(e => e.FindElement(By.Id("Sessie Aanmaken"))).Click();
+                wait.Until(e => e.FindElement(By.Id("Name"))).SendKeys("Test Name");
+                wait.Until(e => e.FindElement(By.Id("Location"))).SendKeys("Test Location");
+                wait.Until(e => e.FindElement(By.Id("Date"))).SendKeys("30042021");
+                wait.Until(e => e.FindElement(By.Id("Time"))).SendKeys("1245");
+                driver.FindElement(By.Id("Verstuur")).Click();
             }
         }
     }

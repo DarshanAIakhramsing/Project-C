@@ -10,15 +10,16 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading;
+using System.Collections.Generic;
 
-namespace Session.Unit.Test
+namespace AcceptSessionAutomationTest
 {
-    public class UnitTest1 : IDisposable
+    public class Test : IDisposable
     {
         public readonly IWebDriver driver;
         private readonly Thread server;
 
-        public UnitTest1()
+        public Test()
         {
             var assembly = Assembly.Load("Project_C");
 
@@ -48,13 +49,15 @@ namespace Session.Unit.Test
         [Fact]
         public void Driver()
         {
+
             using (IWebDriver driver = new ChromeDriver())
             {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
                 driver.Navigate().GoToUrl("https://localhost:5001/");
                 driver.FindElement(By.Name("Input.Email")).SendKeys("darshan@cimsolutions.nl");
                 driver.FindElement(By.Name("Input.Password")).SendKeys("Darshan12345!" + Keys.Enter);
-                IWebElement logo = driver.FindElement(By.Id("CIMSOLUTIONS"));
-                System.Console.WriteLine(logo.Enabled);
+                driver.Navigate().GoToUrl("https://localhost:5001/sessieoverzicht");
+                wait.Until(e => e.FindElement(By.Id("Accepteer Sessie"))).Click();
             }
         }
     }
