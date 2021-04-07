@@ -56,7 +56,6 @@ namespace Session.Unit.Test
                 driver.FindElement(By.Name("Input.Password")).SendKeys("Darshan12345!" + Keys.Enter);
                 driver.Navigate().GoToUrl("https://localhost:5001/medewerkers");
                 wait.Until(e => e.FindElement(By.Id("Textbox"))).SendKeys("darshan@cimsolutions.nl");
-                wait.Until(e => e.FindElement(By.Id("Zoek Email"))).Click();
             }
         }
     }

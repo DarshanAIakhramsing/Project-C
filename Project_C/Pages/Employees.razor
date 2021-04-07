@@ -24,7 +24,7 @@
     @*An input field that enables the method SearchIssues and the text searchTerm
         will be placed in a private string, later called on by the method SearchIssues.
         This is all happening on keypress and automatically updates*@
-    <input type="text" value="@searchTerm" @oninput="@SearchIssues" placeholder="Search!" /><br /><br />
+    <input type="text" value="@searchTerm" id="Textbox" @oninput="@SearchIssues" placeholder="Search!" /><br /><br />
 
     <table class="table table-hover">
         <thead class="thead-dark">
