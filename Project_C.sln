@@ -11,8 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcceptSessionAutomationTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateSessionAutomation", "CreateSessionAutomation\CreateSessionAutomation.csproj", "{D58F889C-7961-414A-B634-A3D35CEE63F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchEmployeesAutomationTest", "SearchEmployeesAutomationTest\SearchEmployeesAutomationTest.csproj", "{E45CC492-4286-4A24-8730-A81E784B85EE}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project_C_Tests", "Project_C_Tests\Project_C_Tests.csproj", "{5730A9A3-DA85-4934-984F-F57D77436F05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchEmployeesAutomationTest", "SearchEmployeesAutomationTest\SearchEmployeesAutomationTest.csproj", "{E45CC492-4286-4A24-8730-A81E784B85EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project_C_Tests", "Project_C_Tests\Project_C_Tests.csproj", "{5730A9A3-DA85-4934-984F-F57D77436F05}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EditSessionAutomationTest", "EditSessionAutomationTest\EditSessionAutomationTest.csproj", "{67F55274-A064-4187-91EF-9AF17A6A35B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeleteSessionAutomationTest", "DeleteSessionAutomationTest\DeleteSessionAutomationTest.csproj", "{CA448116-EBF0-47AB-AA0E-CAF5BF3DB95E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +49,14 @@ Global
 		{5730A9A3-DA85-4934-984F-F57D77436F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5730A9A3-DA85-4934-984F-F57D77436F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5730A9A3-DA85-4934-984F-F57D77436F05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67F55274-A064-4187-91EF-9AF17A6A35B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67F55274-A064-4187-91EF-9AF17A6A35B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67F55274-A064-4187-91EF-9AF17A6A35B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67F55274-A064-4187-91EF-9AF17A6A35B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA448116-EBF0-47AB-AA0E-CAF5BF3DB95E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA448116-EBF0-47AB-AA0E-CAF5BF3DB95E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA448116-EBF0-47AB-AA0E-CAF5BF3DB95E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA448116-EBF0-47AB-AA0E-CAF5BF3DB95E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

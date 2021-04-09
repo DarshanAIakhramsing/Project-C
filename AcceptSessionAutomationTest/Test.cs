@@ -54,10 +54,12 @@ namespace AcceptSessionAutomationTest
             {
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
                 driver.Navigate().GoToUrl("https://localhost:5001/");
-                driver.FindElement(By.Name("Input.Email")).SendKeys("darshan@cimsolutions.nl");
-                driver.FindElement(By.Name("Input.Password")).SendKeys("Darshan12345!" + Keys.Enter);
+                driver.FindElement(By.Name("Input.Email")).SendKeys("m.campen@cimsolutions.nl");
+                driver.FindElement(By.Name("Input.Password")).SendKeys("Marco123!" + Keys.Enter);
                 driver.Navigate().GoToUrl("https://localhost:5001/sessieoverzicht");
-                wait.Until(e => e.FindElement(By.Id("Accepteer Sessie"))).Click();
+                Thread.Sleep(1000);
+                wait.Until(e => e.FindElement(By.Id("39"))).Click();
+                wait.Until(e => e.FindElement(By.Id("55"))).Click();
             }
         }
     }

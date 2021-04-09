@@ -55,8 +55,16 @@ namespace Session.Unit.Test
                 driver.FindElement(By.Name("Input.Email")).SendKeys("darshan@cimsolutions.nl");
                 driver.FindElement(By.Name("Input.Password")).SendKeys("Darshan12345!" + Keys.Enter);
                 driver.Navigate().GoToUrl("https://localhost:5001/medewerkers");
-                wait.Until(e => e.FindElement(By.Id("Textbox"))).SendKeys("darshan@cimsolutions.nl");
-                wait.Until(e => e.FindElement(By.Id("Zoek Email"))).Click();
+                Thread.Sleep(1000);
+                IWebElement tekst = wait.Until(e => e.FindElement(By.Id("tekstbox")));
+                tekst.Click();
+                tekst.SendKeys("ferdi");
+                Thread.Sleep(1000);
+                IWebElement bodyTag = wait.Until(e => e.FindElement(By.TagName("tbody")));
+                Assert.Contains("ferdi@cimsolutions.nl", bodyTag.Text);
+                Assert.DoesNotContain("jabba@gmail.com", bodyTag.Text);
+                
+
             }
         }
     }

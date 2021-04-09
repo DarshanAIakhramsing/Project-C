@@ -36,7 +36,7 @@
                             <td>@item.Location</td>
                             <td>@item.Date.ToShortDateString()</td>
                             <td>@item.Time.TimeOfDay</td>
-                            <td><button @onclick="@(() => SelectSession(item))" class="btn btn-primary">Wijzig</button></td>
+                            <td><button @onclick="@(() => SelectSession(item))" id="@item.Id" class="btn btn-primary">Wijzig</button></td>
                         </tr>
                     }
                 </tbody>
@@ -101,7 +101,7 @@
                     <input id="Time" type="time" @bind-value="@EditModel.Time" />
                 </label>
                 <br />
-                <button type="submit" class="btn btn-success">Wijzigen</button><br />
+                <button type="submit" id="Wijzig" class="btn btn-success">Wijzigen</button><br />
                 <br />
             </EditForm>
 
@@ -109,7 +109,7 @@
 
         @if (Sessions != null && mode == MODE.EditDelete)
         {
-            <button @onclick="@Delete" class="btn btn-danger">Verwijderen</button>
+            <button @onclick="@Delete" id="verwijder" class="btn btn-danger">Verwijderen</button>
         }
 
 
@@ -120,7 +120,6 @@
 </AuthorizeView>
 
 @code {
-
     //A model so to manipulate these values in this file
     public class EditSessionModel
     {
