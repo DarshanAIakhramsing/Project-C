@@ -50,11 +50,16 @@ namespace Session.Unit.Test
         {
             using (IWebDriver driver = new ChromeDriver())
             {
+                //the wait variable gives the functionality to wait a certain amount of time before executing a task
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+                //Goes to the url from the website
                 driver.Navigate().GoToUrl("https://localhost:5001/");
-                driver.FindElement(By.Name("Input.Email")).SendKeys("darshan@cimsolutions.nl");
-                driver.FindElement(By.Name("Input.Password")).SendKeys("Darshan12345!" + Keys.Enter);
+                //Inserts the email in the email field to login
+                driver.FindElement(By.Name("Input.Email")).SendKeys("automationtest@cimsolutions.nl");
+                //Inserts the password in the password field to login
+                driver.FindElement(By.Name("Input.Password")).SendKeys("Testing123!" + Keys.Enter);
+                //Checks to see if we can find an element to see if we landed on the desired page
                 IWebElement logo = driver.FindElement(By.Id("CIMSOLUTIONS"));
-                System.Console.WriteLine(logo.Enabled);
             }
         }
     }

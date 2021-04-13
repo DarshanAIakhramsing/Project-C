@@ -52,18 +52,26 @@ namespace DeleteSessionAutomationTest
 
             using (IWebDriver driver = new ChromeDriver())
             {
+                //the wait variable gives the functionality to wait a certain amount of time before executing a task
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+                //Goes to the url from the website
                 driver.Navigate().GoToUrl("https://localhost:5001/");
-                driver.FindElement(By.Name("Input.Email")).SendKeys("m.campen@cimsolutions.nl");
-                driver.FindElement(By.Name("Input.Password")).SendKeys("Marco123!" + Keys.Enter);
+                //Inserts the email in the email field to login
+                driver.FindElement(By.Name("Input.Email")).SendKeys("darshan@cimsolutions.nl");
+                //Inserts the password in the password field to login
+                driver.FindElement(By.Name("Input.Password")).SendKeys("Darshan12345!" + Keys.Enter);
+                //Navigates to sessie overzicht page
                 driver.Navigate().GoToUrl("https://localhost:5001/sessies");
                 //Verander deze ID naar de ID die je wilt verwijderen
-                wait.Until(e => e.FindElement(By.Id("71"))).Click();
+                wait.Until(e => e.FindElement(By.Id("87"))).Click();
                 wait.Until(e => e.FindElement(By.Id("verwijder"))).Click();
+                //Let's the application wait for 2 seconds to give the time for new elements to load
                 Thread.Sleep(2000);
+                //exist checks if element 41 exist
                 bool exist = driver.FindElements(By.Id("41")).Count == 1;
-                //Verander deze ID ook
-                bool nonExist = driver.FindElements(By.Id("71")).Count == 0;
+                //exist checks if element 61 doesn't exist
+                bool nonExist = driver.FindElements(By.Id("87")).Count == 0;
+                //Assert checks if the booleans are true
                 Assert.True(exist);
                 Assert.True(nonExist);
             }

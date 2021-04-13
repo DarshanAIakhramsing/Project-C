@@ -52,22 +52,29 @@ namespace AcceptSessionAutomationTest
 
             using (IWebDriver driver = new ChromeDriver())
             {
+                //the wait variable gives the functionality to wait a certain amount of time before executing a task
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+                //Goes to the url from the website
                 driver.Navigate().GoToUrl("https://localhost:5001/");
-                driver.FindElement(By.Name("Input.Email")).SendKeys("m.campen@cimsolutions.nl");
-                driver.FindElement(By.Name("Input.Password")).SendKeys("Marco123!" + Keys.Enter);
+                //Inserts the email in the email field to login
+                driver.FindElement(By.Name("Input.Email")).SendKeys("automationtest@cimsolutions.nl");
+                //Inserts the password in the password field to login
+                driver.FindElement(By.Name("Input.Password")).SendKeys("Testing123!" + Keys.Enter);
+                //Navigates to sessie overzicht page
                 driver.Navigate().GoToUrl("https://localhost:5001/sessieoverzicht");
                 Thread.Sleep(1000);
-                //driver.FindElement(By.Id("Header"));
+                //Waits until an element has loaded before checking if we have arrived on the page
                 IWebElement acceptClick = wait.Until(e => e.FindElement(By.Id("55")));
                 acceptClick.Click();
+                //Let's the application wait for 1 second to give the time for new elements to load
                 Thread.Sleep(1000);
+                //exist checks if element 61 exist
                 bool exist = driver.FindElements(By.Id("61")).Count == 1;
+                //nonExist checks if element 55 doesn't exist
                 bool nonExist = driver.FindElements(By.Id("55")).Count == 0;
+                //Assert checks if the booleans are true
                 Assert.True(exist);
                 Assert.True(nonExist);
-
-
             }
         }
     }

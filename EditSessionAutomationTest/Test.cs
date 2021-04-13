@@ -12,7 +12,7 @@ using System.Reflection;
 using System.Threading;
 using System.Collections.Generic;
 
-namespace AcceptSessionAutomationTest
+namespace EditSessionAutomationTest
 {
     public class Test : IDisposable
     {
@@ -62,21 +62,23 @@ namespace AcceptSessionAutomationTest
                 driver.FindElement(By.Name("Input.Password")).SendKeys("Darshan12345!" + Keys.Enter);
                 //Navigates to sessie overzicht page
                 driver.Navigate().GoToUrl("https://localhost:5001/sessies");
-                //Creates a session
-                wait.Until(e => e.FindElement(By.Id("Sessie Aanmaken"))).Click();
-                wait.Until(e => e.FindElement(By.Id("Name"))).SendKeys("Test Name 1");
-                wait.Until(e => e.FindElement(By.Id("Location"))).SendKeys("Test Location 1");
-                wait.Until(e => e.FindElement(By.Id("Date"))).SendKeys("25122021");
-                wait.Until(e => e.FindElement(By.Id("Time"))).SendKeys("1725");
-                driver.FindElement(By.Id("Verstuur")).Click();
-                //Let's the application wait for 2 seconds to give the time for new elements to load
+                //Edits the session info
+                wait.Until(e => e.FindElement(By.Id("87"))).Click();
+                wait.Until(e => e.FindElement(By.Id("Name"))).Clear();
+                wait.Until(e => e.FindElement(By.Id("Name"))).SendKeys("Test Name 2");
+                wait.Until(e => e.FindElement(By.Id("Location"))).Clear();
+                wait.Until(e => e.FindElement(By.Id("Location"))).SendKeys("Test Location 2");
+                wait.Until(e => e.FindElement(By.Id("Date"))).SendKeys("26122021");
+                wait.Until(e => e.FindElement(By.Id("Time"))).SendKeys("1835");
+                driver.FindElement(By.Id("Wijzig")).Click();
+                //Let's the application wait for 2 second to give the time for new elements to load
                 Thread.Sleep(2000);
                 IWebElement bodyTag = wait.Until(e => e.FindElement(By.TagName("tbody")));
                 //Assert checks if the text that the code filled in is the same with the text we expected
-                Assert.Contains("Test Name 1", bodyTag.Text);
-                Assert.Contains("Test Location 1", bodyTag.Text);
-                Assert.Contains("25/12/2021", bodyTag.Text);
-                Assert.Contains("17:25:00", bodyTag.Text);
+                Assert.Contains("Test Name 2", bodyTag.Text);
+                Assert.Contains("Test Location 2", bodyTag.Text);
+                Assert.Contains("26/12/2021", bodyTag.Text);
+                Assert.Contains("18:35:00", bodyTag.Text);
             }
         }
     }

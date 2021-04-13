@@ -227,7 +227,8 @@
         mode = MODE.Add;
 
         EditModel.Date = DateTime.Now;
-        EditModel.Time = DateTime.Now;
+        var src = DateTime.Now;
+        EditModel.Time = new DateTime(src.Year, src.Month, src.Day, src.Hour, src.Minute, 0);
     }
 
 }
