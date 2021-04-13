@@ -58,8 +58,16 @@ namespace AcceptSessionAutomationTest
                 driver.FindElement(By.Name("Input.Password")).SendKeys("Marco123!" + Keys.Enter);
                 driver.Navigate().GoToUrl("https://localhost:5001/sessieoverzicht");
                 Thread.Sleep(1000);
-                wait.Until(e => e.FindElement(By.Id("39"))).Click();
-                wait.Until(e => e.FindElement(By.Id("55"))).Click();
+                //driver.FindElement(By.Id("Header"));
+                IWebElement acceptClick = wait.Until(e => e.FindElement(By.Id("55")));
+                acceptClick.Click();
+                Thread.Sleep(1000);
+                bool exist = driver.FindElements(By.Id("61")).Count == 1;
+                bool nonExist = driver.FindElements(By.Id("55")).Count == 0;
+                Assert.True(exist);
+                Assert.True(nonExist);
+
+
             }
         }
     }

@@ -58,11 +58,17 @@ namespace AcceptSessionAutomationTest
                 driver.FindElement(By.Name("Input.Password")).SendKeys("Darshan12345!" + Keys.Enter);
                 driver.Navigate().GoToUrl("https://localhost:5001/sessies");
                 wait.Until(e => e.FindElement(By.Id("Sessie Aanmaken"))).Click();
-                wait.Until(e => e.FindElement(By.Id("Name"))).SendKeys("Test Name");
-                wait.Until(e => e.FindElement(By.Id("Location"))).SendKeys("Test Location");
-                wait.Until(e => e.FindElement(By.Id("Date"))).SendKeys("30042021");
-                wait.Until(e => e.FindElement(By.Id("Time"))).SendKeys("1245");
+                wait.Until(e => e.FindElement(By.Id("Name"))).SendKeys("Test Name 1");
+                wait.Until(e => e.FindElement(By.Id("Location"))).SendKeys("Test Location 1");
+                wait.Until(e => e.FindElement(By.Id("Date"))).SendKeys("12252021");
+                wait.Until(e => e.FindElement(By.Id("Time"))).SendKeys("1725");
                 driver.FindElement(By.Id("Verstuur")).Click();
+                Thread.Sleep(2000);
+                IWebElement bodyTag = wait.Until(e => e.FindElement(By.TagName("tbody")));
+                Assert.Contains("Test Name 1", bodyTag.Text);
+                Assert.Contains("Test Location 1", bodyTag.Text);
+                Assert.Contains("25-12-2021", bodyTag.Text);
+                Assert.Contains("17:25:00", bodyTag.Text);
             }
         }
     }
