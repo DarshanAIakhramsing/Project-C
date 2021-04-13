@@ -50,17 +50,24 @@ namespace Session.Unit.Test
         {
             using (IWebDriver driver = new ChromeDriver())
             {
+                //the wait variable gives the functionality to wait a certain amount of time before executing a task
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+                //Goes to the url from the website
                 driver.Navigate().GoToUrl("https://localhost:5001/");
+                //Inserts the email in the email field to login
                 driver.FindElement(By.Name("Input.Email")).SendKeys("darshan@cimsolutions.nl");
+                //Inserts the password in the password field to login
                 driver.FindElement(By.Name("Input.Password")).SendKeys("Darshan12345!" + Keys.Enter);
+                //Navigates to the desired URL
                 driver.Navigate().GoToUrl("https://localhost:5001/medewerkers");
+                //Let's the application wait 1 second for new elements to load in
                 Thread.Sleep(1000);
                 IWebElement tekst = wait.Until(e => e.FindElement(By.Id("tekstbox")));
                 tekst.Click();
                 tekst.SendKeys("ferdi");
                 Thread.Sleep(1000);
                 IWebElement bodyTag = wait.Until(e => e.FindElement(By.TagName("tbody")));
+                //Checks if the text the test filled in is equal to the text we expect
                 Assert.Contains("ferdi@cimsolutions.nl", bodyTag.Text);
                 Assert.DoesNotContain("jabba@gmail.com", bodyTag.Text);
                 
