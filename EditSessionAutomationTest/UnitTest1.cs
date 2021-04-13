@@ -57,14 +57,21 @@ namespace EditSessionAutomationTest
                 driver.FindElement(By.Name("Input.Email")).SendKeys("m.campen@cimsolutions.nl");
                 driver.FindElement(By.Name("Input.Password")).SendKeys("Marco123!" + Keys.Enter);
                 driver.Navigate().GoToUrl("https://localhost:5001/sessies");
-                wait.Until(e => e.FindElement(By.Id("39"))).Click();
+                //Verander deze ID naar de ID die je wilt aanpassen
+                wait.Until(e => e.FindElement(By.Id("71"))).Click();
                 wait.Until(e => e.FindElement(By.Id("Name"))).Clear();
-                wait.Until(e => e.FindElement(By.Id("Name"))).SendKeys("Test Name");
+                wait.Until(e => e.FindElement(By.Id("Name"))).SendKeys("Test Name 2");
                 wait.Until(e => e.FindElement(By.Id("Location"))).Clear();
-                wait.Until(e => e.FindElement(By.Id("Location"))).SendKeys("Test Location");
-                wait.Until(e => e.FindElement(By.Id("Date"))).SendKeys("19042021");
-                wait.Until(e => e.FindElement(By.Id("Time"))).SendKeys("0900");
+                wait.Until(e => e.FindElement(By.Id("Location"))).SendKeys("Test Location 2");
+                wait.Until(e => e.FindElement(By.Id("Date"))).SendKeys("12262021");
+                wait.Until(e => e.FindElement(By.Id("Time"))).SendKeys("1835");
                 driver.FindElement(By.Id("Wijzig")).Click();
+                Thread.Sleep(2000);
+                IWebElement bodyTag = wait.Until(e => e.FindElement(By.TagName("tbody")));
+                Assert.Contains("Test Name 2", bodyTag.Text);
+                Assert.Contains("Test Location 2", bodyTag.Text);
+                Assert.Contains("26-12-2021", bodyTag.Text);
+                Assert.Contains("18:35:00", bodyTag.Text);
             }
         }
     }

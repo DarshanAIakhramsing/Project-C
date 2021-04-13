@@ -10,9 +10,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-using System.Collections.Generic;
 
-namespace DeleteSessionAutomationTest
+namespace RegisterAutomationTest
 {
     public class Test : IDisposable
     {
@@ -49,23 +48,17 @@ namespace DeleteSessionAutomationTest
         [Fact]
         public void Driver()
         {
-
             using (IWebDriver driver = new ChromeDriver())
             {
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-                driver.Navigate().GoToUrl("https://localhost:5001/");
-                driver.FindElement(By.Name("Input.Email")).SendKeys("m.campen@cimsolutions.nl");
-                driver.FindElement(By.Name("Input.Password")).SendKeys("Marco123!" + Keys.Enter);
-                driver.Navigate().GoToUrl("https://localhost:5001/sessies");
-                //Verander deze ID naar de ID die je wilt verwijderen
-                wait.Until(e => e.FindElement(By.Id("71"))).Click();
-                wait.Until(e => e.FindElement(By.Id("verwijder"))).Click();
-                Thread.Sleep(2000);
-                bool exist = driver.FindElements(By.Id("41")).Count == 1;
-                //Verander deze ID ook
-                bool nonExist = driver.FindElements(By.Id("71")).Count == 0;
-                Assert.True(exist);
-                Assert.True(nonExist);
+                driver.Navigate().GoToUrl("https://localhost:5001/Identity/Account/Register");
+                driver.FindElement(By.Name("Input.Email")).SendKeys("test@cimsolutions.nl");
+                driver.FindElement(By.Name("Input.Password")).SendKeys("Testing123!");
+                driver.FindElement(By.Name("Input.ConfirmPassword")).SendKeys("Testing123!" + Keys.Enter);
+                IWebElement logo = driver.FindElement(By.Id("CIMSOLUTIONS"));
+                System.Console.WriteLine(logo.Enabled);
+
+
             }
         }
     }
