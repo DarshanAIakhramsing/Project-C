@@ -17,6 +17,7 @@ namespace Project_C.Data
     {
         public ApplicationDbContext DbContext { get; }
 
+        //Makes database connection
         public SessionCRUD(ApplicationDbContext dbContext)
         {
             DbContext = dbContext;
@@ -28,6 +29,7 @@ namespace Project_C.Data
         //Gets the session by id
         public async Task<SessionInfo> GetSessionAsync(int id) => await DbContext.Session.FindAsync(id);
 
+        //Adds session to database
         public async Task InsertSessionAsync(SessionInfo session)
         {
             DbContext.Session.Add(session);
@@ -49,6 +51,7 @@ namespace Project_C.Data
             await DbContext.SaveChangesAsync();
         }
 
+        //Checks if a session exists
         public bool SessionExist(int id) => GetSessionAsync(id) is not null;
 
         #region Disposable support
@@ -60,7 +63,7 @@ namespace Project_C.Data
         public void Dispose()
         {
             ((IDisposable)DbContext).Dispose();
-        } 
+        }
         #endregion
     }
 }

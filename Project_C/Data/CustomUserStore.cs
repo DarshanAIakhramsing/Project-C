@@ -15,6 +15,7 @@ namespace Project_C.Data
 {
 	public class CustomUserStore : IUserStore<User>, IUserPasswordStore<User>, IUserRoleStore<User>
 	{
+		//Makes connection with the database and roles
 		public CustomUserStore(ApplicationDbContext dbContext, IRoleStore<Role> roleStore)
 		{
 			DbContext = dbContext;
@@ -24,6 +25,7 @@ namespace Project_C.Data
 		private ApplicationDbContext DbContext { get; }
 		private IRoleStore<Role> Roles { get; }
 
+		//This function connects a user to a role
         public async Task AddToRoleAsync(User user, string roleName, CancellationToken cancellationToken)
         {
 			user.Roles.Add(new UserRole
@@ -33,6 +35,7 @@ namespace Project_C.Data
 			});
         }
 
+		//Creates a new user and adds him to the database, also prints it in the console
         public async Task<IdentityResult> CreateAsync(User user, CancellationToken cancellationToken)
 		{
 			Console.WriteLine("New user has been added to the system");
@@ -45,6 +48,7 @@ namespace Project_C.Data
 			return IdentityResult.Success;
 		}
 
+		//Deletes a new user in the database
 		public async Task<IdentityResult> DeleteAsync(User user, CancellationToken cancellationToken)
 		{
 			EntityEntry<User> entity = DbContext.Remove(user);
@@ -54,31 +58,36 @@ namespace Project_C.Data
 			return IdentityResult.Failed();
 		}
 
+		//removes a role
 		public void Dispose()
 		{
 			Roles.Dispose();
 		}
 
+		//Finds a user id in the database
 		public async Task<User> FindByIdAsync(string userId, CancellationToken cancellationToken)
 		{
             int.TryParse(userId, out int id);
 			return await DbContext.Users.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
 		}
 
+		//Gets the name of a user from the database in lowercase
 		public async Task<User> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
 		{
 			normalizedUserName = normalizedUserName.ToLower();
 			return await DbContext.Users.FirstOrDefaultAsync(x => x.Email.ToLower() == normalizedUserName, cancellationToken);
 		}
 
+		//Gets the normal user name from the database
 		public Task<string> GetNormalizedUserNameAsync(User user, CancellationToken cancellationToken) => GetUserNameAsync(user, cancellationToken);
 
+		//This function gets the hased password from the db
 		public Task<string> GetPasswordHashAsync(User user, CancellationToken cancellationToken)
 		{
 			return Task.FromResult(user.Password);
 		}
 
-		//Gets the roles for the user
+		//This method gets the role from the user
         public async Task<IList<string>> GetRolesAsync(User user, CancellationToken cancellationToken)
         {
 			user = (await DbContext.Users
@@ -90,10 +99,13 @@ namespace Project_C.Data
 			return user?.Roles.Select(ur => ur.Role.Name).ToList();
         }
 
+		//This gets a user id from the database and converts it to a string
         public Task<string> GetUserIdAsync(User user, CancellationToken cancellationToken) => Task.FromResult(user.Id.ToString());
 
+		//Gets the user name from the database
 		public Task<string> GetUserNameAsync(User user, CancellationToken cancellationToken) => Task.FromResult(user.Email);
 
+		//Returns a list of the users who are members of a role
         public async Task<IList<User>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
         {
 			return await DbContext.Users
@@ -103,17 +115,20 @@ namespace Project_C.Data
 				.ToListAsync(cancellationToken);
         }
 
+		//Checks if the user has a password
         public Task<bool> HasPasswordAsync(User user, CancellationToken cancellationToken)
 		{
 			return Task.FromResult(true);
 		}
 
+		//Checks if the user is a member of a given role
         public async Task<bool> IsInRoleAsync(User user, string roleName, CancellationToken cancellationToken)
         {
 			return (await GetRolesAsync(user, cancellationToken))
 				.Contains(roleName);
         }
 
+		//Removes a user from a role
         public async Task RemoveFromRoleAsync(User user, string roleName, CancellationToken cancellationToken)
         {
 			var userRole = (await DbContext.Users
@@ -128,23 +143,27 @@ namespace Project_C.Data
 			await DbContext.SaveChangesAsync(cancellationToken);
         }
 
+		//Sets the normalized username in the database
         public Task SetNormalizedUserNameAsync(User user, string normalizedName, CancellationToken cancellationToken)
 		{
 			return Task.CompletedTask;
 		}
 
+		//Sets the password and hashes it before putting it in the database
 		public Task SetPasswordHashAsync(User user, string passwordHash, CancellationToken cancellationToken)
 		{
 			user.Password = passwordHash;
 			return Task.CompletedTask;
 		}
 
+		//Sets the user email as his user name
 		public Task SetUserNameAsync(User user, string userName, CancellationToken cancellationToken)
 		{
 			user.Email = userName;
 			return Task.CompletedTask;
 		}
 
+		//Updates the user profile and saves it in the database
 		public async Task<IdentityResult> UpdateAsync(User user, CancellationToken cancellationToken)
 		{
 			EntityEntry<User> entry = DbContext.Update(user);

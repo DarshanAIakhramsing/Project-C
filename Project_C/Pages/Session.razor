@@ -3,7 +3,7 @@
 @using Project_C.Data
 @using Project_C.Models
 @using Project_C.Services
-@using System.ComponentModel.DataAnnotations;
+@using System.ComponentModel.DataAnnotations; 
 
 @inject SessionCRUD sessionCRUD
 @inject NavigationManager uriHelper
@@ -17,7 +17,7 @@
         }
         else
         {
-            <button @onclick="@Add" class="btn btn-success">Sessie aanmaken</button><br /><br />
+            <button @onclick="@Add" id="Sessie Aanmaken" class="btn btn-success">Sessie aanmaken</button><br /><br />
             <table class='table table-hover'>
                 <thead class="thead-dark">
                     <tr>
@@ -36,14 +36,14 @@
                             <td>@item.Location</td>
                             <td>@item.Date.ToShortDateString()</td>
                             <td>@item.Time.TimeOfDay</td>
-                            <td><button @onclick="@(() => SelectSession(item))" class="btn btn-primary">Wijzig</button></td>
+                            <td><button @onclick="@(() => SelectSession(item))" id="@item.Id" class="btn btn-primary">Wijzig</button></td>
                         </tr>
                     }
                 </tbody>
             </table>
         }
 
-
+        @*If Mode.Add is enabled the following form will be visible. The data that is written here will create a new session and will be added to the database*@
         @if (Sessions != null && mode == MODE.Add)
         {
             <EditForm Model="@EditModel" OnValidSubmit="@Submit">
@@ -70,10 +70,11 @@
                     <input id="Time" type="time" @bind-value="@EditModel.Time" />
                 </label>
                 <br />
-                <button type="submit" class="btn btn-success">Aanmaken</button>
+                <button type="submit" id="Verstuur" class="btn btn-success">Aanmaken</button>
             </EditForm>
         }
 
+        @*If Mode.EditDelete is enabled the following form will be visible. The data that is written here will edit an existing session*@
         @if (Sessions != null && mode == MODE.EditDelete)
         {
             <p>@displayText</p>
@@ -101,15 +102,16 @@
                     <input id="Time" type="time" @bind-value="@EditModel.Time" />
                 </label>
                 <br />
-                <button type="submit" class="btn btn-success">Wijzigen</button><br />
+                <button type="submit" id="Wijzig" class="btn btn-success">Wijzigen</button><br />
                 <br />
             </EditForm>
 
         }
 
+        @*If Mode.EditDelete is enabled the following form will be visible. The data that is written here will give the option to delete it*@
         @if (Sessions != null && mode == MODE.EditDelete)
         {
-            <button @onclick="@Delete" class="btn btn-danger">Verwijderen</button>
+            <button @onclick="@Delete" id="verwijder" class="btn btn-danger">Verwijderen</button>
         }
 
 
@@ -120,7 +122,6 @@
 </AuthorizeView>
 
 @code {
-
     //A model so to manipulate these values in this file
     public class EditSessionModel
     {
@@ -146,6 +147,7 @@
 
     public int SelectedSessionID = -1;
 
+    //Default value of MODE
     MODE mode = MODE.None;
 
     public string displayText;
@@ -221,6 +223,7 @@
     }
 
     //Switches modes to add and clears fields
+    //Also sets the default datatime picker to the current datetime from the user pc
     public void Add()
     {
         ClearFields();
@@ -228,7 +231,8 @@
         mode = MODE.Add;
 
         EditModel.Date = DateTime.Now;
-        EditModel.Time = DateTime.Now;
+        var src = DateTime.Now;
+        EditModel.Time = new DateTime(src.Year, src.Month, src.Day, src.Hour, src.Minute, 0);
     }
 
 }
