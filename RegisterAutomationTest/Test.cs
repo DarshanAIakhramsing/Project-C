@@ -53,11 +53,12 @@ namespace RegisterAutomationTest
                 //the wait variable gives the functionality to wait a certain amount of time before executing a task
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
                 //Goes to the url from the website
-                driver.Navigate().GoToUrl("https://localhost:5001/");
+                driver.Navigate().GoToUrl("https://localhost:5001/Identity/Account/Register%22");
                 //Inserts the email in the email field to register
                 driver.FindElement(By.Name("Input.Email")).SendKeys("automationtest@cimsolutions.nl");
                 //Inserts the password in the password field to register
-                driver.FindElement(By.Name("Input.Password")).SendKeys("Testing123!" + Keys.Enter);
+                driver.FindElement(By.Name("Input.Password")).SendKeys("Testing123!");
+                driver.FindElement(By.Name("Input.ConfirmPassword")).SendKeys("Testing123!" + Keys.Enter);
                 IWebElement logo = driver.FindElement(By.Id("CIMSOLUTIONS"));
             }
         }

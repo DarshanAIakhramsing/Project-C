@@ -43,7 +43,7 @@
             </table>
         }
 
-
+        @*If Mode.Add is enabled the following form will be visible. The data that is written here will create a new session and will be added to the database*@
         @if (Sessions != null && mode == MODE.Add)
         {
             <EditForm Model="@EditModel" OnValidSubmit="@Submit">
@@ -74,6 +74,7 @@
             </EditForm>
         }
 
+        @*If Mode.EditDelete is enabled the following form will be visible. The data that is written here will edit an existing session*@
         @if (Sessions != null && mode == MODE.EditDelete)
         {
             <p>@displayText</p>
@@ -107,6 +108,7 @@
 
         }
 
+        @*If Mode.EditDelete is enabled the following form will be visible. The data that is written here will give the option to delete it*@
         @if (Sessions != null && mode == MODE.EditDelete)
         {
             <button @onclick="@Delete" id="verwijder" class="btn btn-danger">Verwijderen</button>
@@ -145,6 +147,7 @@
 
     public int SelectedSessionID = -1;
 
+    //Default value of MODE
     MODE mode = MODE.None;
 
     public string displayText;
@@ -220,6 +223,7 @@
     }
 
     //Switches modes to add and clears fields
+    //Also sets the default datatime picker to the current datetime from the user pc
     public void Add()
     {
         ClearFields();

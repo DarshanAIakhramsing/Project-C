@@ -44,6 +44,7 @@ namespace Project_C
 
             services.Configure<AppSettings>(Configuration.GetSection("MySettings"));
 
+            //Sets the password policy for the users
             services.AddDefaultIdentity<User>(config =>
             {
                 config.Password.RequireDigit = true;

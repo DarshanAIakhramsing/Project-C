@@ -16,11 +16,13 @@ namespace Project_C.Data
     {
 		public ApplicationDbContext DbContext { get; set; }
 
+        //makes connection with the database
 		public CustomRoleStore(ApplicationDbContext dbContext)
 		{
             DbContext = dbContext;
         }
 
+        //Adds a role to the database
         public async Task<IdentityResult> CreateAsync(Role role, CancellationToken cancellationToken)
         {
             await DbContext.AddAsync(role, cancellationToken);
@@ -42,31 +44,37 @@ namespace Project_C.Data
             // Do nothing
         }
 
-
+        //Makes sure a role can be found
         public async Task<Role> FindByIdAsync(string roleId, CancellationToken cancellationToken)
         {
             int.TryParse(roleId, out int id);
             return await DbContext.Roles.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
+        //Makes sure to make the role name lower case when getting it from the database
         public async Task<Role> FindByNameAsync(string normalizedRoleName, CancellationToken cancellationToken)
         {
             normalizedRoleName = normalizedRoleName.ToLower();
             return await DbContext.Roles.FirstOrDefaultAsync(x => x.Name.ToLower() == normalizedRoleName, cancellationToken);
         }
 
+        //Gets the role name from the database by it's normal name
         public Task<string> GetNormalizedRoleNameAsync(Role role, CancellationToken cancellationToken)
             => GetRoleNameAsync(role, cancellationToken);
 
+        //Gets the role id 
         public Task<string> GetRoleIdAsync(Role role, CancellationToken cancellationToken)
             => Task.FromResult(role.Id.ToString());
 
+        //Gets the role name
         public Task<string> GetRoleNameAsync(Role role, CancellationToken cancellationToken)
             => Task.FromResult(role.Name);
 
+        //Sets the role name normalized in the database
         public Task SetNormalizedRoleNameAsync(Role role, string normalizedName, CancellationToken cancellationToken)
             => Task.CompletedTask;
 
+        //Sets the role name in the database
         public Task SetRoleNameAsync(Role role, string roleName, CancellationToken cancellationToken)
         {
             role.Name = roleName;
