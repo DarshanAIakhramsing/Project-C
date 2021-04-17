@@ -65,22 +65,22 @@ namespace EditSessionAutomationTest
                 //Navigates to sessie overzicht page
                 driver.Navigate().GoToUrl("https://localhost:5001/sessies");
                 //Edits the session info
-                wait.Until(e => e.FindElement(By.Id("87"))).Click();
-                wait.Until(e => e.FindElement(By.Id("Name"))).Clear();
-                wait.Until(e => e.FindElement(By.Id("Name"))).SendKeys("Test Name 2");
-                wait.Until(e => e.FindElement(By.Id("Location"))).Clear();
-                wait.Until(e => e.FindElement(By.Id("Location"))).SendKeys("Test Location 2");
-                wait.Until(e => e.FindElement(By.Id("Date"))).SendKeys("12262021");
-                wait.Until(e => e.FindElement(By.Id("Time"))).SendKeys("1835");
+                wait.Until(e => e.FindElement(By.Id("91"))).Click();
+                wait.Until(e => e.FindElement(By.Id("Naam"))).Clear();
+                wait.Until(e => e.FindElement(By.Id("Naam"))).SendKeys("Prestatie bijeenkomst");
+                wait.Until(e => e.FindElement(By.Id("Locatie"))).Clear();
+                wait.Until(e => e.FindElement(By.Id("Locatie"))).SendKeys("Meeting kamer 3");
+                wait.Until(e => e.FindElement(By.Id("Datum"))).SendKeys("04212021");
+                wait.Until(e => e.FindElement(By.Id("Tijd"))).SendKeys("1250");
                 driver.FindElement(By.Id("Wijzig")).Click();
                 //Let's the application wait for 2 second to give the time for new elements to load
                 Thread.Sleep(2000);
                 IWebElement bodyTag = wait.Until(e => e.FindElement(By.TagName("tbody")));
                 //Assert checks if the text that the code filled in is the same with the text we expected
-                Assert.Contains("Test Name 2", bodyTag.Text);
-                Assert.Contains("Test Location 2", bodyTag.Text);
-                Assert.Contains("26-12-2021", bodyTag.Text);
-                Assert.Contains("18:35:00", bodyTag.Text);
+                Assert.Contains("Prestatie bijeenkomst", bodyTag.Text);
+                Assert.Contains("Meeting kamer 3", bodyTag.Text);
+                Assert.Contains("21-4-2021", bodyTag.Text);
+                Assert.Contains("12:50:00", bodyTag.Text);
             }
         }
     }

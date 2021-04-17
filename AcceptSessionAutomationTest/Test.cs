@@ -59,7 +59,7 @@ namespace AcceptSessionAutomationTest
                 //Goes to the url from the website
                 driver.Navigate().GoToUrl("https://localhost:5001/");
                 //Inserts the email in the email field to login
-                driver.FindElement(By.Name("Input.Email")).SendKeys("automationtest@cimsolutions.nl");
+                driver.FindElement(By.Name("Input.Email")).SendKeys("automationtestFerdi@cimsolutions.nl");
                 //Inserts the password in the password field to login
                 driver.FindElement(By.Name("Input.Password")).SendKeys("Testing123!" + Keys.Enter);
                 //Navigates to sessie overzicht page

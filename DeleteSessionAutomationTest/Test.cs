@@ -65,14 +65,14 @@ namespace DeleteSessionAutomationTest
                 //Navigates to sessie overzicht page
                 driver.Navigate().GoToUrl("https://localhost:5001/sessies");
                 //Change this ID to the ID that you want to delete
-                wait.Until(e => e.FindElement(By.Id("87"))).Click();
+                wait.Until(e => e.FindElement(By.Id("91"))).Click();
                 wait.Until(e => e.FindElement(By.Id("verwijder"))).Click();
                 //Let's the application wait for 2 seconds to give the time for new elements to load
                 Thread.Sleep(2000);
                 //exist checks if element 41 exist
                 bool exist = driver.FindElements(By.Id("41")).Count == 1;
                 //exist checks if element 61 doesn't exist
-                bool nonExist = driver.FindElements(By.Id("87")).Count == 0;
+                bool nonExist = driver.FindElements(By.Id("91")).Count == 0;
                 //Assert checks if the booleans are true
                 Assert.True(exist);
                 Assert.True(nonExist);

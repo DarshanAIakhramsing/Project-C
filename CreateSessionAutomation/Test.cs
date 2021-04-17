@@ -66,19 +66,19 @@ namespace AcceptSessionAutomationTest
                 driver.Navigate().GoToUrl("https://localhost:5001/sessies");
                 //Creates a session
                 wait.Until(e => e.FindElement(By.Id("Sessie Aanmaken"))).Click();
-                wait.Until(e => e.FindElement(By.Id("Name"))).SendKeys("Test Name 1");
-                wait.Until(e => e.FindElement(By.Id("Location"))).SendKeys("Test Location 1");
-                wait.Until(e => e.FindElement(By.Id("Date"))).SendKeys("12252021");
-                wait.Until(e => e.FindElement(By.Id("Time"))).SendKeys("1725");
+                wait.Until(e => e.FindElement(By.Id("Naam"))).SendKeys("Officiele meeting 3");
+                wait.Until(e => e.FindElement(By.Id("Locatie"))).SendKeys("Meeting kamer 3");
+                wait.Until(e => e.FindElement(By.Id("Datum"))).SendKeys("10102021");
+                wait.Until(e => e.FindElement(By.Id("Tijd"))).SendKeys("1310");
                 driver.FindElement(By.Id("Verstuur")).Click();
                 //Let's the application wait for 2 seconds to give the time for new elements to load
                 Thread.Sleep(2000);
                 IWebElement bodyTag = wait.Until(e => e.FindElement(By.TagName("tbody")));
                 //Assert checks if the text that the code filled in is the same with the text we expected
-                Assert.Contains("Test Name 1", bodyTag.Text);
-                Assert.Contains("Test Location 1", bodyTag.Text);
-                Assert.Contains("25-12-2021", bodyTag.Text);
-                Assert.Contains("17:25:00", bodyTag.Text);
+                Assert.Contains("Officiele meeting 3", bodyTag.Text);
+                Assert.Contains("Meeting kamer 3", bodyTag.Text);
+                Assert.Contains("10-10-2021", bodyTag.Text);
+                Assert.Contains("13:10:00", bodyTag.Text);
             }
         }
     }
