@@ -6,9 +6,9 @@ using OpenQA.Selenium.Support.UI;
 using System.Reflection;
 using System.Threading;
 
-namespace AcceptSessionAutomationTest
+namespace EditSessionAutomationTest
 {
-    public class Test : IDisposable
+    public class EditSessionAutomationTest : IDisposable
     {
         //This instantiates the webdriver to use selenium in our code
         public readonly IWebDriver driver;
@@ -16,7 +16,7 @@ namespace AcceptSessionAutomationTest
         private readonly Thread server;
 
         //This is the function that starts up the project for the test
-        public Test()
+        public EditSessionAutomationTest()
         {
             //This is a relative path so it can always find Project C no matter the other person's file structure
             var assembly = Assembly.Load("Project_C");
@@ -59,24 +59,30 @@ namespace AcceptSessionAutomationTest
                 //Goes to the url from the website
                 driver.Navigate().GoToUrl("https://localhost:5001/");
                 //Inserts the email in the email field to login
-                driver.FindElement(By.Name("Input.Email")).SendKeys("automationtestFerdi@cimsolutions.nl");
+                driver.FindElement(By.Name("Input.Email")).SendKeys("darshan@cimsolutions.nl");
                 //Inserts the password in the password field to login
-                driver.FindElement(By.Name("Input.Password")).SendKeys("Testing123!" + Keys.Enter);
+                driver.FindElement(By.Name("Input.Password")).SendKeys("Darshan12345!");
+                //Finds the button and clicks on it to log in
+                driver.FindElement(By.Id("Login")).Click();
                 //Navigates to sessie overzicht page
-                driver.Navigate().GoToUrl("https://localhost:5001/sessieoverzicht");
-                Thread.Sleep(1000);
-                //Waits until an element has loaded before checking if we have arrived on the page
-                IWebElement acceptClick = wait.Until(e => e.FindElement(By.Id("55")));
-                acceptClick.Click();
-                //Let's the application wait for 1 second to give the time for new elements to load
-                Thread.Sleep(1000);
-                //exist checks if element 61 exist
-                bool exist = driver.FindElements(By.Id("61")).Count == 1;
-                //nonExist checks if element 55 doesn't exist
-                bool nonExist = driver.FindElements(By.Id("55")).Count == 0;
-                //Assert checks if the booleans are true
-                Assert.True(exist);
-                Assert.True(nonExist);
+                driver.Navigate().GoToUrl("https://localhost:5001/sessies");
+                //Edits the session info
+                wait.Until(e => e.FindElement(By.Id("103"))).Click();
+                wait.Until(e => e.FindElement(By.Id("Naam"))).Clear();
+                wait.Until(e => e.FindElement(By.Id("Naam"))).SendKeys("Presentatie sales");
+                wait.Until(e => e.FindElement(By.Id("Locatie"))).Clear();
+                wait.Until(e => e.FindElement(By.Id("Locatie"))).SendKeys("Meeting kamer 6");
+                wait.Until(e => e.FindElement(By.Id("Datum"))).SendKeys("25042021");
+                wait.Until(e => e.FindElement(By.Id("Tijd"))).SendKeys("1550");
+                driver.FindElement(By.Id("Wijzig")).Click();
+                //Let's the application wait for 2 second to give the time for new elements to load
+                Thread.Sleep(2000);
+                IWebElement bodyTag = wait.Until(e => e.FindElement(By.TagName("tbody")));
+                //Assert checks if the text that the code filled in is the same with the text we expected
+                Assert.Contains("Presentatie sales", bodyTag.Text);
+                Assert.Contains("Meeting kamer 6", bodyTag.Text);
+                Assert.Contains("25/04/2021", bodyTag.Text);
+                Assert.Contains("15:50:00", bodyTag.Text);
             }
         }
     }

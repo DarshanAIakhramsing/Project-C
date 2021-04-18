@@ -83,23 +83,23 @@
                 <ValidationSummary />
                 <label>
                     Sessie naam:
-                    <InputText id="Name" @bind-Value="@EditModel.Name">Sessie naam:</InputText>
+                    <InputText id="Naam" @bind-Value="@EditModel.Name">Sessie naam:</InputText>
 
                 </label>
                 <br />
                 <label>
                     Sessie Locatie:
-                    <InputText id="Location" @bind-Value="@EditModel.Location">Sessie locatie:</InputText>
+                    <InputText id="Locatie" @bind-Value="@EditModel.Location">Sessie locatie:</InputText>
                 </label>
                 <br />
                 <label>
                     Datum:
-                    <InputDate id="Date" type="time" @bind-Value="@EditModel.Date" @bind-Value:format="dd/MM/yyyy">Datum:</InputDate>
+                    <InputDate id="Datum" type="time" @bind-Value="@EditModel.Date" @bind-Value:format="dd/MM/yyyy">Datum:</InputDate>
                 </label>
                 <br />
                 <label>
                     Tijdstip:
-                    <input id="Time" type="time" @bind-value="@EditModel.Time" />
+                    <input id="Tijd" type="time" @bind-value="@EditModel.Time" />
                 </label>
                 <br />
                 <button type="submit" id="Wijzig" class="btn btn-success">Wijzigen</button><br />
