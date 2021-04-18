@@ -15,6 +15,8 @@
     }
 </style>
 
+
+@*This is the register page*@
 <div class="col-11 col-md-8 col-lg-4 m-auto">
     <h1>@ViewData["Title"]</h1>
 </div>
@@ -31,7 +33,7 @@
             <div class="form-group">
                 <label asp-for="Input.Password">Wachtwoord</label>
                 <input asp-for="Input.Password" class="form-control" />
-                <p>Het wachtwoord moet een hoofdletter hebben, een Niet-alfanumerieke teken (bijvoorbeeld !, $, # en %) en een cijfer</p>
+                <p>Het wachtwoord moet een hoofdletter hebben, een niet-alfanumerieke teken (bijvoorbeeld !, $, # en %) en een cijfer</p>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -39,7 +41,7 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-success">Registreer</button>
+            <button type="submit" id="Registreer" class="btn btn-success">Registreer</button>
         </form>
     </div>
 </div>

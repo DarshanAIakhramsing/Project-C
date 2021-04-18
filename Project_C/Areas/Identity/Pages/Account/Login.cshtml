@@ -17,6 +17,7 @@
 </style>
 
 
+@*This is the login page*@
 <div class="col-11 col-md-8 col-lg-4 m-auto">
     <h1>@ViewData["Title"]</h1>
 </div>
@@ -36,7 +37,7 @@
                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Log in</button>
+                        <button type="submit" id="Login" class="btn btn-primary">Log in</button>
                     </div>
                     <div class="form-group">
                         <p>
