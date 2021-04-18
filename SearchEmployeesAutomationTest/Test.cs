@@ -73,7 +73,7 @@ namespace Session.Unit.Test
                 IWebElement bodyTag = wait.Until(e => e.FindElement(By.TagName("tbody")));
                 //Checks if the text the test filled in is equal to the text we expect
                 Assert.Contains("ferdi@cimsolutions.nl", bodyTag.Text);
-                Assert.DoesNotContain("jabba@gmail.com", bodyTag.Text);
+                Assert.DoesNotContain("m.campen@cimsolutions.nl", bodyTag.Text);
 
 
             }
